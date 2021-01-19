@@ -5,29 +5,37 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<int> list = [1, 2, 3, 4, 5];
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(24.0),
-            child: CarouselSlider(
-              options: CarouselOptions(
-                height: MediaQuery.of(context).size.height / 2,
-                viewportFraction: 1.0,
-              ),
-              items: list
-                  .map(
-                    (item) => Container(
-                      child: Center(
-                        child: Text(
-                          item.toString(),
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 1.75,
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Stack(
+                          children: [
+                            HomeCarousel(list: list),
+                            HomeHeader(),
+                          ],
                         ),
-                      ),
-                      color: ColorConst.kSecondaryColor,
+                      ],
                     ),
-                  )
-                  .toList(),
-            ),
+                  ],
+                ),
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: HomeDatePicker(),
+                ),
+              ),
+            ],
           ),
+          SizedBox(height: 16.0),
+          HotelCarousel()
         ],
       ),
     );

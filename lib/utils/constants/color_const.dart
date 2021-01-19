@@ -1,4 +1,4 @@
-part of utils;
+part of '../utils.dart';
 
 class ColorConst {
   static const kPrimaryColor = Color(0xFFF4C755);
