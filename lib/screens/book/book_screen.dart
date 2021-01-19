@@ -8,8 +8,11 @@ class BookScreen extends StatefulWidget {
 class _BookScreenState extends State<BookScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Book'),
+    return Container(
+      color: Colors.red,
+      child: Center(
+        child: Text('Book'),
+      ),
     );
   }
 }

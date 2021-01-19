@@ -12,6 +12,9 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 64.0, vertical: 16.0),
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.all(
           Radius.circular(54.0),
@@ -47,6 +50,7 @@ class BottomNavigation extends StatelessWidget {
       icon: Icon(
         icon,
         color: _tabColor(index: index),
+        size: 24.0,
       ),
       title: Text(
         tabName,

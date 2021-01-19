@@ -1,4 +1,4 @@
-part of 'package:dangau_hotel/utils/utils.dart';
+part of utils;
 
 class ColorConst {
   static const kPrimaryColor = Color(0xFFF4C755);
