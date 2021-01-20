@@ -19,6 +19,8 @@ class HomeCarousel extends StatelessWidget {
         options: CarouselOptions(
           height: MediaQuery.of(context).size.height / 2,
           viewportFraction: 1.0,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 10),
         ),
         items: list
             .map(

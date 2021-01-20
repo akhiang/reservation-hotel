@@ -20,7 +20,7 @@ class MainScreenState extends State<MainScreen> {
       page: BookScreen(),
     ),
     TabItem(
-      tabName: "Settings",
+      tabName: "User",
       icon: Icons.person,
       page: UserScreen(),
     ),

@@ -101,7 +101,9 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
-        child: CustomAppBar(),
+        child: CustomAppBar(
+          title: 'Hotel Yang Tersedia',
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

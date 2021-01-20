@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:dangau_hotel/utils/utils.dart';
 
+part 'package:dangau_hotel/routes.dart';
 part 'package:dangau_hotel/widgets/custom_app_bar.dart';
 part 'package:dangau_hotel/screens/home/home_screen.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_carousel.dart';
