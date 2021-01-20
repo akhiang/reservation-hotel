@@ -27,7 +27,13 @@ class HomeDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showDateBottomSheet(context);
+        // _showDateBottomSheet(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FindHotelScreen(),
+          ),
+        );
       },
       child: Container(
         height: 120.0,

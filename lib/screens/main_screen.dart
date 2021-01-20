@@ -55,7 +55,6 @@ class MainScreenState extends State<MainScreen> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        // backgroundColor: Colors.transparent,
         body: IndexedStack(
           index: currentTab,
           children: tabs.map((e) => e.page).toList(),
@@ -65,21 +64,6 @@ class MainScreenState extends State<MainScreen> {
           onSelectTab: _selectTab,
           tabs: tabs,
         ),
-        // bottomNavigationBar: FloatingNavbar(
-        //   borderRadius: 32.0,
-        //   width: 300.0,
-        //   selectedBackgroundColor: Colors.transparent,
-        //   selectedItemColor: ColorConst.kSecondaryColor,
-        //   unselectedItemColor: ColorConst.kSecondaryColor.withOpacity(0.5),
-        //   backgroundColor: ColorConst.kPrimaryColor,
-        //   onTap: (int val) => setState(() => currentTab = val),
-        //   currentIndex: currentTab,
-        //   items: [
-        //     FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-        //     FloatingNavbarItem(icon: FontAwesomeIcons.book, title: 'Book'),
-        //     FloatingNavbarItem(icon: Icons.person, title: 'User'),
-        //   ],
-        // ),
       ),
     );
   }

@@ -23,4 +23,12 @@ final List<Hotel> hotels = [
     name: 'Dangau Hotel',
     imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
   ),
+  Hotel(
+    name: 'Dangau Resort',
+    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
+  ),
+  Hotel(
+    name: 'Dangau Hotel',
+    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
+  ),
 ];
