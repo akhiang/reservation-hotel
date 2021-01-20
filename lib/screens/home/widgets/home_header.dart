@@ -37,17 +37,18 @@ class HomeHeader extends StatelessWidget {
               ),
             ],
           ),
-          MaterialButton(
+          RawMaterialButton(
             onPressed: () {},
-            color: ColorConst.kSecondaryColor.withOpacity(0.05),
-            textColor: ColorConst.kSecondaryColor,
+            constraints: BoxConstraints(),
+            elevation: 2.0,
+            fillColor: ColorConst.kSecondaryColor.withOpacity(0.05),
             child: Icon(
               Icons.person,
               size: 24.0,
             ),
             padding: EdgeInsets.all(8.0),
             shape: CircleBorder(),
-          )
+          ),
         ],
       ),
     );

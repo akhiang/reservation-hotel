@@ -23,15 +23,15 @@ class HotelCarousel extends StatelessWidget {
           ),
         ),
         Container(
-          height: 150.0,
+          height: 160.0,
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
             scrollDirection: Axis.horizontal,
             itemCount: hotels.length,
             itemBuilder: (_, index) {
               Hotel hotel = hotels[index];
               return Container(
-                width: 240.0,
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Stack(
                   children: [
                     ClipRRect(
