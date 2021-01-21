@@ -28,8 +28,7 @@ class HomeDatePicker extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // _showDateBottomSheet(context);
-        Navigator.push(
-          context,
+        Navigator.of(context, rootNavigator: true).push(
           MaterialPageRoute(
             builder: (context) => FindHotelScreen(),
           ),
@@ -39,7 +38,7 @@ class HomeDatePicker extends StatelessWidget {
         height: 120.0,
         width: 320.0,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: ColorConst.kThirdColor,
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(

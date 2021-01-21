@@ -11,10 +11,10 @@ class TextFieldContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 4.0),
+      padding: EdgeInsets.symmetric(horizontal: 24.0),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ColorConst.kSecondaryColor.withOpacity(0.1),
+        color: ColorConst.kSecondaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(32.0),
       ),
       child: child,

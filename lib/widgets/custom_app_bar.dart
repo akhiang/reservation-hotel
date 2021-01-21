@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       icon: Icon(
-                        Icons.chevron_left_rounded,
+                        Icons.chevron_left,
                         color: ColorConst.kSecondaryColor,
                       ),
                       iconSize: 32.0,

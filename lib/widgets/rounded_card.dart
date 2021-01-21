@@ -23,7 +23,7 @@ class RoundedCard extends StatelessWidget {
           color: ColorConst.kThirdColor,
           boxShadow: [
             BoxShadow(
-              color: ColorConst.kSecondaryColor.withOpacity(0.1),
+              color: ColorConst.kSecondaryColor.withOpacity(0.07),
               offset: Offset(0.0, 5.0),
               blurRadius: 20.0,
             ),
@@ -58,7 +58,7 @@ class RoundedCard extends StatelessWidget {
                     ],
                   ),
                   Icon(
-                    Icons.chevron_right_rounded,
+                    Icons.chevron_right,
                     color: ColorConst.kSecondaryColor,
                   ),
                 ],

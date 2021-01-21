@@ -39,7 +39,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
                   color: ColorConst.kSecondaryColor,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(height: 32.0),
+            SizedBox(height: 16.0),
             _buildCalender(),
             Container(
               width: double.infinity,
@@ -95,69 +95,81 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
           isLeading: true,
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          RaisedButton(
-            onPressed: () {
-              _showDateCalenderBottomSheet();
-            },
-            child: Text(
-              'Ubah Tanggal',
-              style: TextStyle(color: ColorConst.kSecondaryColor),
-            ),
-            color: ColorConst.kPrimaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-          ),
-          Text(
-            'Tanggal',
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontSize: 18.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '29 Des 2020',
+                'Tanggal',
                 style: TextStyle(
                   color: ColorConst.kSecondaryColor,
                   fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                ' - ',
-                style: TextStyle(
-                  color: ColorConst.kSecondaryColor,
-                  fontSize: 18.0,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    '29 Des 2020',
+                    style: TextStyle(
+                      color: ColorConst.kSecondaryColor,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    ' - ',
+                    style: TextStyle(
+                      color: ColorConst.kSecondaryColor,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  Text(
+                    '02 Jan 2020',
+                    style: TextStyle(
+                      color: ColorConst.kSecondaryColor,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8.0),
+              Expanded(
+                child: ListView.builder(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                  itemCount: hotels.length,
+                  itemBuilder: (_, index) {
+                    Hotel hotel = hotels[index];
+                    return _buildHotelCard(hotel);
+                  },
                 ),
               ),
-              Text(
-                '02 Jan 2020',
-                style: TextStyle(
-                  color: ColorConst.kSecondaryColor,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
+              SizedBox(height: 16.0),
+              SizedBox(
+                width: 120.0,
+                height: 40.0,
+                child: RaisedButton(
+                  onPressed: () {
+                    _showDateCalenderBottomSheet();
+                  },
+                  child: Text(
+                    'Ubah Tanggal',
+                    style: TextStyle(color: ColorConst.kSecondaryColor),
+                  ),
+                  color: ColorConst.kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.0),
+                  ),
                 ),
               ),
             ],
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-              itemCount: hotels.length,
-              itemBuilder: (_, index) {
-                Hotel hotel = hotels[index];
-                return _buildHotelCard(hotel);
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -192,24 +204,29 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                hotel.name,
-                style: TextStyle(
-                  color: ColorConst.kThirdColor,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1.2,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    hotel.name,
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  Text(
+                    '⭐⭐⭐⭐⭐',
+                    style: TextStyle(
+                      fontSize: 10.0,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                '⭐⭐⭐⭐⭐',
-                style: TextStyle(
-                  fontSize: 10.0,
-                  letterSpacing: 1.2,
-                ),
-              ),
-              SizedBox(height: 54.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -8,25 +8,42 @@ class ProfileScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(title: 'Profil Saya', isLeading: false),
       ),
-      body: Column(
-        children: [
-          ProfileListTile(),
-          RoundedCard(
-            icon: Icons.help,
-            title: 'Bantuan',
-            press: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => HelpScreen(),
+      body: SingleChildScrollView(
+        clipBehavior: Clip.none,
+        child: Column(
+          children: [
+            ProfileListTile(),
+            RoundedCard(
+              icon: Icons.help,
+              title: 'Bantuan',
+              press: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HelpScreen(),
+                  ),
+                );
+              },
+            ),
+            RoundedCard(
+              icon: Icons.star,
+              title: 'Berikan nilai untuk aplikasi ini',
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                'Keluar',
+                style: TextStyle(
+                  color: ColorConst.kSecondaryColor,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
                 ),
-              );
-            },
-          ),
-          RoundedCard(
-            icon: Icons.star_rounded,
-            title: 'Berikan nilai untuk aplikasi ini',
-          ),
-        ],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24.0),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
