@@ -40,8 +40,8 @@ class HomeHeader extends StatelessWidget {
           RawMaterialButton(
             onPressed: () {},
             constraints: BoxConstraints(),
-            elevation: 2.0,
-            fillColor: ColorConst.kSecondaryColor.withOpacity(0.05),
+            elevation: 0.0,
+            fillColor: ColorConst.kSecondaryColor.withOpacity(0.30),
             child: Icon(
               Icons.person,
               size: 24.0,

@@ -22,7 +22,7 @@ class MainScreenState extends State<MainScreen> {
     TabItem(
       tabName: "User",
       icon: Icons.person,
-      page: UserScreen(),
+      page: ProfileScreen(),
     ),
   ];
 

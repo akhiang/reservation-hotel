@@ -15,40 +15,37 @@ class CustomAppBar extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       flexibleSpace: Container(
-        color: Colors.red,
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                isLeading
-                    ? IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          color: ColorConst.kSecondaryColor,
-                          size: 32.0,
-                        ),
-                        padding: EdgeInsets.all(0.0),
-                        
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      )
-                    : SizedBox(width: 40.0, height: 40.0),
-                Text(
-                  title,
-                  style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w600),
+            isLeading
+                ? Align(
+                    alignment: Alignment.bottomLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.chevron_left_rounded,
+                        color: ColorConst.kSecondaryColor,
+                      ),
+                      iconSize: 32.0,
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
+                    ),
+                  )
+                : SizedBox(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: ColorConst.kSecondaryColor,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w600,
                 ),
-                isLeading
-                    ? SizedBox(width: 40.0)
-                    : SizedBox(width: 40.0, height: 40.0),
-              ],
+              ),
             ),
           ],
         ),

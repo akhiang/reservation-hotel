@@ -6,7 +6,7 @@ class Router {
       case '/':
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/feed':
-        return MaterialPageRoute(builder: (_) => UserScreen());
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

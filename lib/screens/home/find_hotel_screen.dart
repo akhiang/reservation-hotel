@@ -45,19 +45,8 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
               width: double.infinity,
               height: 40.0,
               margin: EdgeInsets.all(16.0),
-              child: RaisedButton(
-                onPressed: () {},
-                child: Text(
-                  'Cari Hotel',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                color: ColorConst.kPrimaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32.0),
-                ),
+              child: PrimaryButton(
+                text: 'Cari Hotel',
               ),
             ),
           ],
@@ -103,6 +92,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(
           title: 'Hotel Yang Tersedia',
+          isLeading: true,
         ),
       ),
       body: Column(
