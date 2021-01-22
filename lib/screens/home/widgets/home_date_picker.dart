@@ -42,7 +42,7 @@ class HomeDatePicker extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
+              color: ColorConst.kSecondaryColor.withOpacity(0.15),
               offset: Offset(0.0, 5.0),
               blurRadius: 20.0,
             ),

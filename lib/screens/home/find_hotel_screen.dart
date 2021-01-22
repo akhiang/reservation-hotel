@@ -178,6 +178,13 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
     return GestureDetector(
       onTap: () {
         print(hotel.name);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HotelScreen(
+              hotel: hotel,
+            ),
+          ),
+        );
       },
       child: Container(
         height: 160,
