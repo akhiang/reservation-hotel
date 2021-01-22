@@ -19,6 +19,8 @@ part 'package:dangau_hotel/screens/home/widgets/home_header.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_carousel.dart';
 
+part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
+
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 
 part 'package:dangau_hotel/screens/profile/profile_screen.dart';

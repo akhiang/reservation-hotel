@@ -1,6 +1,14 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class HelpRefundScreen extends StatelessWidget {
+class HelpRefundScreen extends StatefulWidget {
+  @override
+  _HelpRefundScreenState createState() => _HelpRefundScreenState();
+}
+
+class _HelpRefundScreenState extends State<HelpRefundScreen> {
+  String _valHotel;
+  List _listHotel = ["Kahyangan Resort", "Dangau Resort", "Dangau Hotel"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,9 +18,10 @@ class HelpRefundScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Saya ingin melakukan refund',
@@ -31,7 +40,7 @@ class HelpRefundScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.justify,
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 40.0),
               Text(
                 'Kontak :',
                 style: TextStyle(
@@ -40,10 +49,83 @@ class HelpRefundScreen extends StatelessWidget {
                   fontSize: 16.0,
                 ),
               ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                decoration: BoxDecoration(
+                  color: ColorConst.kSecondaryColor.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(32.0),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                      canvasColor: Color(0xFFEAEEF5),
+                    ),
+                    child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text(
+                        "Hotel yang anda pesan",
+                        style: TextStyle(
+                          color: ColorConst.kSecondaryColor.withOpacity(0.6),
+                        ),
+                      ),
+                      value: _valHotel,
+                      items: _listHotel.map((value) {
+                        return DropdownMenuItem(
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              color: ColorConst.kSecondaryColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          value: value,
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _valHotel = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildKontakHotel(Icons.phone, '+62 123124125332'),
+                    SizedBox(height: 16.0),
+                    _buildKontakHotel(Icons.email, 'resortkahyangan@gmail.com'),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Row _buildKontakHotel(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 32.0,
+          color: ColorConst.kErrorColor,
+        ),
+        SizedBox(width: 8.0),
+        Text(
+          text,
+          style: TextStyle(
+            color: ColorConst.kSecondaryColor,
+            fontSize: 16.0,
+          ),
+        ),
+      ],
     );
   }
 }
