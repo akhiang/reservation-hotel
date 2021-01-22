@@ -23,76 +23,99 @@ class RoomCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
+          Hero(
+            tag: 'assets/images/pexels-pixabay-258154.jpg',
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              child: SizedBox(
+                width: 88.0,
+                child: AspectRatio(
+                  aspectRatio: 0.5,
+                  child: Image(
+                    image:
+                        AssetImage('assets/images/pexels-pixabay-258154.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 8.0),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Deluxe Twin",
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+                  Column(
+                    children: [
+                      Text(
+                        "Deluxe Twin",
+                        style: TextStyle(
+                          color: ColorConst.kSecondaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      Text(
+                        "with Baclcony",
+                        style: TextStyle(
+                          color: ColorConst.kSecondaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('cek');
+                    },
+                    child: Text(
+                      "Cek Detail",
+                      style: TextStyle(
+                        color: ColorConst.kErrorColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   Text(
-                    "with Baclcony",
+                    "Rp700.000 / malam",
+                    style: TextStyle(
+                      color: ColorConst.kErrorColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  PrimaryButton(
+                    text: 'Pilih',
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.people,
+                    color: ColorConst.kSecondaryColor,
+                  ),
+                  SizedBox(width: 8.0),
+                  Text(
+                    "2",
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor,
                     ),
                   ),
                 ],
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('cek');
-                },
-                child: Text(
-                  "Cek Detail",
-                  style: TextStyle(
-                    color: ColorConst.kErrorColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Rp700.000 / malam",
-                style: TextStyle(
-                  color: ColorConst.kErrorColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              PrimaryButton(
-                text: 'Pilih',
               )
             ],
           ),
-          Row(
-            children: [
-              Icon(
-                Icons.people,
-                color: ColorConst.kSecondaryColor,
-              ),
-              SizedBox(width: 8.0),
-              Text(
-                "2",
-                style: TextStyle(
-                  color: ColorConst.kSecondaryColor,
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );
