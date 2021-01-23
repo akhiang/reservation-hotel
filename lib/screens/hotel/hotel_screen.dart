@@ -10,7 +10,7 @@ class HotelScreen extends StatefulWidget {
 }
 
 class _HotelScreenState extends State<HotelScreen> {
-  final double expandedHeight = 700;
+  final double expandedHeight = 400;
   final double roundedContainerHeight = 60;
 
   @override
@@ -22,7 +22,7 @@ class _HotelScreenState extends State<HotelScreen> {
             slivers: [
               _buildSliverHeader(),
               SliverToBoxAdapter(
-                child: _buildDetail(),
+                child: _buildDetail(widget.hotel),
               )
             ],
           ),
@@ -69,7 +69,7 @@ class _HotelScreenState extends State<HotelScreen> {
   }
 }
 
-Widget _buildDetail() {
+Widget _buildDetail(Hotel hotel) {
   return ClipRRect(
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(32.0),
@@ -81,7 +81,7 @@ Widget _buildDetail() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
             child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis. ",
               style: TextStyle(
@@ -93,7 +93,7 @@ Widget _buildDetail() {
             ),
           ),
           _buildfacilityCard(),
-          _buildAvailableRoom()
+          _buildAvailableRoom(hotel),
         ],
       ),
     ),
@@ -102,7 +102,7 @@ Widget _buildDetail() {
 
 Padding _buildfacilityCard() {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,8 +120,7 @@ Padding _buildfacilityCard() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             FacilityCard(icon: Icons.restaurant, title: 'Restoran'),
-            FacilityCard(
-                icon: FontAwesomeIcons.swimmingPool, title: 'Kolam Renang'),
+            FacilityCard(icon: FontAwesomeIcons.swimmingPool, title: 'Kolam'),
             FacilityCard(icon: FontAwesomeIcons.wifi, title: 'Wi-Fi'),
             FacilityCard(icon: FontAwesomeIcons.thLarge, title: 'Lainnya'),
           ],
@@ -131,9 +130,9 @@ Padding _buildfacilityCard() {
   );
 }
 
-Padding _buildAvailableRoom() {
+Padding _buildAvailableRoom(Hotel hotel) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -146,9 +145,8 @@ Padding _buildAvailableRoom() {
             letterSpacing: 1.2,
           ),
         ),
-        SizedBox(height: 8.0),
-        RoomCard(),
-        RoomCard(),
+        RoomCard(hotel: hotel),
+        RoomCard(hotel: hotel),
       ],
     ),
   );
@@ -168,8 +166,8 @@ class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
       ),
       child: Stack(
         children: <Widget>[
@@ -177,7 +175,7 @@ class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
             tag: hotel.name,
             child: Image.asset(
               hotel.imageUrl,
-              width: SizeConfig.screenWidth,
+              width: SizeConfig.screenWidth(context),
               height: expandedHeight,
               fit: BoxFit.cover,
             ),
@@ -194,21 +192,6 @@ class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
-          // Positioned(
-          //   top: expandedHeight - roundedContainerHeight - shrinkOffset,
-          //   left: 0,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width,
-          //     height: roundedContainerHeight,
-          //     decoration: BoxDecoration(
-          //       color: Colors.white,
-          //       borderRadius: BorderRadius.only(
-          //         topLeft: Radius.circular(32.0),
-          //         topRight: Radius.circular(32.0),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Positioned(
             top: expandedHeight - 120 - shrinkOffset,
             left: 32.0,

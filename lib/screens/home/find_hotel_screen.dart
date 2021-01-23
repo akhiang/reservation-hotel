@@ -97,7 +97,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -180,7 +180,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
         print(hotel.name);
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => HotelScreen(
+            builder: (context) => HotelScreen3(
               hotel: hotel,
             ),
           ),

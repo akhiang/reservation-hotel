@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dangau_hotel/models/models.dart';
@@ -21,8 +22,11 @@ part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_carousel.dart';
 
 part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_screen_2.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_screen_3.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/facility_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/room_card.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/hotel_information.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 
