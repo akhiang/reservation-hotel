@@ -17,29 +17,35 @@ class HotelInformation extends StatelessWidget {
       controller: sc,
       child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 12.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 32.0,
-                height: 6.0,
-                decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.all(Radius.circular(12.0))),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 18.0,
-          ),
           _buildDescription(),
+          _buildContact(),
           _buildFacility(),
           _buildHotelRoom(),
           SizedBox(
             height: 24,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding _buildContact() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+      child: Column(
+        children: [
+          HotelContactListTile(
+            icon: FontAwesomeIcons.mapMarkerAlt,
+            text:
+                "Jl. Raya Tj. Gundul, Karimunting, Sungai Raya Kepulauan, Kabupaten Bengkayang, Kal-Bar 79271",
+          ),
+          HotelContactListTile(
+            icon: Icons.phone,
+            text: "+62 7187655856",
+          ),
+          HotelContactListTile(
+            icon: Icons.email,
+            text: "resortkahyangan@gmail.com",
           ),
         ],
       ),

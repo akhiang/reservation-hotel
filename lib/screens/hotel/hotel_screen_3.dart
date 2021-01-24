@@ -11,32 +11,37 @@ class HotelScreen3 extends StatefulWidget {
 
 class _HotelScreen3State extends State<HotelScreen3>
     with SingleTickerProviderStateMixin {
-  final double _initFabHeight = 176.0;
-  double _fabHeight;
+  final double _initTitleHeight = 176.0;
+  double _titleHeight;
   double _panelHeightOpen;
   double _panelHeightClosed = 144.0;
 
   TabController _controller;
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
 
   List<Widget> list = [
-    Tab(icon: Icon(Icons.card_travel)),
-    Tab(icon: Icon(Icons.add_shopping_cart)),
-    Tab(icon: Icon(Icons.add_shopping_cart)),
+    Tab(text: 'Informasi'),
+    Tab(text: 'Menu Makanan'),
+    Tab(text: 'Ulasan'),
   ];
 
   @override
   void initState() {
     super.initState();
-    _fabHeight = _initFabHeight;
+    _titleHeight = _initTitleHeight;
     _controller = TabController(length: list.length, vsync: this);
 
     _controller.addListener(() {
       setState(() {
-        _selectedIndex = _controller.index;
+        selectedIndex = _controller.index;
       });
-      print("Selected Index: " + _controller.index.toString());
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -57,8 +62,8 @@ class _HotelScreen3State extends State<HotelScreen3>
               topRight: Radius.circular(16.0),
             ),
             onPanelSlide: (double pos) => setState(() {
-              _fabHeight = pos * (_panelHeightOpen - _panelHeightClosed) +
-                  _initFabHeight;
+              _titleHeight = pos * (_panelHeightOpen - _panelHeightClosed) +
+                  _initTitleHeight;
             }),
           ),
           _buildHeader(context),
@@ -71,14 +76,46 @@ class _HotelScreen3State extends State<HotelScreen3>
   Positioned _buildTitle() {
     return Positioned(
       left: 20.0,
-      bottom: _fabHeight,
-      child: Text(
-        'Kahyangan Resort',
-        style: TextStyle(
-          color: ColorConst.kThirdColor,
-          fontSize: 20.0,
-          fontWeight: FontWeight.w600,
-        ),
+      right: 20.0,
+      bottom: _titleHeight,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+            'Kahyangan Resort',
+            style: TextStyle(
+              color: ColorConst.kThirdColor,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+            decoration: BoxDecoration(
+              color: ColorConst.kPrimaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 16.0,
+                  color: ColorConst.kThirdColor,
+                ),
+                SizedBox(width: 4.0),
+                Text(
+                  '4.8',
+                  style: TextStyle(
+                    color: ColorConst.kThirdColor,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -118,24 +155,29 @@ class _HotelScreen3State extends State<HotelScreen3>
         ),
         child: Column(
           children: [
+            SizedBox(
+              height: 12.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 40.0,
+                  height: 4.0,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                ),
+              ],
+            ),
             TabBar(
               labelColor: ColorConst.kSecondaryColor,
               indicatorColor: ColorConst.kSecondaryColor,
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width: 2.0),
-                insets: EdgeInsets.symmetric(horizontal: 52.0),
+                insets: EdgeInsets.symmetric(horizontal: 48.0, vertical: 10.0),
               ),
-              tabs: [
-                Tab(
-                  text: 'Informasi',
-                ),
-                Tab(
-                  text: 'Menu Makanan',
-                ),
-                Tab(
-                  text: 'Ulasan',
-                )
-              ],
+              tabs: list,
               controller: _controller,
               indicatorSize: TabBarIndicatorSize.tab,
             ),
