@@ -171,6 +171,7 @@ class _HotelScreen3State extends State<HotelScreen3>
               ],
             ),
             TabBar(
+              isScrollable: false,
               labelColor: ColorConst.kSecondaryColor,
               indicatorColor: ColorConst.kSecondaryColor,
               indicator: UnderlineTabIndicator(
@@ -186,11 +187,7 @@ class _HotelScreen3State extends State<HotelScreen3>
                 controller: _controller,
                 children: [
                   HotelInformation(sc: sc, hotel: widget.hotel),
-                  Center(
-                      child: Text(
-                    "1",
-                    style: TextStyle(fontSize: 40),
-                  )),
+                  HotelFood(sc: sc, hotel: widget.hotel),
                   Center(
                       child: Text(
                     "2",

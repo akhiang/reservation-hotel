@@ -14,7 +14,7 @@ class HotelInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
-      controller: sc,
+      // controller: sc,
       child: Column(
         children: <Widget>[
           _buildDescription(),
@@ -25,6 +25,21 @@ class HotelInformation extends StatelessWidget {
             height: 24,
           ),
         ],
+      ),
+    );
+  }
+
+  Padding _buildDescription() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+      child: Text(
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis. ",
+        style: TextStyle(
+          color: ColorConst.kSecondaryColor,
+          height: 1.4,
+          fontSize: 16.0,
+        ),
+        textAlign: TextAlign.justify,
       ),
     );
   }
@@ -48,21 +63,6 @@ class HotelInformation extends StatelessWidget {
             text: "resortkahyangan@gmail.com",
           ),
         ],
-      ),
-    );
-  }
-
-  Padding _buildDescription() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-      child: Text(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis. ",
-        style: TextStyle(
-          color: ColorConst.kSecondaryColor,
-          height: 1.4,
-          fontSize: 16.0,
-        ),
-        textAlign: TextAlign.justify,
       ),
     );
   }
