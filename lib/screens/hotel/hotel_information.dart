@@ -21,9 +21,7 @@ class HotelInformation extends StatelessWidget {
           _buildContact(),
           _buildFacility(),
           _buildHotelRoom(),
-          SizedBox(
-            height: 24,
-          ),
+          SizedBox(height: 24.0),
         ],
       ),
     );

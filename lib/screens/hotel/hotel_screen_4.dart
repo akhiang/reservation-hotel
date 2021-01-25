@@ -42,6 +42,7 @@ class _HotelScreen4State extends State<HotelScreen4>
         elevation: 8,
         cornerRadius: 16,
         cornerRadiusOnFullscreen: 0.0,
+        color: ColorConst.kThirdColor,
         snapSpec: const SnapSpec(
           snap: true,
           snappings: [0.2, 0.7],
