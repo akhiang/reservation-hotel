@@ -171,7 +171,6 @@ class _HotelScreen3State extends State<HotelScreen3>
               ],
             ),
             TabBar(
-              isScrollable: false,
               labelColor: ColorConst.kSecondaryColor,
               indicatorColor: ColorConst.kSecondaryColor,
               indicator: UnderlineTabIndicator(

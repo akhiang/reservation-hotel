@@ -13,11 +13,12 @@ class HotelFood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      // controller: sc,
       physics: BouncingScrollPhysics(),
-      controller: sc,
       child: Column(
         children: [
           _buildPopularFood(context),
+          _buildOtherFood(context),
         ],
       ),
     );
@@ -27,31 +28,31 @@ class HotelFood extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "Populer",
+              style: TextStyle(
+                color: ColorConst.kSecondaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 18.0,
+                letterSpacing: 1.2,
+              ),
+            ),
+          ),
+          SizedBox(height: 8.0),
           Container(
-            height: 150,
+            height: 180.0,
             child: ListView.builder(
+              controller: sc,
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               itemCount: foods.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 Food food = foods[index];
-                return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 8.0),
-                  width: 150.0,
-                  height: 150.0,
-                  child: Hero(
-                    tag: food.imageUrl,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: Image.network(
-                        food.imageUrl,
-                        height: 120.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                );
+                return FoodCard(food: food);
               },
             ),
           ),
@@ -60,3 +61,38 @@ class HotelFood extends StatelessWidget {
     );
   }
 }
+
+Padding _buildOtherFood(BuildContext context) {
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: 8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Text(
+            "Menu Lainnya",
+            style: TextStyle(
+              color: ColorConst.kSecondaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 18.0,
+              letterSpacing: 1.2,
+            ),
+          ),
+        ),
+        Container(
+          height: 500.0,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            itemCount: foods.length,
+            itemBuilder: (context, index) {
+              Food food = foods[index];
+              return OtherFoodCard(food: food);
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
+

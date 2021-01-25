@@ -1,5 +1,8 @@
 import 'package:flutter/services.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dangau_hotel/models/models.dart';
@@ -24,11 +27,15 @@ part 'package:dangau_hotel/screens/home/widgets/hotel_carousel.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_2.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_3.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_screen_4.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_food.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_review.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/hotel_contact_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/facility_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/room_card.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/food_card.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/other_food_card.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 
