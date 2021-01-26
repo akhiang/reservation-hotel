@@ -180,7 +180,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
         print(hotel.name);
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => HotelScreen4(
+            builder: (context) => HotelScreen5(
               hotel: hotel,
             ),
           ),

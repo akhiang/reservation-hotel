@@ -13,8 +13,7 @@ class HotelInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // controller: sc,
-      physics: BouncingScrollPhysics(),
+      controller: sc,
       child: Column(
         children: <Widget>[
           _buildDescription(),

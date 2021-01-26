@@ -51,21 +51,23 @@ class _HotelScreen3State extends State<HotelScreen3>
       body: Stack(
         children: [
           SlidingUpPanel(
-            maxHeight: _panelHeightOpen,
-            minHeight: _panelHeightClosed,
-            parallaxEnabled: true,
-            parallaxOffset: .5,
-            body: _background(),
-            panelBuilder: (sc) => _panel(sc),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16.0),
-              topRight: Radius.circular(16.0),
-            ),
-            onPanelSlide: (double pos) => setState(() {
-              _titleHeight = pos * (_panelHeightOpen - _panelHeightClosed) +
-                  _initTitleHeight;
-            }),
-          ),
+              maxHeight: _panelHeightOpen,
+              minHeight: _panelHeightClosed,
+              parallaxEnabled: true,
+              parallaxOffset: .5,
+              body: _background(),
+              panelBuilder: (ScrollController sc) => _panel(sc),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                topRight: Radius.circular(16.0),
+              ),
+              onPanelSlide: (double pos) {
+                print(pos);
+                setState(() {
+                  _titleHeight = pos * (_panelHeightOpen - _panelHeightClosed) +
+                      _initTitleHeight;
+                });
+              }),
           _buildHeader(context),
           _buildTitle(),
         ],
@@ -187,11 +189,7 @@ class _HotelScreen3State extends State<HotelScreen3>
                 children: [
                   HotelInformation(sc: sc, hotel: widget.hotel),
                   HotelFood(sc: sc, hotel: widget.hotel),
-                  Center(
-                      child: Text(
-                    "2",
-                    style: TextStyle(fontSize: 40),
-                  )),
+                  HotelReview(),
                 ],
               ),
             ),

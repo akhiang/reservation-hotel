@@ -21,47 +21,7 @@ class _HotelReviewState extends State<HotelReview> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '4.8',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 40.0,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                RatingBar.builder(
-                  initialRating: 5,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 32.0,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  '100 Ulasan',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _buildRating(),
           _buildReviewBar(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -71,6 +31,51 @@ class _HotelReviewState extends State<HotelReview> {
             ),
           ),
           _buildReviewListTile(),
+        ],
+      ),
+    );
+  }
+
+  Center _buildRating() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: 16.0),
+          Text(
+            '4.8',
+            style: TextStyle(
+              color: ColorConst.kSecondaryColor,
+              fontWeight: FontWeight.w700,
+              fontSize: 40.0,
+            ),
+          ),
+          SizedBox(height: 8.0),
+          RatingBar.builder(
+            initialRating: 5,
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemSize: 32.0,
+            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {
+              print(rating);
+            },
+          ),
+          SizedBox(height: 8.0),
+          Text(
+            '100 Ulasan',
+            style: TextStyle(
+              color: ColorConst.kSecondaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 18.0,
+            ),
+          ),
         ],
       ),
     );
@@ -108,58 +113,10 @@ class _HotelReviewState extends State<HotelReview> {
           ),
         ),
         _buildChoiceChips(),
-        Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Anne Abigail",
-                              style: TextStyle(
-                                color: ColorConst.kSecondaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            Text(
-                              "01-12-2020, 10:00 WIB",
-                              style: TextStyle(
-                                color:
-                                    ColorConst.kSecondaryColor.withOpacity(0.5),
-                                fontSize: 16.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text('⭐⭐⭐⭐⭐'),
-                      ],
-                    ),
-                    Container(
-                      child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dignissim tristique elementum orci, lobortis. ",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
-                        style: TextStyle(
-                          color: ColorConst.kSecondaryColor,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
-        )
+        SizedBox(height: 8.0),
+        ReviewListTile(),
+        ReviewListTile(),
+        SizedBox(height: 16.0),
       ],
     );
   }

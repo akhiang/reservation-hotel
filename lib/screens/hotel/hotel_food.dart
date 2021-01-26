@@ -1,6 +1,6 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class HotelFood extends StatelessWidget {
+class HotelFood extends StatefulWidget {
   final ScrollController sc;
   final Hotel hotel;
 
@@ -11,10 +11,14 @@ class HotelFood extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _HotelFoodState createState() => _HotelFoodState();
+}
+
+class _HotelFoodState extends State<HotelFood> {
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // controller: sc,
-      physics: BouncingScrollPhysics(),
+      // controller: _controller,
       child: Column(
         children: [
           _buildPopularFood(context),
@@ -46,7 +50,7 @@ class HotelFood extends StatelessWidget {
           Container(
             height: 180.0,
             child: ListView.builder(
-              controller: sc,
+              controller: widget.sc,
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               itemCount: foods.length,
               scrollDirection: Axis.horizontal,
@@ -95,4 +99,3 @@ Padding _buildOtherFood(BuildContext context) {
     ),
   );
 }
-
