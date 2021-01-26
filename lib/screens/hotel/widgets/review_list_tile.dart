@@ -18,11 +18,11 @@ class _ReviewListTileState extends State<ReviewListTile> {
           Row(
             children: [
               CircleAvatar(
-                radius: 28.0,
+                radius: 24.0,
                 backgroundImage:
                     NetworkImage('https://reqres.in/img/faces/7-image.jpg'),
               ),
-              SizedBox(width: 16.0),
+              SizedBox(width: 12.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,9 +56,13 @@ class _ReviewListTileState extends State<ReviewListTile> {
             },
             child: Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dignissim tristique elementum orci, lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dignissim tristique elementum orci, lobortis. ',
+              style: TextStyle(
+                color: ColorConst.kSecondaryColor,
+                height: 1.4,
+              ),
               overflow: TextOverflow.ellipsis,
               softWrap: true,
-              maxLines: _isExpanded ? 3 : null,
+              maxLines: _isExpanded ? 10 : 2,
             ),
           ),
         ],

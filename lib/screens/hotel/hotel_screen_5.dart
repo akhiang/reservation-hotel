@@ -100,20 +100,6 @@ class _HotelScreen5State extends State<HotelScreen5>
         ],
         child: Stack(
           children: [
-            IconButton(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 64.0,
-              ),
-              icon: Icon(
-                Icons.chevron_left,
-                size: 50.0,
-                color: ColorConst.kSecondaryColor,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -133,6 +119,20 @@ class _HotelScreen5State extends State<HotelScreen5>
                   ],
                 ),
               ),
+            ),
+            IconButton(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 64.0,
+              ),
+              icon: Icon(
+                Icons.chevron_left,
+                size: 32.0,
+                color: ColorConst.kThirdColor,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ],
         ),

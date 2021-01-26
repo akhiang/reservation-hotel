@@ -123,16 +123,16 @@ class _HotelReviewState extends State<HotelReview> {
 
   Widget _buildChoiceChips() {
     return Container(
-      height: 48.0,
+      height: 56.0,
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         itemCount: _choices.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, int index) {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 4.0),
             child: ChoiceChip(
-              padding: EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(8.0),
               avatar: index == 0
                   ? null
                   : Icon(Icons.star,

@@ -64,38 +64,39 @@ class _HotelFoodState extends State<HotelFood> {
       ),
     );
   }
-}
 
-Padding _buildOtherFood(BuildContext context) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            "Menu Lainnya",
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 18.0,
-              letterSpacing: 1.2,
+  Padding _buildOtherFood(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "Menu Lainnya",
+              style: TextStyle(
+                color: ColorConst.kSecondaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 18.0,
+                letterSpacing: 1.2,
+              ),
             ),
           ),
-        ),
-        Container(
-          height: 500.0,
-          child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            itemCount: foods.length,
-            itemBuilder: (context, index) {
-              Food food = foods[index];
-              return OtherFoodCard(food: food);
-            },
+          Container(
+            height: 500.0,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              itemCount: foods.length,
+              itemBuilder: (context, index) {
+                Food food = foods[index];
+                return OtherFoodCard(food: food);
+              },
+            ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
