@@ -18,7 +18,6 @@ class _HotelFoodState extends State<HotelFood> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // controller: _controller,
       child: Column(
         children: [
           _buildPopularFood(context),
@@ -84,8 +83,8 @@ class _HotelFoodState extends State<HotelFood> {
             ),
           ),
           Container(
-            height: 500.0,
             child: ListView.builder(
+              shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               itemCount: foods.length,

@@ -8,10 +8,18 @@ class BookScreen extends StatefulWidget {
 class _BookScreenState extends State<BookScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      child: Center(
-        child: Text('Book'),
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(88.0),
+        child: CustomAppBar(title: 'Pesanan Saya', isLeading: false),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            BookedRoomCard(),
+            // BookedRoomCard(),
+          ],
+        ),
       ),
     );
   }

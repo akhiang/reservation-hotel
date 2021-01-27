@@ -1,6 +1,5 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-
 class OtherFoodCard extends StatelessWidget {
   const OtherFoodCard({
     Key key,
@@ -11,8 +10,8 @@ class OtherFoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

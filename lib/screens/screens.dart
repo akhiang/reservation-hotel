@@ -30,6 +30,7 @@ part 'package:dangau_hotel/screens/hotel/hotel_screen_2.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_3.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_4.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_5.dart';
+part 'package:dangau_hotel/screens/hotel/room_screen.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_food.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_review.dart';
@@ -42,6 +43,9 @@ part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
+part 'package:dangau_hotel/screens/book/widgets/booked_room_card.dart';
+part 'package:dangau_hotel/screens/book/widgets/booked_room_tile.dart';
+part 'package:dangau_hotel/screens/book/widgets/booked_room_detail.dart';
 
 part 'package:dangau_hotel/screens/profile/profile_screen.dart';
 part 'package:dangau_hotel/screens/profile/edit_profile_screen.dart';

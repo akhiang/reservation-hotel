@@ -3,11 +3,13 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class FacilityCard extends StatelessWidget {
   final IconData icon;
   final String title;
+  final double size;
 
   const FacilityCard({
     Key key,
     @required this.icon,
     @required this.title,
+    this.size = 24.0,
   }) : super(key: key);
 
   @override
@@ -15,10 +17,11 @@ class FacilityCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 54.0,
-          height: 54.0,
+          width: 58.0,
+          height: 58.0,
           child: Icon(
             icon,
+            size: size,
             color: ColorConst.kThirdColor,
           ),
           decoration: BoxDecoration(

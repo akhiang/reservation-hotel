@@ -91,12 +91,12 @@ class _HotelScreen5State extends State<HotelScreen5>
           ),
         ),
         snapPositions: const [
+          SnapPosition(positionFactor: 0.4),
           SnapPosition(
               positionPixel: 0.0,
               snappingCurve: Curves.elasticOut,
               snappingDuration: Duration(milliseconds: 750)),
-          SnapPosition(positionFactor: 0.4),
-          SnapPosition(positionFactor: 0.7),
+          SnapPosition(positionFactor: 0.75),
         ],
         child: Stack(
           children: [

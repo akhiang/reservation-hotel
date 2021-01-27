@@ -18,7 +18,10 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Stack(
                             children: [
-                              HomeCarousel(list: list),
+                              HomeCarousel(
+                                list: list,
+                                indicatorHeight: 72.0,
+                              ),
                               HomeHeader(),
                             ],
                           ),
