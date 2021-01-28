@@ -19,7 +19,7 @@ class HotelInformation extends StatelessWidget {
           _buildDescription(),
           _buildContact(),
           _buildFacility(),
-          _buildHotelRoom(),
+          _buildHotelRoom(context),
           SizedBox(height: 24.0),
         ],
       ),
@@ -94,7 +94,7 @@ class HotelInformation extends StatelessWidget {
     );
   }
 
-  Padding _buildHotelRoom() {
+  Padding _buildHotelRoom(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Column(
@@ -109,8 +109,18 @@ class HotelInformation extends StatelessWidget {
               letterSpacing: 1.2,
             ),
           ),
-          RoomCard(hotel: hotel),
-          RoomCard(hotel: hotel),
+          RoomCard(
+            hotel: hotel,
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RoomPreferenceScreen(),
+                ),
+              );
+            },
+          ),
+          // RoomCard(hotel: hotel),
         ],
       ),
     );

@@ -2,10 +2,12 @@ part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomCard extends StatelessWidget {
   final Hotel hotel;
+  final Function press;
 
   const RoomCard({
     Key key,
     @required this.hotel,
+    @required this.press,
   }) : super(key: key);
 
   @override
@@ -127,6 +129,7 @@ class RoomCard extends StatelessWidget {
                         height: 28.0,
                         child: PrimaryButton(
                           text: 'Pilih',
+                          press: press,
                         ),
                       )
                     ],

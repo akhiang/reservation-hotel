@@ -156,23 +156,6 @@ class _HotelScreen5State extends State<HotelScreen5>
   }
 }
 
-// class SheetContent extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: ColorConst.kThirdColor,
-//       child: TabBarView(
-//         controller: _tabController,
-//         children: [
-//           HotelInformation(hotel: widget.hotel),
-//           HotelFood(hotel: widget.hotel),
-//           HotelReview(),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class GrabSection extends StatelessWidget {
   final List list;
   final TabController tabController;
