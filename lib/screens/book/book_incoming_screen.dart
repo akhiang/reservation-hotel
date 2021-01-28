@@ -7,6 +7,7 @@ class BookIncomingScreen extends StatelessWidget {
       child: Column(
         children: [
           BookedRoomCard(),
+          SizedBox(height: 96.0),
         ],
       ),
     );

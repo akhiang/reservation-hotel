@@ -36,7 +36,7 @@ class _BookScreenState extends State<BookScreen>
         children: [
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
             child: Container(
               decoration: BoxDecoration(
                 color: ColorConst.kSecondaryColor.withOpacity(0.05),

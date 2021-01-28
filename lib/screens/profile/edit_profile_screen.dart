@@ -83,6 +83,7 @@ class EditProfileScreen extends StatelessWidget {
                               width: 120.0,
                               child: PrimaryButton(
                                 text: 'Simpan',
+                                press: () {},
                               ),
                             ),
                           )

@@ -126,7 +126,7 @@ class RoomCard extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: 28.0,
+                        height: 32.0,
                         child: PrimaryButton(
                           text: 'Pilih',
                           press: press,

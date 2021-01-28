@@ -6,6 +6,8 @@ class RoomPreferenceScreen extends StatefulWidget {
 }
 
 class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
+  bool isNote = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,49 +15,80 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(title: 'Preferensi Kamar', isLeading: true),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Deluxe Twin",
-                      style: TextStyle(
-                        color: ColorConst.kSecondaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.0,
+      bottomNavigationBar: Container(
+        height: 64.0,
+        color: Colors.transparent,
+        child: Center(
+          child: SizedBox(
+            height: 40.0,
+            width: 120.0,
+            child: PrimaryButton(
+              text: 'Simpan',
+              press: () {},
+            ),
+          ),
+        ),
+      ),
+      body: Container(
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: 24.0),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Deluxe Twin",
+                        style: TextStyle(
+                          color: ColorConst.kSecondaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: " with Balcony",
-                      style: TextStyle(
-                        color: ColorConst.kSecondaryColor,
-                        fontSize: 12.0,
+                      TextSpan(
+                        text: " with Balcony",
+                        style: TextStyle(
+                          color: ColorConst.kSecondaryColor,
+                          fontSize: 12.0,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            _buildSmokeRadio(),
-            _buildBedRadio(),
-            SizedBox(height: 8.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              width: double.infinity,
-              height: 48.0,
-              child: PrimaryButton(
-                text: 'Tambah Catatan',
-                press: () {},
-              ),
-            ),
-            SizedBox(height: 24.0),
-          ],
+              _buildSmokeRadio(),
+              _buildBedRadio(),
+              SizedBox(height: 16.0),
+              isNote
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: RoundedInputField(
+                        hint: "Catatan",
+                        onChanged: (value) {},
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(horizontal: 24.0),
+                      width: double.infinity,
+                      height: 52.0,
+                      child: ShadowButton(
+                        icon: Icons.add,
+                        text: 'Tambah Catatan',
+                        press: () {
+                          print('note');
+                          setState(() {
+                            isNote = true;
+                          });
+                        },
+                      ),
+                    ),
+              SizedBox(height: 88.0),
+            ],
+          ),
         ),
       ),
     );

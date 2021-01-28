@@ -8,6 +8,7 @@ class BookHistoryScreen extends StatelessWidget {
         children: [
           BookedRoomCard(),
           BookedRoomCard(),
+          SizedBox(height: 96.0),
         ],
       ),
     );

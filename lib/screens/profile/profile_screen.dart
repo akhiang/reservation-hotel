@@ -9,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
         child: CustomAppBar(title: 'Profil Saya', isLeading: false),
       ),
       body: SingleChildScrollView(
-        clipBehavior: Clip.none,
+        clipBehavior: Clip.hardEdge,
         child: Column(
           children: [
             ProfileListTile(),
