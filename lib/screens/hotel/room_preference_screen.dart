@@ -48,13 +48,13 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               width: double.infinity,
-              height: 56.0,
+              height: 48.0,
               child: PrimaryButton(
                 text: 'Tambah Catatan',
-                color: Color(0xFFF5F9FF),
                 press: () {},
               ),
             ),
+            SizedBox(height: 24.0),
           ],
         ),
       ),

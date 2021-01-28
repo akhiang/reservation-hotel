@@ -29,7 +29,7 @@ class _RadioButtonState extends State<RadioButton> {
           print(_character);
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
           decoration: BoxDecoration(
             color: ColorConst.kThirdColor,
             borderRadius: BorderRadius.circular(32.0),

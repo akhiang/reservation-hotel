@@ -145,8 +145,14 @@ Padding _buildAvailableRoom(Hotel hotel) {
             letterSpacing: 1.2,
           ),
         ),
-        RoomCard(hotel: hotel),
-        RoomCard(hotel: hotel),
+        RoomCard(
+          hotel: hotel,
+          press: () {},
+        ),
+        RoomCard(
+          hotel: hotel,
+          press: () {},
+        ),
       ],
     ),
   );

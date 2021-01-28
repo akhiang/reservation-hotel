@@ -34,7 +34,6 @@ class HotelInformation extends StatelessWidget {
         style: TextStyle(
           color: ColorConst.kSecondaryColor,
           height: 1.4,
-          fontSize: 16.0,
         ),
         textAlign: TextAlign.justify,
       ),

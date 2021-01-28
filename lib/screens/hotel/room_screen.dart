@@ -66,7 +66,7 @@ class RoomScreen extends StatelessWidget {
                       style: TextStyle(
                         color: ColorConst.kSecondaryColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                       ),
                     ),
                     TextSpan(
@@ -87,7 +87,7 @@ class RoomScreen extends StatelessWidget {
                       style: TextStyle(
                         color: ColorConst.kErrorColor,
                         fontWeight: FontWeight.w500,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                       ),
                     ),
                     TextSpan(
@@ -175,7 +175,6 @@ class RoomScreen extends StatelessWidget {
         style: TextStyle(
           color: ColorConst.kSecondaryColor,
           height: 1.4,
-          fontSize: 16.0,
         ),
         textAlign: TextAlign.justify,
       ),

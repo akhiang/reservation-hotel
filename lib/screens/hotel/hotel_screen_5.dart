@@ -96,7 +96,7 @@ class _HotelScreen5State extends State<HotelScreen5>
               positionPixel: 0.0,
               snappingCurve: Curves.elasticOut,
               snappingDuration: Duration(milliseconds: 750)),
-          SnapPosition(positionFactor: 0.75),
+          SnapPosition(positionFactor: 0.70),
         ],
         child: Stack(
           children: [

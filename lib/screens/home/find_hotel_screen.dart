@@ -47,6 +47,7 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
               margin: EdgeInsets.all(16.0),
               child: PrimaryButton(
                 text: 'Cari Hotel',
+                press: () {},
               ),
             ),
           ],

@@ -28,9 +28,7 @@ class HotelContactListTile extends StatelessWidget {
               text,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
+              style: TextStyle(),
             ),
           )
         ],

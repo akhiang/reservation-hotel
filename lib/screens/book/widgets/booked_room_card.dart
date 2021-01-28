@@ -12,9 +12,7 @@ class BookedRoomCard extends StatefulWidget {
 class _BookedRoomCardState extends State<BookedRoomCard> {
   bool _isExpanded = false;
 
-  ///Toogle the box to expand or collapse
   void _toogleExpand() {
-    print('toggle');
     setState(() {
       _isExpanded = !_isExpanded;
     });
@@ -23,7 +21,7 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
       child: Column(
         children: [
           Container(

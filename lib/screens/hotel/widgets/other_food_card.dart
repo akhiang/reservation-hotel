@@ -73,7 +73,7 @@ class OtherFoodCard extends StatelessWidget {
                   style: TextStyle(
                     color: ColorConst.kSecondaryColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                   ),
                 ),
               ],

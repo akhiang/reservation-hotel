@@ -44,7 +44,6 @@ class FoodCard extends StatelessWidget {
             style: TextStyle(
               color: ColorConst.kSecondaryColor,
               fontWeight: FontWeight.w600,
-              fontSize: 16.0,
             ),
           ),
         ],
