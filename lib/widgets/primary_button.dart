@@ -3,11 +3,13 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class PrimaryButton extends StatelessWidget {
   final String text;
   final Function press;
+  final Color color;
 
   const PrimaryButton({
     Key key,
-    this.text,
+    @required this.text,
     this.press,
+    this.color = ColorConst.kPrimaryColor,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class PrimaryButton extends StatelessWidget {
           fontWeight: FontWeight.w700,
         ),
       ),
-      color: ColorConst.kPrimaryColor,
+      color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32.0),
       ),

@@ -43,6 +43,18 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               ),
             ),
             _buildSmokeRadio(),
+            _buildBedRadio(),
+            SizedBox(height: 8.0),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              width: double.infinity,
+              height: 56.0,
+              child: PrimaryButton(
+                text: 'Tambah Catatan',
+                color: Color(0xFFF5F9FF),
+                press: () {},
+              ),
+            ),
           ],
         ),
       ),
@@ -71,6 +83,35 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               ),
               SizedBox(width: 16.0),
               RadioButton(title: 'Non-Smoking'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding _buildBedRadio() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Single Bed / Twin Bed',
+            style: TextStyle(
+              color: ColorConst.kSecondaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 16.0,
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Row(
+            children: [
+              RadioButton(
+                title: 'Single Bed',
+              ),
+              SizedBox(width: 16.0),
+              RadioButton(title: 'Twin Bed'),
             ],
           ),
         ],
