@@ -38,8 +38,7 @@ class RoomScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Divider(
-                color: ColorConst.kSecondaryColor,
-                thickness: 1.0,
+                color: ColorConst.kSecondaryColor.withOpacity(0.5),
               ),
             ),
             _buildDescription(),
@@ -157,8 +156,7 @@ class RoomScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FacilityCard(
-                  icon: Icons.king_bed, title: '1 King Bed', size: 32.0),
+              FacilityCard(icon: FontAwesomeIcons.bed, title: '1 King Bed'),
               FacilityCard(icon: Icons.people, title: '2 Tamu', size: 32.0),
               FacilityCard(icon: Icons.restaurant, title: 'Sarapan'),
               FacilityCard(icon: FontAwesomeIcons.thLarge, title: 'Lainnya'),

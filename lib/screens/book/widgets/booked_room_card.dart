@@ -49,17 +49,18 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
                 InkWell(
                   onTap: _toogleExpand,
                   child: Container(
-                    // padding: EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
-                      _isExpanded ? 'Tutup' : 'Lihat Detail',
+                      _isExpanded ? 'TUTUP' : 'LIHAT DETAIL',
                       style: TextStyle(
+                        fontWeight: FontWeight.w600,
                         color: ColorConst.kSecondaryColor,
                         fontSize: 16.0,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 8.0),
               ],
             ),
           )
