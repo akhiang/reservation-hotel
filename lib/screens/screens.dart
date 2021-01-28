@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -44,6 +45,8 @@ part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
+part 'package:dangau_hotel/screens/book/book_incoming_screen.dart';
+part 'package:dangau_hotel/screens/book/book_history_screen.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_card.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_tile.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_detail.dart';
