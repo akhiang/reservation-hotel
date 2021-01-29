@@ -1,9 +1,12 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class TextFieldContainer extends StatelessWidget {
+  final double borderRadius;
   final Widget child;
+
   const TextFieldContainer({
     Key key,
+    this.borderRadius,
     @required this.child,
   }) : super(key: key);
 
@@ -15,7 +18,7 @@ class TextFieldContainer extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: ColorConst.kSecondaryColor.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(32.0),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: child,
     );

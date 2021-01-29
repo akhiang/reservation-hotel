@@ -96,80 +96,77 @@ class _FindHotelScreenState extends State<FindHotelScreen> {
           isLeading: true,
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Tanggal',
-                style: TextStyle(
-                  color: ColorConst.kSecondaryColor,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w500,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Tanggal',
+              style: TextStyle(
+                color: ColorConst.kSecondaryColor,
+                fontSize: 18.0,
+                fontWeight: FontWeight.w500,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    '29 Des 2020',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    ' - ',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  Text(
-                    '02 Jan 2020',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 8.0),
-              Expanded(
-                child: ListView.builder(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                  itemCount: hotels.length,
-                  itemBuilder: (_, index) {
-                    Hotel hotel = hotels[index];
-                    return _buildHotelCard(hotel);
-                  },
-                ),
-              ),
-              SizedBox(height: 16.0),
-              SizedBox(
-                width: 120.0,
-                height: 40.0,
-                child: RaisedButton(
-                  onPressed: () {
-                    _showDateCalenderBottomSheet();
-                  },
-                  child: Text(
-                    'Ubah Tanggal',
-                    style: TextStyle(color: ColorConst.kSecondaryColor),
-                  ),
-                  color: ColorConst.kPrimaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  '29 Des 2020',
+                  style: TextStyle(
+                    color: ColorConst.kSecondaryColor,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
+                Text(
+                  ' - ',
+                  style: TextStyle(
+                    color: ColorConst.kSecondaryColor,
+                    fontSize: 18.0,
+                  ),
+                ),
+                Text(
+                  '02 Jan 2020',
+                  style: TextStyle(
+                    color: ColorConst.kSecondaryColor,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                itemCount: hotels.length,
+                itemBuilder: (_, index) {
+                  Hotel hotel = hotels[index];
+                  return _buildHotelCard(hotel);
+                },
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 16.0),
+            SizedBox(
+              width: 120.0,
+              height: 40.0,
+              child: RaisedButton(
+                onPressed: () {
+                  _showDateCalenderBottomSheet();
+                },
+                child: Text(
+                  'Ubah Tanggal',
+                  style: TextStyle(color: ColorConst.kSecondaryColor),
+                ),
+                color: ColorConst.kPrimaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -66,7 +66,8 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               isNote
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: RoundedInputField(
+                      child: RoundedTextArea(
+                        line: 4,
                         hint: "Catatan",
                         onChanged: (value) {},
                       ),
