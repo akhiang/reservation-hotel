@@ -1,3 +1,4 @@
+import 'package:dangau_hotel/utils/constants/text_const.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 import 'package:super_tooltip/super_tooltip.dart';
@@ -48,6 +49,9 @@ part 'package:dangau_hotel/screens/hotel/widgets/other_food_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/summary_room_list_tile.dart';
+
+part 'package:dangau_hotel/screens/order/order_screen.dart';
+part 'package:dangau_hotel/screens/order/widgets/order_price_detail.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 part 'package:dangau_hotel/screens/book/book_incoming_screen.dart';

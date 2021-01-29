@@ -79,7 +79,7 @@ class EditProfileScreen extends StatelessWidget {
                           SizedBox(height: 16.0),
                           Center(
                             child: SizedBox(
-                              height: 40.0,
+                              height: 48.0,
                               width: 120.0,
                               child: PrimaryButton(
                                 text: 'Simpan',

@@ -183,7 +183,13 @@ class _HotelInformationState extends State<HotelInformation> {
                 height: 56.0,
                 child: PrimaryButton(
                   text: 'Pesan Sekarang',
-                  press: () {},
+                  press: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => OrderScreen(),
+                      ),
+                    );
+                  },
                 ),
               ),
             )

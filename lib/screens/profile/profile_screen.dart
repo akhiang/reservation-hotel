@@ -13,20 +13,27 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             ProfileListTile(),
-            RoundedCard(
-              icon: Icons.help,
-              title: 'Bantuan',
-              press: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HelpScreen(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  RoundedCard(
+                    icon: Icons.help,
+                    title: 'Bantuan',
+                    press: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => HelpScreen(),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-            RoundedCard(
-              icon: Icons.star,
-              title: 'Berikan nilai untuk aplikasi ini',
+                  RoundedCard(
+                    icon: Icons.star,
+                    title: 'Berikan nilai untuk aplikasi ini',
+                  ),
+                ],
+              ),
             ),
             FlatButton(
               onPressed: () {},

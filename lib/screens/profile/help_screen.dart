@@ -10,30 +10,33 @@ class HelpScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         clipBehavior: Clip.none,
-        child: Column(
-          children: [
-            RoundedCard(
-              icon: null,
-              title: 'Barang saya tertinggal di hotel',
-              press: () {},
-            ),
-            RoundedCard(
-              icon: null,
-              title: 'Check-in lebih awal',
-              press: () {},
-            ),
-            RoundedCard(
-              icon: null,
-              title: 'Saya ingin melakukan refund',
-              press: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HelpRefundScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            children: [
+              RoundedCard(
+                icon: null,
+                title: 'Barang saya tertinggal di hotel',
+                press: () {},
+              ),
+              RoundedCard(
+                icon: null,
+                title: 'Check-in lebih awal',
+                press: () {},
+              ),
+              RoundedCard(
+                icon: null,
+                title: 'Saya ingin melakukan refund',
+                press: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HelpRefundScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

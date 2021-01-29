@@ -33,13 +33,7 @@ class ShadowButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorConst.kThirdColor,
           borderRadius: BorderRadius.circular(32.0),
-          boxShadow: [
-            BoxShadow(
-              color: ColorConst.kSecondaryColor.withOpacity(0.15),
-              offset: Offset(0.0, 5.0),
-              blurRadius: 20.0,
-            ),
-          ],
+          boxShadow: [kShadow],
         ),
       ),
     );

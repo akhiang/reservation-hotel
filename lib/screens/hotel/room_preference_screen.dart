@@ -87,7 +87,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                         },
                       ),
                     ),
-              SizedBox(height: 88.0),
+              // SizedBox(height: 88.0),
             ],
           ),
         ),

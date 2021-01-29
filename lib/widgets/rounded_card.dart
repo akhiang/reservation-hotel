@@ -2,32 +2,30 @@ part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoundedCard extends StatelessWidget {
   final IconData icon;
+  final IconData trailingIcon;
   final String title;
+  final String subtitle;
   final Function press;
 
   const RoundedCard({
     Key key,
-    @required this.icon,
+    this.icon,
+    this.trailingIcon,
     @required this.title,
+    this.subtitle,
     this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 0.0),
       child: Container(
         height: 56.0,
         width: double.infinity,
         decoration: BoxDecoration(
           color: ColorConst.kThirdColor,
-          boxShadow: [
-            BoxShadow(
-              color: ColorConst.kSecondaryColor.withOpacity(0.07),
-              offset: Offset(0.0, 5.0),
-              blurRadius: 20.0,
-            ),
-          ],
+          boxShadow: [kShadow],
           borderRadius: BorderRadius.circular(32.0),
         ),
         child: Material(
@@ -47,20 +45,28 @@ class RoundedCard extends StatelessWidget {
                           ? Icon(icon, color: ColorConst.kSecondaryColor)
                           : SizedBox(),
                       SizedBox(width: 16.0),
-                      Text(
-                        title,
-                        style: TextStyle(
-                          color: ColorConst.kSecondaryColor,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: title,
+                              style: kNormalBoldTextStyle,
+                            ),
+                            TextSpan(
+                              text: subtitle,
+                              style: kSmallTextStyle,
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: ColorConst.kSecondaryColor,
-                  ),
+                  icon == null
+                      ? SizedBox()
+                      : Icon(
+                          Icons.chevron_right,
+                          color: ColorConst.kSecondaryColor,
+                        ),
                 ],
               ),
             ),

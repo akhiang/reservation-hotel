@@ -1,4 +1,6 @@
-part of 'utils.dart';
+// part of 'package:dangau_hotel/utils/utils.dart';
+
+import 'package:flutter/material.dart';
 
 class SizeConfig {
   static Orientation orientation;

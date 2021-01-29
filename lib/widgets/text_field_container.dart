@@ -6,7 +6,7 @@ class TextFieldContainer extends StatelessWidget {
 
   const TextFieldContainer({
     Key key,
-    this.borderRadius,
+    this.borderRadius = 32.0,
     @required this.child,
   }) : super(key: key);
 
