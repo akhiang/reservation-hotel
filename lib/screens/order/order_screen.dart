@@ -6,6 +6,14 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  PageController _controller = PageController(initialPage: 0);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,70 +23,31 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
       extendBody: true,
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 88.0),
+        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 104.0),
         height: 80.0,
         child: PrimaryButton(
           text: 'Lanjut',
-          press: () {},
+          press: () {
+            _controller.nextPage(
+              duration: Duration(milliseconds: 800),
+              curve: Curves.fastLinearToSlowEaseIn,
+            );
+          },
         ),
       ),
       body: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildRoomChoice(),
-                  _buildAddMoreRoom(),
-                  _buildPriceDetail(),
-                  SizedBox(height: 88.0),
-                ],
-              ),
+            child: PageView(
+              // physics: NeverScrollableScrollPhysics(),
+              controller: _controller,
+              children: [
+                OrderRoomSummary(),
+                OrderCustomerContact(),
+                OrderTerm(),
+              ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAddMoreRoom() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24.0),
-      width: double.infinity,
-      height: 56.0,
-      child: ShadowButton(
-        icon: Icons.add,
-        text: 'Tambah Kamar',
-        press: () {},
-      ),
-    );
-  }
-
-  Widget _buildRoomChoice() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Pilihan Kamar', style: kNormalTextStyle),
-          RoundedCard(
-            title: 'Deluxe Twin,',
-            subtitle: ' with Balcony',
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPriceDetail() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Detail Harga', style: kNormalTextStyle),
-          OrderPriceDetail(),
         ],
       ),
     );

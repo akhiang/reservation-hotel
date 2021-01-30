@@ -60,8 +60,8 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                   ),
                 ),
               ),
-              _buildSmokeRadio(),
-              _buildBedRadio(),
+              _buildSmokeRadioButton(),
+              _buildBedRadioButton(),
               SizedBox(height: 16.0),
               isNote
                   ? Padding(
@@ -95,7 +95,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
     );
   }
 
-  Padding _buildSmokeRadio() {
+  Padding _buildSmokeRadioButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
@@ -124,7 +124,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
     );
   }
 
-  Padding _buildBedRadio() {
+  Padding _buildBedRadioButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(

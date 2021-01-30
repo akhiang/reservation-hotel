@@ -10,7 +10,7 @@ class RoundedCard extends StatelessWidget {
   const RoundedCard({
     Key key,
     this.icon,
-    this.trailingIcon,
+    this.trailingIcon = Icons.chevron_right,
     @required this.title,
     this.subtitle,
     this.press,
@@ -35,22 +35,22 @@ class RoundedCard extends StatelessWidget {
           child: InkWell(
             onTap: press,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      icon != null
-                          ? Icon(icon, color: ColorConst.kSecondaryColor)
-                          : SizedBox(),
-                      SizedBox(width: 16.0),
+                      icon == null
+                          ? SizedBox()
+                          : Icon(icon, color: ColorConst.kSecondaryColor),
+                      SizedBox(width: 8.0),
                       RichText(
                         text: TextSpan(
                           children: [
                             TextSpan(
                               text: title,
-                              style: kNormalBoldTextStyle,
+                              style: kSmallBoldTextStyle,
                             ),
                             TextSpan(
                               text: subtitle,
@@ -61,12 +61,16 @@ class RoundedCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  icon == null
-                      ? SizedBox()
-                      : Icon(
-                          Icons.chevron_right,
-                          color: ColorConst.kSecondaryColor,
-                        ),
+                  Row(
+                    children: [
+                      trailingIcon == null
+                          ? SizedBox()
+                          : Icon(
+                              trailingIcon,
+                              color: ColorConst.kSecondaryColor,
+                            ),
+                    ],
+                  ),
                 ],
               ),
             ),

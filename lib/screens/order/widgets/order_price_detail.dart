@@ -4,7 +4,7 @@ class OrderPriceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: ColorConst.kThirdColor,
         borderRadius: BorderRadius.circular(24.0),
