@@ -19,7 +19,7 @@ class OrderTermTile extends StatelessWidget {
             padding: EdgeInsets.only(top: 3.0),
             child: Icon(Icons.lens, size: 12.0),
           ),
-          SizedBox(width: 12.0),
+          SizedBox(width: 24.0),
           Expanded(
               child: Text(
             title,

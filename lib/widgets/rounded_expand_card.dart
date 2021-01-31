@@ -1,8 +1,11 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoundedExpandCard extends StatelessWidget {
+  final String title;
+
   const RoundedExpandCard({
     Key key,
+    @required this.title,
   }) : super(key: key);
 
   @override
@@ -26,9 +29,7 @@ class RoundedExpandCard extends StatelessWidget {
           title: Row(
             children: [
               SizedBox(width: 8.0),
-              Text(
-                'John Doe',
-              ),
+              Text(title, style: kNormalBoldTextStyle),
             ],
           ),
           children: [

@@ -23,7 +23,9 @@ class OrderCustomerContact extends StatelessWidget {
         children: [
           Text('Informasi Pemesan', style: kNormalTextStyle),
           SizedBox(height: 16.0),
-          RoundedExpandCard()
+          RoundedExpandCard(
+            title: 'John Doe',
+          )
         ],
       ),
     );

@@ -186,7 +186,7 @@ class _HotelInformationState extends State<HotelInformation> {
                   press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => OrderScreen(),
+                        builder: (context) => OrderPaymentScreen(),
                       ),
                     );
                   },
