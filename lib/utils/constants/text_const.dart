@@ -22,3 +22,20 @@ const kNormalBoldTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
   fontSize: 16.0,
 );
+
+const kLargeTextStyle = TextStyle(
+  color: ColorConst.kSecondaryColor,
+  fontSize: 20.0,
+);
+
+const kLargeBoldTextStyle = TextStyle(
+  color: ColorConst.kSecondaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: 20.0,
+);
+
+const kExtraLargeBoldTextStyle = TextStyle(
+  color: ColorConst.kSecondaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: 24.0,
+);

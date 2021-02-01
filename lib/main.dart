@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: ColorConst.kThirdColor,
       ),
-      home: MainScreen(),
+      home: OnBoardingScreen(),
+      // home: LoginScreen(),
       // onGenerateRoute: Router,
       // initialRoute: homeRoute,
     );

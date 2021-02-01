@@ -10,7 +10,7 @@ class SelectedRoomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         height: 56.0,

@@ -15,12 +15,9 @@ class OrderSuccessScreen extends StatelessWidget {
         child: PrimaryButton(
           text: 'Kembali ke Beranda',
           press: () {
-            // Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //     builder: (context) => OrderPaymentScreen(),
-            //   ),
-            // );
-            // Navigator.of(context).popUntil(MainScreen());
+            Navigator.of(context).popUntil(
+              ModalRoute.withName(Navigator.defaultRouteName),
+            );
           },
         ),
       ),
