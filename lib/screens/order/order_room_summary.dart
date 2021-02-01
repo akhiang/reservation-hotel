@@ -35,7 +35,10 @@ class OrderRoomSummary extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Pilihan Kamar', style: kNormalTextStyle),
-          RoundedExpandCard(),
+          SelectedRoomCard(
+            title: 'Deluxe,',
+            subtitle: ' with balcony',
+          ),
         ],
       ),
     );

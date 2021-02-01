@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:expandable/expandable.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -57,9 +56,12 @@ part 'package:dangau_hotel/screens/order/order_room_summary.dart';
 part 'package:dangau_hotel/screens/order/order_customer_contact.dart';
 part 'package:dangau_hotel/screens/order/order_term.dart';
 part 'package:dangau_hotel/screens/order/order_payment_screen.dart';
+part 'package:dangau_hotel/screens/order/order_success_screen.dart';
+part 'package:dangau_hotel/screens/order/widgets/selected_room_card.dart';
 part 'package:dangau_hotel/screens/order/widgets/order_price_detail.dart';
 part 'package:dangau_hotel/screens/order/widgets/order_term_tile.dart';
 part 'package:dangau_hotel/screens/order/widgets/virtual_account_card.dart';
+part 'package:dangau_hotel/screens/order/widgets/ordered_room_card.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 part 'package:dangau_hotel/screens/book/book_incoming_screen.dart';

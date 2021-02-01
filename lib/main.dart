@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: ColorConst.kThirdColor,
       ),
       home: MainScreen(),
+      // onGenerateRoute: Router,
+      // initialRoute: homeRoute,
     );
   }
 }
