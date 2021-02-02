@@ -3,7 +3,7 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class HotelScreen5 extends StatefulWidget {
   final Hotel hotel;
 
-  const HotelScreen5({Key key, this.hotel}) : super(key: key);
+  const HotelScreen5({Key key, @required this.hotel}) : super(key: key);
 
   @override
   _HotelScreen5State createState() => _HotelScreen5State();
@@ -53,7 +53,7 @@ class _HotelScreen5State extends State<HotelScreen5>
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Kahyangan Resort',
+                    widget.hotel.name,
                     style: TextStyle(
                       color: ColorConst.kThirdColor,
                       fontSize: 20.0,
@@ -91,7 +91,7 @@ class _HotelScreen5State extends State<HotelScreen5>
           ),
         ),
         snapPositions: const [
-          SnapPosition(positionFactor: 0.4),
+          SnapPosition(positionFactor: 0.3),
           SnapPosition(
               positionPixel: 0.0,
               snappingCurve: Curves.elasticOut,
@@ -104,7 +104,7 @@ class _HotelScreen5State extends State<HotelScreen5>
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/pexels-pixabay-258154.jpg'),
+                  image: NetworkImage(widget.hotel.imageUrl),
                 ),
               ),
             ),

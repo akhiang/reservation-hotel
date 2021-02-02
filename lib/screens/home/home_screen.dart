@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 1.75,
+                  // height: MediaQuery.of(context).size.height / 1.65,
                   child: Stack(
                     children: [
                       Column(
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               HomeCarousel(
                                 list: list,
-                                indicatorHeight: 72.0,
+                                indicatorHeight: 16.0,
                               ),
                               HomeHeader(),
                             ],
@@ -30,13 +30,30 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: HomeDatePicker(),
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Align(
+                //     alignment: Alignment.bottomCenter,
+                //     child: HomeDatePicker(),
+                //   ),
+                // ),
               ],
+            ),
+            SizedBox(height: 24.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Lorem Ipsum \nDolor Sit Amet',
+                    style: kLargeBoldTextStyle,
+                  ),
+                  SizedBox(height: 16.0),
+                  Text(
+                      'Silahkan verfikasi diri anda terlebih dahulu untuk melakukan pemesanan!',
+                      style: kNormalTextStyle),
+                ],
+              ),
             ),
             SizedBox(height: 16.0),
             HotelCarousel()

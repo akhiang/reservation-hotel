@@ -15,7 +15,19 @@ class HotelInformation extends StatefulWidget {
 }
 
 class _HotelInformationState extends State<HotelInformation> {
-  void _showSummaryBottomSheet() {
+  DateTime rangeStartDate = DateTime.now();
+  DateTime rangeEndDate = DateTime.now().add(Duration(days: 1));
+  DateRangePickerController _datePickerController;
+
+  @override
+  initState() {
+    _datePickerController = DateRangePickerController();
+    _datePickerController.selectedRange =
+        PickerDateRange(rangeStartDate, rangeEndDate);
+    super.initState();
+  }
+
+  void _showDateCalenderBottomSheet() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -23,7 +35,115 @@ class _HotelInformationState extends State<HotelInformation> {
       builder: (context) => Wrap(
         children: [
           Container(
-            // height: MediaQuery.of(context).size.height * 0.5,
+            // height: MediaQuery.of(context).size.height * 0.75,
+            padding: EdgeInsets.all(32.0),
+            decoration: new BoxDecoration(
+              color: ColorConst.kThirdColor,
+              borderRadius: new BorderRadius.only(
+                topLeft: const Radius.circular(25.0),
+                topRight: const Radius.circular(25.0),
+              ),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Pilih Tanggal',
+                  style: kNormalTextStyle,
+                ),
+                SizedBox(height: 16.0),
+                _buildCalender(),
+                Container(
+                  width: double.infinity,
+                  height: 48.0,
+                  margin: EdgeInsets.all(16.0),
+                  child: PrimaryButton(
+                    text: 'Cek Kamar',
+                    press: () {
+                      if (rangeStartDate == null && rangeEndDate == null) {
+                        Fluttertoast.cancel();
+                        Fluttertoast.showToast(
+                            msg: "Mohon pilih tanggal",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: ColorConst.kSecondaryColor,
+                            textColor: ColorConst.kThirdColor,
+                            fontSize: 16.0);
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: 32.0),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    rangeStartDate = args.value.startDate;
+    rangeEndDate = args.value.endDate;
+  }
+
+  SfDateRangePicker _buildCalender() {
+    return SfDateRangePicker(
+      onSelectionChanged: _onSelectionChanged,
+      view: DateRangePickerView.month,
+      controller: _datePickerController,
+      selectionMode: DateRangePickerSelectionMode.range,
+      showNavigationArrow: false,
+      headerStyle: DateRangePickerHeaderStyle(
+        textAlign: TextAlign.center,
+        textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 5,
+          color: ColorConst.kSecondaryColor,
+        ),
+      ),
+      enablePastDates: false,
+      selectionTextStyle: const TextStyle(
+          color: ColorConst.kSecondaryColor, fontWeight: FontWeight.w600),
+      startRangeSelectionColor: ColorConst.kPrimaryColor,
+      endRangeSelectionColor: ColorConst.kPrimaryColor,
+      rangeSelectionColor: ColorConst.kPrimaryColor.withOpacity(0.3),
+      rangeTextStyle: const TextStyle(
+          color: ColorConst.kSecondaryColor, fontWeight: FontWeight.w600),
+      monthViewSettings: DateRangePickerMonthViewSettings(
+        // enableSwipeSelection: false,
+        weekendDays: <int>[7],
+        showTrailingAndLeadingDates: true,
+        viewHeaderStyle: DateRangePickerViewHeaderStyle(
+          textStyle: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 5,
+              color: ColorConst.kSecondaryColor),
+        ),
+      ),
+      monthCellStyle: DateRangePickerMonthCellStyle(
+        weekendTextStyle: TextStyle(color: Colors.red),
+        todayTextStyle: TextStyle(
+            color: ColorConst.kSecondaryColor, fontWeight: FontWeight.w500),
+        todayCellDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(width: 1),
+        ),
+      ),
+    );
+  }
+
+  void _showSummaryBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Wrap(
+        children: [
+          Container(
             padding: EdgeInsets.all(32.0),
             decoration: new BoxDecoration(
               color: ColorConst.kThirdColor,
@@ -106,29 +226,40 @@ class _HotelInformationState extends State<HotelInformation> {
             ),
           ),
         ),
-        _buildBottomOrderButton(context)
+        _buildBottomOrderButton()
+        // _buildBottomCheckoutButton(context)
       ],
     );
   }
 
-  Positioned _buildBottomOrderButton(BuildContext context) {
+  Widget _buildBottomOrderButton() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 88.0, vertical: 8.0),
+        color: Colors.transparent,
+        height: 56.0,
+        child: PrimaryButton(
+          text: 'Lakukan Pemesanan',
+          press: () {
+            _showDateCalenderBottomSheet();
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomCheckoutButton(BuildContext context) {
     return Positioned(
       bottom: 0,
       left: 0,
       right: 0,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        decoration: BoxDecoration(
-          color: ColorConst.kThirdColor,
-          boxShadow: [
-            BoxShadow(
-              color: ColorConst.kSecondaryColor.withOpacity(0.2),
-              offset: Offset(0.0, 5.0),
-              blurRadius: 20.0,
-            ),
-          ],
-        ),
-        height: 64.0,
+        color: Colors.transparent,
+        height: 56.0,
         child: Row(
           children: [
             GestureDetector(

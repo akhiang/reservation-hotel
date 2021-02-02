@@ -13,22 +13,17 @@ class Hotel {
 final List<Hotel> hotels = [
   Hotel(
     name: 'Kahyangan Resort',
-    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
+    imageUrl:
+        'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
   ),
   Hotel(
     name: 'Dangau Resort',
-    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
+    imageUrl:
+        'https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
   ),
   Hotel(
     name: 'Dangau Hotel',
-    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
-  ),
-  Hotel(
-    name: 'Dangau Resort 2',
-    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
-  ),
-  Hotel(
-    name: 'Dangau Hotel 2',
-    imageUrl: 'assets/images/pexels-pixabay-258154.jpg',
+    imageUrl:
+        'https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
   ),
 ];

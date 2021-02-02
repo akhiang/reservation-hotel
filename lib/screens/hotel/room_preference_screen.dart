@@ -62,7 +62,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               ),
               _buildSmokeRadioButton(),
               _buildBedRadioButton(),
-              SizedBox(height: 16.0),
+              SizedBox(height: 8.0),
               isNote
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -101,23 +101,25 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Smoking / Non-Smoking',
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16.0,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            decoration: BoxDecoration(
+              color: ColorConst.kThirdColor,
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                BoxShadow(
+                  color: ColorConst.kSecondaryColor.withOpacity(0.15),
+                  offset: Offset(0.0, 5.0),
+                  blurRadius: 20.0,
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 16.0),
-          Row(
-            children: [
-              RadioButton(
-                title: 'Smoking',
-              ),
-              SizedBox(width: 16.0),
-              RadioButton(title: 'Non-Smoking'),
-            ],
+            child: Column(
+              children: [
+                RadioButton(title: 'Smoking', icon: Icons.smoking_rooms),
+                RadioButton(title: 'Non-Smoking', icon: Icons.smoke_free),
+              ],
+            ),
           ),
         ],
       ),
@@ -130,23 +132,25 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Single Bed / Twin Bed',
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16.0,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            decoration: BoxDecoration(
+              color: ColorConst.kThirdColor,
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                BoxShadow(
+                  color: ColorConst.kSecondaryColor.withOpacity(0.15),
+                  offset: Offset(0.0, 5.0),
+                  blurRadius: 20.0,
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 16.0),
-          Row(
-            children: [
-              RadioButton(
-                title: 'Single Bed',
-              ),
-              SizedBox(width: 16.0),
-              RadioButton(title: 'Twin Bed'),
-            ],
+            child: Column(
+              children: [
+                RadioButton(title: 'Single Bed', icon: Icons.single_bed),
+                RadioButton(title: 'Twin Bed', icon: Icons.king_bed),
+              ],
+            ),
           ),
         ],
       ),
