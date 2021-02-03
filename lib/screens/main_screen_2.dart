@@ -52,7 +52,7 @@ class _MainScreen2State extends State<MainScreen2> {
                 .map(
                   (e) => BottomNavigationBarItem(
                     icon: Icon(e.icon),
-                    label: e.tabName,
+                    // label: e.tabName,
                   ),
                 )
                 .toList(),

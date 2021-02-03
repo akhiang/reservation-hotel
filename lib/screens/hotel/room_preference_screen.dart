@@ -147,8 +147,8 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             ),
             child: Column(
               children: [
-                RadioButton(title: 'Single Bed', icon: Icons.single_bed),
-                RadioButton(title: 'Twin Bed', icon: Icons.king_bed),
+                RadioButton(title: 'Single Bed', icon: Icons.access_alarm),
+                RadioButton(title: 'Twin Bed', icon: Icons.access_alarm)
               ],
             ),
           ),
