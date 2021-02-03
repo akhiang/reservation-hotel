@@ -1,0 +1,19 @@
+{
+    "hotels": [
+        {
+            "id": 1,
+            "name": "Kahyangan Resort",
+            "imageUrl": "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+            "id": 2,
+            "name": "Dangau Resort",
+            "imageUrl": "https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+            "id": 3,
+            "name": "Dangau Hotel",
+            "imageUrl": "https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        }
+    ]
+}

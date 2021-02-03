@@ -1,4 +1,7 @@
-part 'package:dangau_hotel/models/hotel.dart';
-part 'package:dangau_hotel/models/food.dart';
-part 'package:dangau_hotel/models/room.dart';
+import 'package:equatable/equatable.dart';
+
+part 'package:dangau_hotel/models/hotel_model.dart';
+part 'package:dangau_hotel/models/food_model.dart';
+part 'package:dangau_hotel/models/room_model.dart';
+
 part 'package:dangau_hotel/models/payment_method.dart';

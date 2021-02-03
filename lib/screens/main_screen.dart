@@ -18,7 +18,7 @@ class MainScreenState extends State<MainScreen> {
     ),
     TabItem(
       tabName: "Book",
-      icon: FontAwesomeIcons.book,
+      icon: Icons.book,
       page: BookScreen(),
     ),
     TabItem(

@@ -1,7 +1,6 @@
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/screens/screens.dart';
-import 'package:dangau_hotel/routes.dart';
 
 void main() {
   runApp(MyApp());
