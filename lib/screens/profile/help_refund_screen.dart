@@ -96,9 +96,10 @@ class _HelpRefundScreenState extends State<HelpRefundScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildKontakHotel(Icons.phone, '+62 123124125332'),
+                    _buildHotelContact(Icons.phone, '+62 123124125332'),
                     SizedBox(height: 16.0),
-                    _buildKontakHotel(Icons.email, 'resortkahyangan@gmail.com'),
+                    _buildHotelContact(
+                        Icons.email, 'resortkahyangan@gmail.com'),
                   ],
                 ),
               ),
@@ -109,7 +110,7 @@ class _HelpRefundScreenState extends State<HelpRefundScreen> {
     );
   }
 
-  Row _buildKontakHotel(IconData icon, String text) {
+  Widget _buildHotelContact(IconData icon, String text) {
     return Row(
       children: [
         Icon(

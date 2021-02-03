@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 import 'package:dangau_hotel/models/models.dart';
 import 'package:dangau_hotel/utils/utils.dart';
-part 'package:dangau_hotel/routes.dart';
+// part 'package:dangau_hotel/routes.dart';
 
 part 'package:dangau_hotel/widgets/hero_image.dart';
 part 'package:dangau_hotel/widgets/radio_button.dart';
@@ -87,5 +87,6 @@ part 'package:dangau_hotel/screens/profile/help_refund_screen.dart';
 part 'package:dangau_hotel/screens/profile/widgets/profile_list_tile.dart';
 
 part 'package:dangau_hotel/screens/main_screen.dart';
+part 'package:dangau_hotel/screens/main_screen_2.dart';
 part 'package:dangau_hotel/screens/tab_item.dart';
 part 'package:dangau_hotel/screens/bottom_navigation.dart';

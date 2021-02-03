@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class HelpScreen extends StatelessWidget {
+  static const String routeName = "help_screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

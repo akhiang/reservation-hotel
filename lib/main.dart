@@ -1,6 +1,7 @@
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/screens/screens.dart';
+import 'package:dangau_hotel/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,8 +26,8 @@ class MyApp extends StatelessWidget {
       home: MainScreen(),
       // home: OnBoardingScreen(),
       // home: LoginScreen(),
-      // onGenerateRoute: Router,
-      // initialRoute: homeRoute,
+      // initialRoute: MainScreen2.routeName,
+      // onGenerateRoute: generateRoute,
     );
   }
 }

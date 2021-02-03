@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class EditProfileScreen extends StatelessWidget {
+  static const String routeName = "edit_profile_screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,7 +1,7 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class MainScreen extends StatefulWidget {
-  static const String homeRoute = '/';
+  static const String routeName = 'main_screen';
 
   @override
   State<StatefulWidget> createState() => MainScreenState();

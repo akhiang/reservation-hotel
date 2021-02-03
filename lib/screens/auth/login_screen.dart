@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String routeName = "login_screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
