@@ -1,6 +1,9 @@
+import 'package:dangau_hotel/bloc/bloc.dart';
+import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/screens/screens.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,24 +12,34 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: ColorConst.kPrimarySwatchColor,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme: AppBarTheme(
-          color: Colors.transparent,
-          elevation: 0,
-          brightness: Brightness.light,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => HotelBloc(HotelService()),
         ),
-        scaffoldBackgroundColor: ColorConst.kThirdColor,
+        BlocProvider(
+          create: (_) => HotelDetailBloc(HotelService()),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: ColorConst.kPrimarySwatchColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(
+            color: Colors.transparent,
+            elevation: 0,
+            brightness: Brightness.light,
+          ),
+          scaffoldBackgroundColor: ColorConst.kThirdColor,
+        ),
+        home: MainScreen(),
+        // home: OnBoardingScreen(),
+        // home: LoginScreen(),
+        // initialRoute: MainScreen2.routeName,
+        // onGenerateRoute: generateRoute,
       ),
-      home: MainScreen(),
-      // home: OnBoardingScreen(),
-      // home: LoginScreen(),
-      // initialRoute: MainScreen2.routeName,
-      // onGenerateRoute: generateRoute,
     );
   }
 }

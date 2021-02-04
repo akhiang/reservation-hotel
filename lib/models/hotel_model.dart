@@ -3,24 +3,34 @@ part of 'package:dangau_hotel/models/models.dart';
 class Hotel extends Equatable {
   final int id;
   final String name;
+  final String description;
   final String imageUrl;
+  final List<Facility> facilities;
+  final List<Room> rooms;
 
   Hotel({
     this.id,
     this.name,
+    this.description,
     this.imageUrl,
+    this.facilities,
+    this.rooms,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
     return Hotel(
       id: json['id'],
       name: json['name'],
+      description: json['description'],
       imageUrl: json['imageUrl'],
+      facilities: List<Facility>.from(
+          json['facilities'].map((facility) => Facility.fromJson(facility))),
+      rooms: List<Room>.from(json['rooms'].map((room) => Room.fromJson(room))),
     );
   }
 
   @override
-  List<Object> get props => [id, name, imageUrl];
+  List<Object> get props => [id, name, description, imageUrl];
 
   @override
   String toString() => 'Hotel { id: $id, name: $name }';

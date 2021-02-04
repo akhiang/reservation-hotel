@@ -27,8 +27,6 @@ dependencies:
   carousel_slider: ^2.3.1
   syncfusion_flutter_datepicker: ^18.4.35-beta
   fluttertoast: ^7.1.6
-  sliding_up_panel: ^1.0.2
-  sliding_sheet: ^0.4.1
   flutter_rating_bar: ^3.2.0+1
   step_progress_indicator: ^0.2.5+8
   snapping_sheet: ^2.0.2

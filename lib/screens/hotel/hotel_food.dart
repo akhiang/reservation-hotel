@@ -14,9 +14,14 @@ class HotelFood extends StatefulWidget {
   _HotelFoodState createState() => _HotelFoodState();
 }
 
-class _HotelFoodState extends State<HotelFood> {
+class _HotelFoodState extends State<HotelFood>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SingleChildScrollView(
       child: Column(
         children: [

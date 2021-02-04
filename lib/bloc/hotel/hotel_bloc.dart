@@ -10,16 +10,22 @@ part 'hotel_event.dart';
 part 'hotel_state.dart';
 
 class HotelBloc extends Bloc<HotelEvent, HotelState> {
-  HotelBloc() : super(HotelInitial());
+  final HotelService _hotelService;
+
+  HotelBloc(this._hotelService) : super(HotelInitial());
 
   @override
   Stream<HotelState> mapEventToState(
     HotelEvent event,
   ) async* {
     if (event is GetHotels) {
-      List<Hotel> hotels = await HotelService().getHotels();
-
-      yield HotelLoaded(hotels);
+      yield HotelLoading();
+      try {
+        final List<Hotel> hotels = await _hotelService.getHotels();
+        yield HotelLoaded(hotels: hotels);
+      } catch (e) {
+        print('bloc' + e.toString());
+      }
     }
   }
 }

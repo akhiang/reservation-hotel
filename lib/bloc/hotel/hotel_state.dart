@@ -1,17 +1,26 @@
 part of 'hotel_bloc.dart';
 
 @immutable
-abstract class HotelState {}
+abstract class HotelState {
+  const HotelState();
+}
 
 class HotelInitial extends HotelState {}
+
+class HotelLoading extends HotelState {}
 
 class HotelLoaded extends HotelState {
   final List<Hotel> hotels;
 
-  HotelLoaded(this.hotels);
+  const HotelLoaded({this.hotels});
 
-  @override
-  List<Object> get props => [hotels];
+  HotelLoaded copyWith({
+    List<Hotel> hotels,
+  }) {
+    return HotelLoaded(
+      hotels: hotels ?? this.hotels,
+    );
+  }
 }
 
 class HotelError extends HotelState {}

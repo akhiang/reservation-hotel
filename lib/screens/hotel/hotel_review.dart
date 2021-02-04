@@ -5,7 +5,11 @@ class HotelReview extends StatefulWidget {
   _HotelReviewState createState() => _HotelReviewState();
 }
 
-class _HotelReviewState extends State<HotelReview> {
+class _HotelReviewState extends State<HotelReview>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   List<String> _choices = [
     "Semua",
     "5",
@@ -18,6 +22,7 @@ class _HotelReviewState extends State<HotelReview> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SingleChildScrollView(
       child: Column(
         children: [

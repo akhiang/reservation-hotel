@@ -1,10 +1,13 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomScreen extends StatelessWidget {
-  final List<int> list = [1, 2, 3, 4, 5];
+  final Room room;
+
+  const RoomScreen({Key key, this.room}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<int> list = [1, 2, 3, 4, 5];
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -62,7 +65,7 @@ class RoomScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "Deluxe Twin",
+                      text: room.name,
                       style: TextStyle(
                         color: ColorConst.kSecondaryColor,
                         fontWeight: FontWeight.w600,
@@ -70,7 +73,7 @@ class RoomScreen extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: "\nwith Balcony",
+                      text: "\n${room.variant}",
                       style: TextStyle(
                         color: ColorConst.kSecondaryColor,
                       ),
@@ -83,7 +86,7 @@ class RoomScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "Rp700.000",
+                      text: "Rp${room.price}",
                       style: TextStyle(
                         color: ColorConst.kErrorColor,
                         fontWeight: FontWeight.w500,
@@ -115,7 +118,20 @@ class RoomScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 8.0),
                   Text(
-                    "20",
+                    "${room.available}",
+                    style: TextStyle(
+                      color: ColorConst.kSecondaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(width: 8.0),
+                  Icon(
+                    Icons.people,
+                    color: ColorConst.kErrorColor,
+                  ),
+                  SizedBox(width: 8.0),
+                  Text(
+                    "${room.guest}",
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor,
                       fontWeight: FontWeight.w600,
@@ -171,7 +187,7 @@ class RoomScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Text(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis. ",
+        "${room.description}",
         style: TextStyle(
           color: ColorConst.kSecondaryColor,
           height: 1.4,

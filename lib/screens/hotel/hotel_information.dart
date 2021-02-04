@@ -1,12 +1,10 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class HotelInformation extends StatefulWidget {
-  final ScrollController sc;
   final Hotel hotel;
 
   const HotelInformation({
     Key key,
-    this.sc,
     this.hotel,
   }) : super(key: key);
 
@@ -14,10 +12,14 @@ class HotelInformation extends StatefulWidget {
   _HotelInformationState createState() => _HotelInformationState();
 }
 
-class _HotelInformationState extends State<HotelInformation> {
+class _HotelInformationState extends State<HotelInformation>
+    with AutomaticKeepAliveClientMixin {
   DateTime rangeStartDate = DateTime.now();
   DateTime rangeEndDate = DateTime.now().add(Duration(days: 1));
   DateRangePickerController _datePickerController;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   initState() {
@@ -25,6 +27,11 @@ class _HotelInformationState extends State<HotelInformation> {
     _datePickerController.selectedRange =
         PickerDateRange(rangeStartDate, rangeEndDate);
     super.initState();
+    _loadHotelDetail();
+  }
+
+  void _loadHotelDetail() {
+    context.read<HotelDetailBloc>().add(GetHotelDetail(widget.hotel.id));
   }
 
   void _showDateCalenderBottomSheet() {
@@ -35,7 +42,6 @@ class _HotelInformationState extends State<HotelInformation> {
       builder: (context) => Wrap(
         children: [
           Container(
-            // height: MediaQuery.of(context).size.height * 0.75,
             padding: EdgeInsets.all(32.0),
             decoration: new BoxDecoration(
               color: ColorConst.kThirdColor,
@@ -211,24 +217,44 @@ class _HotelInformationState extends State<HotelInformation> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 64.0),
-            child: Column(
-              children: <Widget>[
-                _buildDescription(),
-                _buildContact(),
-                _buildFacility(),
-                _buildHotelRoom(context),
-              ],
+    super.build(context);
+    return BlocConsumer<HotelDetailBloc, HotelDetailState>(
+      listener: (_, state) {
+        if (state is HotelDetailError) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('error'),
             ),
-          ),
-        ),
-        _buildBottomOrderButton()
-        // _buildBottomCheckoutButton(context)
-      ],
+          );
+        }
+      },
+      builder: (_, state) {
+        if (state is HotelDetailLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is HotelDetailLoaded) {
+          return Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    _buildDescription(state.hotel.description),
+                    _buildContact(),
+                    _buildFacility(state.hotel.facilities),
+                    _buildHotelRoom(context, state.hotel.rooms),
+                    SizedBox(height: 88.0),
+                  ],
+                ),
+              ),
+              _buildBottomOrderButton()
+              // _buildBottomCheckoutButton(context)
+            ],
+          );
+        } else {
+          return Text("error");
+        }
+      },
     );
   }
 
@@ -330,11 +356,11 @@ class _HotelInformationState extends State<HotelInformation> {
     );
   }
 
-  Padding _buildDescription() {
+  Padding _buildDescription(String description) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Text(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis. ",
+        description,
         style: TextStyle(
           color: ColorConst.kSecondaryColor,
           height: 1.4,
@@ -367,7 +393,7 @@ class _HotelInformationState extends State<HotelInformation> {
     );
   }
 
-  Padding _buildFacility() {
+  Padding _buildFacility(List<Facility> facilities) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Column(
@@ -397,7 +423,7 @@ class _HotelInformationState extends State<HotelInformation> {
     );
   }
 
-  Padding _buildHotelRoom(BuildContext context) {
+  Widget _buildHotelRoom(BuildContext context, List<Room> rooms) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Column(
@@ -412,18 +438,28 @@ class _HotelInformationState extends State<HotelInformation> {
               letterSpacing: 1.2,
             ),
           ),
-          RoomCard(
-            hotel: widget.hotel,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RoomPreferenceScreen(),
-                ),
-              );
-            },
-          ),
-          // RoomCard(hotel: hotel),
+          SizedBox(height: 8.0),
+          Container(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              itemCount: rooms.length,
+              itemBuilder: (_, index) {
+                return RoomCard(
+                  room: rooms[index],
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RoomPreferenceScreen(),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          )
         ],
       ),
     );

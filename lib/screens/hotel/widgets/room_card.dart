@@ -1,12 +1,12 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomCard extends StatelessWidget {
-  final Hotel hotel;
+  final Room room;
   final Function press;
 
   const RoomCard({
     Key key,
-    @required this.hotel,
+    @required this.room,
     @required this.press,
   }) : super(key: key);
 
@@ -16,7 +16,7 @@ class RoomCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => RoomScreen(),
+            builder: (context) => RoomScreen(room: room),
           ),
         );
       },
@@ -45,9 +45,8 @@ class RoomCard extends StatelessWidget {
                 width: 88.0,
                 child: AspectRatio(
                   aspectRatio: 0.5,
-                  child: Image(
-                    image:
-                        AssetImage('assets/images/pexels-pixabay-258154.jpg'),
+                  child: Image.network(
+                    "${room.imageUrl}",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -66,7 +65,7 @@ class RoomCard extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: "Deluxe Twin",
+                              text: "${room.name}",
                               style: TextStyle(
                                 color: ColorConst.kSecondaryColor,
                                 fontWeight: FontWeight.w600,
@@ -74,7 +73,7 @@ class RoomCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: " with Balcony",
+                              text: ' ${room.variant}',
                               style: TextStyle(
                                 color: ColorConst.kSecondaryColor,
                                 fontSize: 12.0,
@@ -88,7 +87,7 @@ class RoomCard extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: "Rp700.000",
+                              text: 'Rp${room.price}',
                               style: TextStyle(
                                 color: ColorConst.kErrorColor,
                                 fontWeight: FontWeight.w500,
@@ -118,7 +117,7 @@ class RoomCard extends StatelessWidget {
                           ),
                           SizedBox(width: 4.0),
                           Text(
-                            "2",
+                            "${room.guest}",
                             style: TextStyle(
                               color: ColorConst.kSecondaryColor,
                             ),

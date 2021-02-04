@@ -1,10 +1,11 @@
+import 'package:dangau_hotel/bloc/hotel_detail/hotel_detail_bloc.dart';
+
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,7 +13,8 @@ import 'package:flutter/material.dart';
 
 import 'package:dangau_hotel/models/models.dart';
 import 'package:dangau_hotel/utils/utils.dart';
-// part 'package:dangau_hotel/routes.dart';
+
+import 'package:dangau_hotel/bloc/bloc.dart';
 
 part 'package:dangau_hotel/widgets/hero_image.dart';
 part 'package:dangau_hotel/widgets/radio_button.dart';
@@ -40,12 +42,9 @@ part 'package:dangau_hotel/screens/home/find_hotel_screen.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_carousel.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_header.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
-part 'package:dangau_hotel/screens/home/widgets/hotel_carousel.dart';
+part 'package:dangau_hotel/screens/home/widgets/hotel_list.dart';
+part 'package:dangau_hotel/screens/home/widgets/hotel_list_card.dart';
 
-part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
-part 'package:dangau_hotel/screens/hotel/hotel_screen_2.dart';
-part 'package:dangau_hotel/screens/hotel/hotel_screen_3.dart';
-part 'package:dangau_hotel/screens/hotel/hotel_screen_4.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen_5.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_food.dart';

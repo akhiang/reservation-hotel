@@ -4,11 +4,28 @@ class HotelService {
   ApiService apiService = ApiService();
 
   Future<List<Hotel>> getHotels() async {
+    await Future.delayed(Duration(seconds: 1));
+    List<Hotel> hotels;
     try {
-      http.Response response = await apiService.get('/hotels');
-      // return
+      List<dynamic> response = await apiService.getData('/hotels');
+      hotels = response.map((hotel) => Hotel.fromJson(hotel)).toList();
+      print(hotels);
     } catch (e) {
-      print(e);
+      print('e asd ' + e.toString());
     }
+    return hotels;
+  }
+
+  Future<Hotel> getHotel(int id) async {
+    await Future.delayed(Duration(seconds: 1));
+    Hotel hotel;
+    try {
+      var response = await apiService.getData('/hotels/$id');
+      hotel = Hotel.fromJson(response);
+      print(hotel);
+    } catch (e) {
+      print('e service ' + e.toString());
+    }
+    return hotel;
   }
 }

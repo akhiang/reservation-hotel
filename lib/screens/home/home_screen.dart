@@ -11,7 +11,6 @@ class HomeScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  // height: MediaQuery.of(context).size.height / 1.65,
                   child: Stack(
                     children: [
                       Column(
@@ -30,12 +29,6 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Positioned.fill(
-                //   child: Align(
-                //     alignment: Alignment.bottomCenter,
-                //     child: HomeDatePicker(),
-                //   ),
-                // ),
               ],
             ),
             SizedBox(height: 24.0),
@@ -56,7 +49,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0),
-            HotelCarousel()
+            HotelList()
           ],
         ),
       ),

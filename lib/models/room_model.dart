@@ -1,21 +1,48 @@
 part of 'package:dangau_hotel/models/models.dart';
 
-class Room {
-  String name;
-  String variant;
-  String description;
-  int price;
-  int capacity;
-  String imageUrl;
+class Room extends Equatable {
+  final int id;
+  final String name;
+  final String variant;
+  final String description;
+  final String imageUrl;
+  final int guest;
+  final int available;
+  final int price;
+  final List<Facility> facilities;
 
   Room({
+    this.id,
     this.name,
     this.variant,
     this.description,
-    this.price,
-    this.capacity,
     this.imageUrl,
+    this.guest,
+    this.available,
+    this.price,
+    this.facilities,
   });
+
+  factory Room.fromJson(Map<String, dynamic> json) {
+    return Room(
+      id: json['id'],
+      name: json['name'],
+      variant: json['variant'] ?? '',
+      description: json['description'],
+      imageUrl: json['imageUrl'],
+      guest: json['guest'],
+      available: json['available'],
+      price: json['price'],
+      facilities: List<Facility>.from(
+          json['facilities'].map((facility) => Facility.fromJson(facility))),
+    );
+  }
+
+  @override
+  List<Object> get props => [name];
+
+  @override
+  String toString() => 'Facility { name: $name }';
 }
 
 final List<Room> rooms = [
@@ -25,7 +52,7 @@ final List<Room> rooms = [
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit volutpat, ut semper congue sem at viverra. Sollicitudin proin ultrices ipsum amet.',
       price: 700000,
-      capacity: 20,
+      available: 20,
       imageUrl:
           'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
   Room(
@@ -34,7 +61,7 @@ final List<Room> rooms = [
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit volutpat, ut semper congue sem at viverra. Sollicitudin proin ultrices ipsum amet.',
       price: 700000,
-      capacity: 20,
+      available: 20,
       imageUrl:
           'https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
 ];
