@@ -77,39 +77,11 @@ class RoomCard extends StatelessWidget {
                             ),
                             TextSpan(
                               text: '${room.variant}'.titleCase,
-                              style: TextStyle(
-                                color: ColorConst.kSecondaryColor,
-                                fontSize: 12.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 4.0),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Rp${room.price}',
-                              style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: ColorConst.kErrorColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13.0,
-                              ),
-                            ),
-                            TextSpan(
-                              text: "/malam",
                               style: kSmallTextStyle,
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
                       Row(
                         children: [
                           Icon(
@@ -124,6 +96,30 @@ class RoomCard extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Rp${room.price}',
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: ColorConst.kErrorColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13.0,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "\n/malam",
+                              style: kSmallTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 32.0,

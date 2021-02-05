@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => HotelDetailBloc(HotelService()),
         ),
+        BlocProvider(
+          create: (_) => OrderingCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

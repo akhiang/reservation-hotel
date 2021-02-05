@@ -50,11 +50,7 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       _isExpanded ? 'TUTUP' : 'LIHAT DETAIL',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: ColorConst.kSecondaryColor,
-                        fontSize: 16.0,
-                      ),
+                      style: kNormalBoldTextStyle,
                     ),
                   ),
                 ),

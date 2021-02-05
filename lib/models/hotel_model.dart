@@ -30,7 +30,8 @@ class Hotel extends Equatable {
   }
 
   @override
-  List<Object> get props => [id, name, description, imageUrl];
+  List<Object> get props =>
+      [id, name, description, imageUrl, facilities, rooms];
 
   @override
   String toString() => 'Hotel { id: $id, name: $name }';

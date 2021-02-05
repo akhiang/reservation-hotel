@@ -19,11 +19,7 @@ class BookedRoomDetail extends StatelessWidget {
               children: [
                 Text(
                   'Deluxe Twin, with Balcony',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalBoldTextStyle,
                 ),
                 Tooltip(
                   key: _toolTipKey,
@@ -68,18 +64,11 @@ class BookedRoomDetail extends StatelessWidget {
               children: [
                 Text(
                   'Jam Check-in',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalTextStyle,
                 ),
                 Text(
                   '14.00 - 23.59',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalBoldTextStyle,
                 ),
               ],
             ),
@@ -89,18 +78,11 @@ class BookedRoomDetail extends StatelessWidget {
               children: [
                 Text(
                   'Jam Check-out',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalTextStyle,
                 ),
                 Text(
                   '01.00 - 12.00',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalBoldTextStyle,
                 ),
               ],
             ),
@@ -115,18 +97,11 @@ class BookedRoomDetail extends StatelessWidget {
               children: [
                 Text(
                   'Terbayarkan',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalTextStyle,
                 ),
                 Text(
                   '1470000',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalBoldTextStyle,
                 ),
               ],
             ),
@@ -136,18 +111,11 @@ class BookedRoomDetail extends StatelessWidget {
               children: [
                 Text(
                   'Bayar di tempat',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalTextStyle,
                 ),
                 Text(
                   '2730000',
-                  style: TextStyle(
-                    color: ColorConst.kSecondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                  ),
+                  style: kNormalBoldTextStyle,
                 ),
               ],
             ),

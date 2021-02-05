@@ -50,7 +50,7 @@ class RoundedCard extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: title,
-                              style: kNormalBoldTextStyle,
+                              style: kSmallBoldTextStyle,
                             ),
                             TextSpan(
                               text: subtitle,

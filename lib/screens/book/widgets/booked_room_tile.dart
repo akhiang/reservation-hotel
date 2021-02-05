@@ -17,7 +17,7 @@ class BookedRoomTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 child: SizedBox(
-                  width: 120.0,
+                  width: 98.0,
                   child: AspectRatio(
                     aspectRatio: 1.0,
                     child: Image(
@@ -35,27 +35,17 @@ class BookedRoomTile extends StatelessWidget {
                 children: [
                   Text(
                     'Kahyangan Resort',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18.0,
-                    ),
+                    style: kNormalBoldTextStyle,
                   ),
                   SizedBox(height: 4.0),
                   Text(
                     '3 Malam, 2 Kamar',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 16.0,
-                    ),
+                    style: kNormalTextStyle,
                   ),
                   SizedBox(height: 4.0),
                   Text(
                     '15 - 18 Des, 2020',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontSize: 16.0,
-                    ),
+                    style: kNormalTextStyle,
                   ),
                 ],
               ),
