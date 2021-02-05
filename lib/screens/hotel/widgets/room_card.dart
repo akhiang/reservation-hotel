@@ -46,7 +46,7 @@ class RoomCard extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 0.5,
                   child: Image.network(
-                    "${room.imageUrl}",
+                    '${room.imageUrl}',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,7 +65,7 @@ class RoomCard extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: "${room.name}",
+                              text: '${room.name}'.titleCase,
                               style: TextStyle(
                                 color: ColorConst.kSecondaryColor,
                                 fontWeight: FontWeight.w600,
@@ -73,7 +73,10 @@ class RoomCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: ' ${room.variant}',
+                              text: ' ',
+                            ),
+                            TextSpan(
+                              text: '${room.variant}'.titleCase,
                               style: TextStyle(
                                 color: ColorConst.kSecondaryColor,
                                 fontSize: 12.0,
@@ -89,6 +92,7 @@ class RoomCard extends StatelessWidget {
                             TextSpan(
                               text: 'Rp${room.price}',
                               style: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: ColorConst.kErrorColor,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 13.0,
@@ -96,10 +100,7 @@ class RoomCard extends StatelessWidget {
                             ),
                             TextSpan(
                               text: "/malam",
-                              style: TextStyle(
-                                color: ColorConst.kSecondaryColor,
-                                fontSize: 12.0,
-                              ),
+                              style: kSmallTextStyle,
                             ),
                           ],
                         ),

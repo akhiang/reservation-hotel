@@ -8,8 +8,13 @@ class BookScreen extends StatefulWidget {
 class _BookScreenState extends State<BookScreen>
     with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
-    Tab(text: 'Yang akan datang'),
-    Tab(text: 'Riwayat'),
+    Tab(
+      child:
+          Text('Yang akan datang', style: TextStyle(fontFamily: 'Montserrat')),
+    ),
+    Tab(
+      child: Text('Riwayat', style: TextStyle(fontFamily: 'Montserrat')),
+    ),
   ];
   TabController _tabController;
 

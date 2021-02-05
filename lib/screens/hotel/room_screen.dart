@@ -60,20 +60,15 @@ class RoomScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              RichText(
-                textAlign: TextAlign.left,
-                text: TextSpan(
+              Text.rich(
+                TextSpan(
                   children: [
                     TextSpan(
-                      text: room.name,
-                      style: TextStyle(
-                        color: ColorConst.kSecondaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                      ),
+                      text: '${room.name}'.titleCase,
+                      style: kLargeBoldTextStyle,
                     ),
                     TextSpan(
-                      text: "\n${room.variant}",
+                      text: "\n${room.variant}".titleCase,
                       style: TextStyle(
                         color: ColorConst.kSecondaryColor,
                       ),
@@ -88,6 +83,7 @@ class RoomScreen extends StatelessWidget {
                     TextSpan(
                       text: "Rp${room.price}",
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         color: ColorConst.kErrorColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 18.0,
@@ -96,6 +92,7 @@ class RoomScreen extends StatelessWidget {
                     TextSpan(
                       text: "\n/malam",
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         color: ColorConst.kSecondaryColor,
                       ),
                     ),
@@ -160,13 +157,8 @@ class RoomScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Fasilitas",
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 18.0,
-              letterSpacing: 1.2,
-            ),
+            'Fasilitas',
+            style: kNormalBoldTextStyle,
           ),
           SizedBox(height: 8.0),
           Row(
@@ -187,7 +179,7 @@ class RoomScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Text(
-        "${room.description}",
+        '${room.description}',
         style: TextStyle(
           color: ColorConst.kSecondaryColor,
           height: 1.4,
