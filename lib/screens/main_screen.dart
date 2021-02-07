@@ -13,12 +13,12 @@ class MainScreenState extends State<MainScreen> {
   final List<TabItem> tabs = [
     TabItem(
       tabName: "Home",
-      icon: Icons.home,
+      icon: Icons.home_rounded,
       page: HomeScreen(),
     ),
     TabItem(
       tabName: "Book",
-      icon: Icons.book,
+      icon: FontAwesomeIcons.book,
       page: BookScreen(),
     ),
     TabItem(

@@ -43,7 +43,7 @@ class RoundedCard extends StatelessWidget {
                     children: [
                       icon == null
                           ? SizedBox()
-                          : Icon(icon, color: ColorConst.kSecondaryColor),
+                          : Icon(icon, color: ColorConst.kErrorColor),
                       SizedBox(width: 8.0),
                       RichText(
                         text: TextSpan(

@@ -11,7 +11,6 @@ class HelpScreen extends StatelessWidget {
         child: CustomAppBar(title: 'Bantuan', isLeading: true),
       ),
       body: SingleChildScrollView(
-        clipBehavior: Clip.none,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
@@ -37,6 +36,7 @@ class HelpScreen extends StatelessWidget {
                   );
                 },
               ),
+              SizedBox(height: 88.0)
             ],
           ),
         ),

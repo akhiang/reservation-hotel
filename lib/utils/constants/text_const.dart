@@ -1,46 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/utils/constants/color_const.dart';
 
-const kSmallTextStyle = TextStyle(
+const TextStyle kSmallTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontSize: 12.0,
 );
 
-const kSmallBoldTextStyle = TextStyle(
+const TextStyle kSmallBoldTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontWeight: FontWeight.w600,
   fontSize: 12.0,
 );
 
-const kNormalTextStyle = TextStyle(
+const TextStyle kNormalTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontSize: 16.0,
 );
 
-const kNormalBoldTextStyle = TextStyle(
+const TextStyle kNormalBoldTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontWeight: FontWeight.w600,
   fontSize: 16.0,
 );
 
-const kLargeTextStyle = TextStyle(
+const TextStyle kLargeTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontSize: 20.0,
 );
 
-const kLargeBoldTextStyle = TextStyle(
+const TextStyle kLargeBoldTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontWeight: FontWeight.w600,
   fontSize: 20.0,
 );
 
-const kExtraLargeBoldTextStyle = TextStyle(
+const TextStyle kExtraLargeBoldTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   color: ColorConst.kSecondaryColor,
   fontWeight: FontWeight.w600,

@@ -9,7 +9,6 @@ class ProfileScreen extends StatelessWidget {
         child: CustomAppBar(title: 'Profil Saya', isLeading: false),
       ),
       body: SingleChildScrollView(
-        clipBehavior: Clip.hardEdge,
         child: Column(
           children: [
             ProfileListTile(),
@@ -17,6 +16,10 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
+                  RoundedCard(
+                    icon: Icons.credit_card,
+                    title: 'Kartu Saya',
+                  ),
                   RoundedCard(
                     icon: Icons.help,
                     title: 'Bantuan',

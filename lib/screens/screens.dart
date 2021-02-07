@@ -1,7 +1,7 @@
 import 'package:dangau_hotel/bloc/hotel_detail/hotel_detail_bloc.dart';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';

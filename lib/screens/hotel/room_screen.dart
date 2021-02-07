@@ -13,29 +13,7 @@ class RoomScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                HomeCarousel(
-                  list: list,
-                  height: 0.4,
-                  autoPlay: false,
-                ),
-                IconButton(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 64.0,
-                  ),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    size: 32.0,
-                    color: ColorConst.kThirdColor,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
+            _buildRoomImageCarousel(list, context),
             _buildRoomDetail(),
             _buildFacility(),
             Padding(
@@ -51,7 +29,33 @@ class RoomScreen extends StatelessWidget {
     );
   }
 
-  Padding _buildRoomDetail() {
+  Widget _buildRoomImageCarousel(List<int> list, BuildContext context) {
+    return Stack(
+      children: [
+        HomeCarousel(
+          list: list,
+          height: 0.4,
+          autoPlay: false,
+        ),
+        IconButton(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 64.0,
+          ),
+          icon: Icon(
+            Icons.chevron_left,
+            size: 32.0,
+            color: ColorConst.kThirdColor,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRoomDetail() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       child: Column(
@@ -150,7 +154,7 @@ class RoomScreen extends StatelessWidget {
     );
   }
 
-  Padding _buildFacility() {
+  Widget _buildFacility() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Column(
@@ -175,7 +179,7 @@ class RoomScreen extends StatelessWidget {
     );
   }
 
-  Padding _buildDescription() {
+  Widget _buildDescription() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
       child: Text(
