@@ -25,14 +25,7 @@ class SummaryRoomListTile extends StatelessWidget {
               )
             ],
           ),
-          Text(
-            'Rp2100000',
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          Text('Rp2100000', style: kNormalBoldTextStyle),
         ],
       ),
     );

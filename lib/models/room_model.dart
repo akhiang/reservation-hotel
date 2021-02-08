@@ -26,20 +26,21 @@ class Room extends Equatable {
   factory Room.fromJson(Map<String, dynamic> json) {
     return Room(
       id: json['id'],
-      name: json['name'],
+      name: json['name'] ?? '',
       variant: json['variant'] ?? '',
-      description: json['description'],
+      description: json['description'] ?? '',
       imageUrl: json['imageUrl'],
-      guest: json['guest'],
+      guest: json['guest'] ?? 0,
       available: json['available'],
-      price: json['price'],
+      price: json['price'] ?? 0,
       facilities: List<Facility>.from(
           json['facilities'].map((facility) => Facility.fromJson(facility))),
     );
   }
 
   @override
-  List<Object> get props => [name];
+  List<Object> get props =>
+      [id, name, variant, description, imageUrl, guest, available, price];
 
   @override
   String toString() => 'Facility { name: $name }';

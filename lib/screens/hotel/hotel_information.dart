@@ -28,6 +28,7 @@ class _HotelInformationState extends State<HotelInformation>
         PickerDateRange(rangeStartDate, rangeEndDate);
     super.initState();
     _loadHotelDetail();
+    context.read<OrderingStatusCubit>().changeStatusToInitial();
   }
 
   void _loadHotelDetail() {
@@ -76,7 +77,16 @@ class _HotelInformationState extends State<HotelInformation>
                             textColor: ColorConst.kThirdColor,
                             fontSize: 16.0);
                       } else {
+                        context
+                            .read<OrderingStatusCubit>()
+                            .changeStatusToOnRoomSelection();
                         Navigator.pop(context);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                SelectRoom(hotel: widget.hotel),
+                          ),
+                        );
                       }
                     },
                   ),
@@ -242,13 +252,23 @@ class _HotelInformationState extends State<HotelInformation>
                     _buildDescription(state.hotel.description),
                     _buildContact(),
                     _buildFacility(state.hotel.facilities),
-                    _buildHotelRoom(context, state.hotel.rooms),
+                    // _buildHotelRoom(context, state.hotel.rooms),
                     SizedBox(height: 88.0),
                   ],
                 ),
               ),
-              _buildBottomOrderButton()
-              // _buildBottomCheckoutButton(context)
+              BlocBuilder<OrderingStatusCubit, OrderingStatusState>(
+                builder: (context, state) {
+                  if (state is OrderingStatusInitial) {
+                    return _buildBottomOrderButton();
+                  } else if (state is OrderingStatusOnRoomSelection) {
+                    return _buildChangeDateButton();
+                  } else if (state is OrderingStatusOnRoomSelected) {
+                    return _buildBottomCheckoutButton(context);
+                  }
+                  return _buildBottomOrderButton();
+                },
+              ),
             ],
           );
         } else {
@@ -266,9 +286,28 @@ class _HotelInformationState extends State<HotelInformation>
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 88.0, vertical: 8.0),
         color: Colors.transparent,
-        height: 56.0,
+        height: 68.0,
         child: PrimaryButton(
           text: 'Lakukan Pemesanan',
+          press: () {
+            _showDateCalenderBottomSheet();
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChangeDateButton() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 112.0, vertical: 8.0),
+        color: Colors.transparent,
+        height: 68.0,
+        child: PrimaryButton(
+          text: 'Ubah Tanggal',
           press: () {
             _showDateCalenderBottomSheet();
           },
@@ -285,7 +324,7 @@ class _HotelInformationState extends State<HotelInformation>
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         color: Colors.transparent,
-        height: 56.0,
+        height: 68.0,
         child: Row(
           children: [
             GestureDetector(

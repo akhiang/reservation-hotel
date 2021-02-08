@@ -82,18 +82,39 @@ class RoomCard extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: 4.0),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.people,
-                            color: ColorConst.kSecondaryColor,
+                          room.available > 0
+                              ? Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SvgPicture.asset(
+                                      kRoomAvailableIcon,
+                                      height: 16.0,
+                                      width: 16.0,
+                                      color: ColorConst.kErrorColor,
+                                    ),
+                                    SizedBox(width: 4.0),
+                                    Text(
+                                      "${room.available}",
+                                      style: kNormalBoldTextStyle,
+                                    ),
+                                  ],
+                                )
+                              : SizedBox(),
+                          SizedBox(width: 8.0),
+                          SvgPicture.asset(
+                            kPeopleIcon,
+                            height: 16.0,
+                            width: 16.0,
+                            color: ColorConst.kErrorColor,
                           ),
                           SizedBox(width: 4.0),
                           Text(
                             "${room.guest}",
-                            style: TextStyle(
-                              color: ColorConst.kSecondaryColor,
-                            ),
+                            style: kNormalBoldTextStyle,
                           ),
                         ],
                       ),
@@ -102,32 +123,42 @@ class RoomCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Rp${room.price}',
-                              style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: ColorConst.kErrorColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13.0,
+                      room.available > 0
+                          ? RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Rp${room.price}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: ColorConst.kErrorColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.0,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "\n/malam",
+                                    style: kSmallTextStyle,
+                                  ),
+                                ],
                               ),
+                            )
+                          : Text('Kamar tidak\ntersedia',
+                              style: kSmallBoldTextStyle),
+                      room.available > 0
+                          ? SizedBox(
+                              height: 32.0,
+                              child: PrimaryButton(
+                                text: 'Pilih',
+                                press: press,
+                              ),
+                            )
+                          : SvgPicture.asset(
+                              kNoRoomIcon,
+                              height: 32.0,
+                              width: 32.0,
+                              color: ColorConst.kErrorColor,
                             ),
-                            TextSpan(
-                              text: "\n/malam",
-                              style: kSmallTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 32.0,
-                        child: PrimaryButton(
-                          text: 'Pilih',
-                          press: press,
-                        ),
-                      )
                     ],
                   ),
                 ],

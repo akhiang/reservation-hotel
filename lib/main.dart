@@ -1,4 +1,5 @@
 import 'package:dangau_hotel/bloc/bloc.dart';
+import 'package:dangau_hotel/bloc/room/room_cubit.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => HotelDetailBloc(HotelService()),
         ),
-        // BlocProvider(
-        //   create: (_) => OrderingCubit(),
-        // ),
+        BlocProvider(
+          create: (_) => RoomCubit(RoomService()),
+        ),
+        BlocProvider(
+          create: (_) => OrderingStatusCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'Hotel Reservation',

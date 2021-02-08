@@ -6,7 +6,7 @@ class Hotel extends Equatable {
   final String description;
   final String imageUrl;
   final List<Facility> facilities;
-  final List<Room> rooms;
+  // final List<Room> rooms;
 
   Hotel({
     this.id,
@@ -14,7 +14,7 @@ class Hotel extends Equatable {
     this.description,
     this.imageUrl,
     this.facilities,
-    this.rooms,
+    // this.rooms,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
@@ -25,13 +25,12 @@ class Hotel extends Equatable {
       imageUrl: json['imageUrl'],
       facilities: List<Facility>.from(
           json['facilities'].map((facility) => Facility.fromJson(facility))),
-      rooms: List<Room>.from(json['rooms'].map((room) => Room.fromJson(room))),
+      // rooms: List<Room>.from(json['rooms'].map((room) => Room.fromJson(room))),
     );
   }
 
   @override
-  List<Object> get props =>
-      [id, name, description, imageUrl, facilities, rooms];
+  List<Object> get props => [id, name, description, imageUrl, facilities];
 
   @override
   String toString() => 'Hotel { id: $id, name: $name }';

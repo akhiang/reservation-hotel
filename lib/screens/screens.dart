@@ -1,4 +1,5 @@
 import 'package:dangau_hotel/bloc/hotel_detail/hotel_detail_bloc.dart';
+import 'package:dangau_hotel/bloc/room/room_cubit.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,6 +60,9 @@ part 'package:dangau_hotel/screens/hotel/widgets/other_food_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/summary_room_list_tile.dart';
+
+part 'package:dangau_hotel/screens/room/select_room_screen.dart';
+part 'package:dangau_hotel/screens/room/widgets/room_list.dart';
 
 part 'package:dangau_hotel/screens/order/order_screen.dart';
 part 'package:dangau_hotel/screens/order/order_room_summary.dart';

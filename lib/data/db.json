@@ -18,56 +18,6 @@
                 {
                     "name": "AC"
                 }
-            ],
-            "rooms": [
-                {
-                    "id": 1,
-                    "name": "deluxe twin",
-                    "variant": "with balcony",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 700000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
-                },
-                {
-                    "id": 2,
-                    "name": "deluxe king",
-                    "variant": "with balcony",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 700000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
-                }
             ]
         },
         {
@@ -87,54 +37,6 @@
                 },
                 {
                     "name": "AC"
-                }
-            ],
-            "rooms": [
-                {
-                    "id": 1,
-                    "name": "deluxe twin",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 700000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
-                },
-                {
-                    "id": 2,
-                    "name": "deluxe king",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 700000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
                 }
             ]
         },
@@ -157,52 +59,153 @@
                     "name": "AC"
                 }
             ],
-            "rooms": [
+            "rooms": []
+        }
+    ],
+    "rooms": [
+        {
+            "id": 1,
+            "hotelId": 1,
+            "name": "deluxe twin",
+            "variant": "with balcony",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "guest": 2,
+            "available": 20,
+            "price": 700000,
+            "facilities": [
                 {
-                    "id": 1,
-                    "name": "deluxe twin",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 500000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
+                    "name": "1 king bed"
                 },
                 {
-                    "id": 2,
-                    "name": "deluxe king",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
-                    "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    "guest": 2,
-                    "available": 20,
-                    "price": 600000,
-                    "facilities": [
-                        {
-                            "name": "1 king bed"
-                        },
-                        {
-                            "name": "2 tamu"
-                        },
-                        {
-                            "name": "sarapan"
-                        },
-                        {
-                            "name": "wifi"
-                        }
-                    ]
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "hotelId": 1,
+            "name": "deluxe king",
+            "variant": "with balcony",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+            "guest": 2,
+            "available": 20,
+            "price": 700000,
+            "facilities": [
+                {
+                    "name": "1 king bed"
+                },
+                {
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "hotelId": 2,
+            "name": "superior room",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "guest": 2,
+            "available": 20,
+            "price": 700000,
+            "facilities": [
+                {
+                    "name": "1 king bed"
+                },
+                {
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "hotelId": 2,
+            "name": "executive room",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "guest": 2,
+            "available": 20,
+            "price": 700000,
+            "facilities": [
+                {
+                    "name": "1 king bed"
+                },
+                {
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "hotelId": 3,
+            "name": "comfort room",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "guest": 2,
+            "available": 20,
+            "price": 500000,
+            "facilities": [
+                {
+                    "name": "1 king bed"
+                },
+                {
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "hotelId": 3,
+            "name": "standard room",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
+            "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "guest": 2,
+            "available": 0,
+            "price": 600000,
+            "facilities": [
+                {
+                    "name": "1 king bed"
+                },
+                {
+                    "name": "2 tamu"
+                },
+                {
+                    "name": "sarapan"
+                },
+                {
+                    "name": "wifi"
                 }
             ]
         }
