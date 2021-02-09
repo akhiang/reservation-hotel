@@ -462,45 +462,45 @@ class _HotelInformationState extends State<HotelInformation>
     );
   }
 
-  Widget _buildHotelRoom(BuildContext context, List<Room> rooms) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Kamar Tersedia",
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 18.0,
-              letterSpacing: 1.2,
-            ),
-          ),
-          SizedBox(height: 8.0),
-          Container(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: rooms.length,
-              itemBuilder: (_, index) {
-                return RoomCard(
-                  room: rooms[index],
-                  press: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RoomPreferenceScreen(),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _buildHotelRoom(BuildContext context, List<Room> rooms) {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           "Kamar Tersedia",
+  //           style: TextStyle(
+  //             color: ColorConst.kSecondaryColor,
+  //             fontWeight: FontWeight.w600,
+  //             fontSize: 18.0,
+  //             letterSpacing: 1.2,
+  //           ),
+  //         ),
+  //         SizedBox(height: 8.0),
+  //         Container(
+  //           child: ListView.builder(
+  //             shrinkWrap: true,
+  //             physics: NeverScrollableScrollPhysics(),
+  //             padding: EdgeInsets.zero,
+  //             itemCount: rooms.length,
+  //             itemBuilder: (_, index) {
+  //               return RoomCard(
+  //                 roomCart: rooms[index],
+  //                 press: () {
+  //                   Navigator.push(
+  //                     context,
+  //                     MaterialPageRoute(
+  //                       builder: (context) => RoomPreferenceScreen(),
+  //                     ),
+  //                   );
+  //                 },
+  //               );
+  //             },
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }

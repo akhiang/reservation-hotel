@@ -1,17 +1,28 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class RoomPreferenceScreen extends StatefulWidget {
-  final Room room;
+enum SmokingOption { smoking, nonSmoking }
+enum BedOption { singleBed, twinBed }
 
-  const RoomPreferenceScreen({Key key, @required this.room}) : super(key: key);
+class RoomPreferenceScreen extends StatefulWidget {
+  final RoomCart roomCart;
+
+  const RoomPreferenceScreen({Key key, @required this.roomCart})
+      : super(key: key);
 
   @override
   _RoomPreferenceScreenState createState() => _RoomPreferenceScreenState();
 }
 
 class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
-  // Map<String, dynamic> selectedRoom = {'roomId': widget.room, 'is_smoke'};
   bool isNote = false;
+  SmokingOption smokeOption = SmokingOption.smoking;
+  BedOption bedOption = BedOption.singleBed;
+
+  RoomPreference roomPreference = RoomPreference(
+    isSmoke: true,
+    isSingleBed: true,
+    note: '',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +41,9 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             child: PrimaryButton(
               text: 'Simpan',
               press: () {
-                RoomCart roomCart = RoomCart(
-                    roomId: 1,
-                    isSmoke: true,
-                    isSingleBed: true,
-                    note: '',
-                    quantity: 1);
-                context.read<OrderCartCubit>().addRoomToCart(roomCart);
+                context
+                    .read<RoomCartCubit>()
+                    .updateRoomCart(widget.roomCart, roomPreference);
                 Navigator.of(context).pop();
               },
             ),
@@ -83,7 +90,11 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                       child: RoundedTextArea(
                         line: 4,
                         hint: "Catatan",
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          setState(() {
+                            roomPreference.note = value;
+                          });
+                        },
                       ),
                     )
                   : Container(
@@ -94,7 +105,6 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                         icon: Icons.add,
                         text: 'Tambah Catatan',
                         press: () {
-                          print('note');
                           setState(() {
                             isNote = true;
                           });
@@ -130,8 +140,42 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             ),
             child: Column(
               children: [
-                RadioButton(title: 'Smoking', icon: Icons.smoking_rooms),
-                RadioButton(title: 'Non-Smoking', icon: Icons.smoke_free),
+                RadioButton(
+                  title: 'Smoking',
+                  icon: Icons.smoking_rooms,
+                  value: smokeOption,
+                  radioValue: SmokingOption.smoking,
+                  tap: () {
+                    setState(() {
+                      smokeOption = SmokingOption.smoking;
+                      roomPreference.isSmoke = true;
+                    });
+                  },
+                  change: (value) {
+                    setState(() {
+                      smokeOption = value;
+                      roomPreference.isSmoke = true;
+                    });
+                  },
+                ),
+                RadioButton(
+                  title: 'Non-Smoking',
+                  icon: Icons.smoke_free,
+                  value: smokeOption,
+                  radioValue: SmokingOption.nonSmoking,
+                  tap: () {
+                    setState(() {
+                      smokeOption = SmokingOption.nonSmoking;
+                      roomPreference.isSmoke = false;
+                    });
+                  },
+                  change: (value) {
+                    setState(() {
+                      smokeOption = value;
+                      roomPreference.isSmoke = false;
+                    });
+                  },
+                ),
               ],
             ),
           ),
@@ -161,8 +205,42 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             ),
             child: Column(
               children: [
-                RadioButton(title: 'Single Bed', icon: Icons.access_alarm),
-                RadioButton(title: 'Twin Bed', icon: Icons.access_alarm)
+                RadioButton(
+                  title: 'Single Bed',
+                  icon: Icons.single_bed,
+                  value: bedOption,
+                  radioValue: BedOption.singleBed,
+                  tap: () {
+                    setState(() {
+                      bedOption = BedOption.singleBed;
+                      roomPreference.isSingleBed = true;
+                    });
+                  },
+                  change: (value) {
+                    setState(() {
+                      bedOption = value;
+                      roomPreference.isSingleBed = true;
+                    });
+                  },
+                ),
+                RadioButton(
+                  title: 'Twin Bed',
+                  icon: Icons.king_bed,
+                  value: bedOption,
+                  radioValue: BedOption.twinBed,
+                  tap: () {
+                    setState(() {
+                      bedOption = BedOption.twinBed;
+                      roomPreference.isSingleBed = false;
+                    });
+                  },
+                  change: (value) {
+                    setState(() {
+                      bedOption = value;
+                      roomPreference.isSingleBed = false;
+                    });
+                  },
+                )
               ],
             ),
           ),

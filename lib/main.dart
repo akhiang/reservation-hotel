@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           create: (_) => HotelDetailBloc(HotelService()),
         ),
         BlocProvider(
-          create: (_) => RoomCubit(RoomService()),
+          create: (_) => RoomCartCubit(RoomService()),
         ),
         BlocProvider(
           create: (_) => OrderingStatusCubit(),

@@ -13,18 +13,18 @@ class _RoomListState extends State<RoomList> {
   @override
   void initState() {
     super.initState();
-    _loadHotelRoomList();
+    _loadHotelRoomListToCart();
   }
 
-  void _loadHotelRoomList() {
-    context.read<RoomCubit>().getHotelRooms(widget.hotel.id);
+  void _loadHotelRoomListToCart() {
+    context.read<RoomCartCubit>().getHotelRoomsToCart(widget.hotel.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 500.0,
-      child: BlocConsumer<RoomCubit, RoomState>(
+      child: BlocConsumer<RoomCartCubit, RoomCartState>(
         listener: (context, state) {
           if (state is RoomError) {
             Scaffold.of(context).showSnackBar(
@@ -35,23 +35,23 @@ class _RoomListState extends State<RoomList> {
           }
         },
         builder: (context, state) {
-          if (state is RoomLoading) {
+          if (state is RoomCartLoading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is RoomLoaded) {
+          } else if (state is RoomCartLoaded) {
             return ListView.builder(
               padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-              itemCount: state.rooms.length,
+              itemCount: state.roomCart.length,
               itemBuilder: (_, index) {
                 return RoomCard(
-                  room: state.rooms[index],
+                  roomCart: state.roomCart[index],
                   press: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => RoomPreferenceScreen(
-                          room: state.rooms[index],
+                          roomCart: state.roomCart[index],
                         ),
                       ),
                     );

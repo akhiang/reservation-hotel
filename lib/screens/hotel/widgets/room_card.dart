@@ -1,12 +1,12 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomCard extends StatelessWidget {
-  final Room room;
+  final RoomCart roomCart;
   final Function press;
 
   const RoomCard({
     Key key,
-    @required this.room,
+    @required this.roomCart,
     @required this.press,
   }) : super(key: key);
 
@@ -16,7 +16,7 @@ class RoomCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => RoomScreen(room: room),
+            builder: (context) => RoomScreen(room: roomCart.room),
           ),
         );
       },
@@ -46,7 +46,7 @@ class RoomCard extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 0.5,
                   child: Image.network(
-                    '${room.imageUrl}',
+                    '${roomCart.room.imageUrl}',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,18 +65,14 @@ class RoomCard extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: '${room.name}'.titleCase,
-                              style: TextStyle(
-                                color: ColorConst.kSecondaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16.0,
-                              ),
+                              text: '${roomCart.room.name}'.titleCase,
+                              style: kNormalBoldTextStyle,
                             ),
                             TextSpan(
                               text: ' ',
                             ),
                             TextSpan(
-                              text: '${room.variant}'.titleCase,
+                              text: '${roomCart.room.variant}'.titleCase,
                               style: kSmallTextStyle,
                             ),
                           ],
@@ -86,7 +82,7 @@ class RoomCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          room.available > 0
+                          roomCart.room.available > 0
                               ? Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -98,7 +94,7 @@ class RoomCard extends StatelessWidget {
                                     ),
                                     SizedBox(width: 4.0),
                                     Text(
-                                      "${room.available}",
+                                      "${roomCart.room.available}",
                                       style: kNormalBoldTextStyle,
                                     ),
                                   ],
@@ -113,22 +109,23 @@ class RoomCard extends StatelessWidget {
                           ),
                           SizedBox(width: 4.0),
                           Text(
-                            "${room.guest}",
+                            "${roomCart.room.guest}",
                             style: kNormalBoldTextStyle,
                           ),
                         ],
                       ),
                     ],
                   ),
+                  Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      room.available > 0
+                      roomCart.room.available > 0
                           ? RichText(
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'Rp${room.price}',
+                                    text: 'Rp${roomCart.room.price}',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       color: ColorConst.kErrorColor,
@@ -145,14 +142,16 @@ class RoomCard extends StatelessWidget {
                             )
                           : Text('Kamar tidak\ntersedia',
                               style: kSmallBoldTextStyle),
-                      room.available > 0
-                          ? SizedBox(
-                              height: 32.0,
-                              child: PrimaryButton(
-                                text: 'Pilih',
-                                press: press,
-                              ),
-                            )
+                      roomCart.room.available > 0
+                          ? roomCart.isSelected
+                              ? Text('selected')
+                              : SizedBox(
+                                  height: 32.0,
+                                  child: PrimaryButton(
+                                    text: 'Pilih',
+                                    press: press,
+                                  ),
+                                )
                           : SvgPicture.asset(
                               kNoRoomIcon,
                               height: 32.0,
@@ -161,6 +160,7 @@ class RoomCard extends StatelessWidget {
                             ),
                     ],
                   ),
+                  roomCart.isSelected ? Text('selected') : SizedBox(),
                 ],
               ),
             ),

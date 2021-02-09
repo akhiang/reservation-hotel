@@ -43,7 +43,7 @@ class Room extends Equatable {
       [id, name, variant, description, imageUrl, guest, available, price];
 
   @override
-  String toString() => 'Facility { name: $name }';
+  String toString() => 'Room { name: $name, variant: $variant }';
 }
 
 final List<Room> rooms = [
