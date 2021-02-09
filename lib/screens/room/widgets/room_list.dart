@@ -50,7 +50,9 @@ class _RoomListState extends State<RoomList> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RoomPreferenceScreen(),
+                        builder: (context) => RoomPreferenceScreen(
+                          room: state.rooms[index],
+                        ),
                       ),
                     );
                   },

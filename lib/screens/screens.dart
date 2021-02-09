@@ -1,6 +1,3 @@
-import 'package:dangau_hotel/bloc/hotel_detail/hotel_detail_bloc.dart';
-import 'package:dangau_hotel/bloc/room/room_cubit.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';

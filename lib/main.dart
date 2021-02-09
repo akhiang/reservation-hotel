@@ -27,6 +27,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => OrderingStatusCubit(),
         ),
+        BlocProvider(
+          create: (_) => OrderCartCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'Hotel Reservation',

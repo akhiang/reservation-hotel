@@ -1,11 +1,16 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomPreferenceScreen extends StatefulWidget {
+  final Room room;
+
+  const RoomPreferenceScreen({Key key, @required this.room}) : super(key: key);
+
   @override
   _RoomPreferenceScreenState createState() => _RoomPreferenceScreenState();
 }
 
 class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
+  // Map<String, dynamic> selectedRoom = {'roomId': widget.room, 'is_smoke'};
   bool isNote = false;
 
   @override
@@ -24,7 +29,16 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             width: 120.0,
             child: PrimaryButton(
               text: 'Simpan',
-              press: () {},
+              press: () {
+                RoomCart roomCart = RoomCart(
+                    roomId: 1,
+                    isSmoke: true,
+                    isSingleBed: true,
+                    note: '',
+                    quantity: 1);
+                context.read<OrderCartCubit>().addRoomToCart(roomCart);
+                Navigator.of(context).pop();
+              },
             ),
           ),
         ),
