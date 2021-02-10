@@ -11,8 +11,8 @@ class RoomCartCubit extends Cubit<RoomCartState> {
   RoomCartCubit(this._roomService) : super(RoomCartInitial());
 
   RoomPreference roomPreference = RoomPreference(
-    isSmoke: true,
-    isSingleBed: true,
+    isSmoke: false,
+    isSingleBed: false,
     note: '',
   );
 
@@ -22,6 +22,7 @@ class RoomCartCubit extends Cubit<RoomCartState> {
       final List<Room> rooms = await _roomService.getRooms(hotelId);
       List<RoomCart> roomCart = rooms.map((room) {
         return RoomCart(
+          id: room.id,
           room: room,
           isSelected: false,
           quantity: 0,
@@ -36,15 +37,36 @@ class RoomCartCubit extends Cubit<RoomCartState> {
   }
 
   void updateRoomCart(RoomCart selectedRoom, RoomPreference roomPreference) {
-    final int roomCartIndex = (state as RoomCartLoaded)
-        .roomCart
-        .indexWhere((room) => room == selectedRoom);
+    final List<RoomCart> updatedRoomCart =
+        (state as RoomCartLoaded).roomCart.map((room) {
+      return room == selectedRoom
+          ? room.copyWith(
+              isSelected: true, quantity: 1, roomPreference: roomPreference)
+          : room;
+    }).toList();
 
-    final RoomCart room = (state as RoomCartLoaded).roomCart[roomCartIndex];
-    room.isSelected = true;
-    room.quantity = 1;
-    room.roomPreference = roomPreference;
+    emit(RoomCartLoaded(roomCart: updatedRoomCart));
+  }
 
-    print(room);
+  void decrementRoomCartQuantity(int roomCartId) {
+    final List<RoomCart> updatedRoomCart =
+        (state as RoomCartLoaded).roomCart.map((room) {
+      return room.id == roomCartId
+          ? room.copyWith(quantity: room.quantity - 1)
+          : room;
+    }).toList();
+
+    emit(RoomCartLoaded(roomCart: updatedRoomCart));
+  }
+
+  void incrementRoomCartQuantity(int roomCartId) {
+    final List<RoomCart> updatedRoomCart =
+        (state as RoomCartLoaded).roomCart.map((room) {
+      return room.id == roomCartId
+          ? room.copyWith(quantity: room.quantity + 1)
+          : room;
+    }).toList();
+
+    emit(RoomCartLoaded(roomCart: updatedRoomCart));
   }
 }

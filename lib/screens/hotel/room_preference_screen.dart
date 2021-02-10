@@ -15,6 +15,7 @@ class RoomPreferenceScreen extends StatefulWidget {
 
 class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
   bool isNote = false;
+  String note = '';
   SmokingOption smokeOption = SmokingOption.smoking;
   BedOption bedOption = BedOption.singleBed;
 
@@ -23,6 +24,25 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
     isSingleBed: true,
     note: '',
   );
+
+  @override
+  void initState() {
+    super.initState();
+    smokeOption = widget.roomCart.roomPreference.isSmoke
+        ? SmokingOption.smoking
+        : SmokingOption.nonSmoking;
+
+    bedOption = widget.roomCart.roomPreference.isSingleBed
+        ? BedOption.singleBed
+        : BedOption.twinBed;
+
+    isNote = widget.roomCart.roomPreference.note != '' ? true : false;
+    note = widget.roomCart.roomPreference.note;
+
+    roomPreference.isSmoke = widget.roomCart.roomPreference.isSmoke;
+    roomPreference.isSingleBed = widget.roomCart.roomPreference.isSingleBed;
+    roomPreference.note = widget.roomCart.roomPreference.note;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +61,11 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             child: PrimaryButton(
               text: 'Simpan',
               press: () {
-                context
-                    .read<RoomCartCubit>()
-                    .updateRoomCart(widget.roomCart, roomPreference);
-                Navigator.of(context).pop();
+                print(roomPreference);
+                // context
+                //     .read<RoomCartCubit>()
+                //     .updateRoomCart(widget.roomCart, roomPreference);
+                // Navigator.of(context).pop();
               },
             ),
           ),
@@ -63,7 +84,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: "Deluxe Twin",
+                        text: '${widget.roomCart.room.name}'.titleCase,
                         style: TextStyle(
                           color: ColorConst.kSecondaryColor,
                           fontWeight: FontWeight.w600,
@@ -71,7 +92,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                         ),
                       ),
                       TextSpan(
-                        text: " with Balcony",
+                        text: ', ${widget.roomCart.room.variant}',
                         style: TextStyle(
                           color: ColorConst.kSecondaryColor,
                           fontSize: 12.0,
@@ -90,6 +111,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                       child: RoundedTextArea(
                         line: 4,
                         hint: "Catatan",
+                        value: note,
                         onChanged: (value) {
                           setState(() {
                             roomPreference.note = value;
@@ -152,6 +174,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                     });
                   },
                   change: (value) {
+                    print(value);
                     setState(() {
                       smokeOption = value;
                       roomPreference.isSmoke = true;
@@ -207,7 +230,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               children: [
                 RadioButton(
                   title: 'Single Bed',
-                  icon: Icons.single_bed,
+                  icon: Icons.single_bed_rounded,
                   value: bedOption,
                   radioValue: BedOption.singleBed,
                   tap: () {
@@ -225,7 +248,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
                 ),
                 RadioButton(
                   title: 'Twin Bed',
-                  icon: Icons.king_bed,
+                  icon: Icons.king_bed_rounded,
                   value: bedOption,
                   radioValue: BedOption.twinBed,
                   tap: () {

@@ -116,9 +116,9 @@ class RoomCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       roomCart.room.available > 0
                           ? RichText(
@@ -143,8 +143,8 @@ class RoomCard extends StatelessWidget {
                           : Text('Kamar tidak\ntersedia',
                               style: kSmallBoldTextStyle),
                       roomCart.room.available > 0
-                          ? roomCart.isSelected
-                              ? Text('selected')
+                          ? roomCart.quantity > 0
+                              ? _buildRoomCardQuantity(context)
                               : SizedBox(
                                   height: 32.0,
                                   child: PrimaryButton(
@@ -152,21 +152,81 @@ class RoomCard extends StatelessWidget {
                                     press: press,
                                   ),
                                 )
-                          : SvgPicture.asset(
-                              kNoRoomIcon,
-                              height: 32.0,
-                              width: 32.0,
+                          : Icon(
+                              Icons.no_meeting_room,
+                              size: 32.0,
                               color: ColorConst.kErrorColor,
-                            ),
+                            )
                     ],
                   ),
-                  roomCart.isSelected ? Text('selected') : SizedBox(),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildRoomCardQuantity(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RoundedIconBtn(
+              icon: Icons.remove_rounded,
+              color: ColorConst.kSecondaryColor,
+              press: () {
+                context
+                    .read<RoomCartCubit>()
+                    .decrementRoomCartQuantity(roomCart.id);
+              },
+            ),
+            SizedBox(width: 16.0),
+            SizedBox(
+              width: 32.0,
+              child: Text(
+                '${roomCart.quantity}',
+                textAlign: TextAlign.center,
+                style: kNormalBoldTextStyle,
+              ),
+            ),
+            SizedBox(width: 16.0),
+            RoundedIconBtn(
+              icon: Icons.add_rounded,
+              color: roomCart.quantity >= roomCart.room.available
+                  ? ColorConst.kSecondaryColor.withOpacity(0.4)
+                  : ColorConst.kSecondaryColor,
+              press: roomCart.quantity >= roomCart.room.available
+                  ? () {}
+                  : () {
+                      context
+                          .read<RoomCartCubit>()
+                          .incrementRoomCartQuantity(roomCart.id);
+                    },
+            ),
+          ],
+        ),
+        SizedBox(height: 12.0),
+        GestureDetector(
+          onTap: () {
+            print('asd');
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              'Edit Preferensi',
+              style: TextStyle(
+                fontSize: 12.0,
+                color: ColorConst.kErrorColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

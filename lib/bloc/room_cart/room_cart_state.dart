@@ -23,6 +23,12 @@ class RoomCartLoaded extends RoomCartState {
       roomCart: roomCart ?? this.roomCart,
     );
   }
+
+  @override
+  List<Object> get props => [roomCart];
+
+  @override
+  String toString() => 'RoomCartLoaded { roomCart: $roomCart }';
 }
 
 class RoomCartError extends RoomCartState {}

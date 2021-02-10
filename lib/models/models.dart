@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 part 'package:dangau_hotel/models/hotel.dart';
 part 'package:dangau_hotel/models/food.dart';
