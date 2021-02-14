@@ -15,21 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => HotelBloc(HotelService()),
-        ),
-        BlocProvider(
-          create: (_) => HotelDetailBloc(HotelService()),
-        ),
-        BlocProvider(
-          create: (_) => RoomCartCubit(RoomService()),
-        ),
-        BlocProvider(
-          create: (_) => OrderingStatusCubit(),
-        ),
-        BlocProvider(
-          create: (_) => OrderCartCubit(),
-        ),
+        BlocProvider(create: (_) => HotelBloc(HotelService())),
+        BlocProvider(create: (_) => HotelDetailBloc(HotelService())),
+        BlocProvider(create: (_) => RoomCartCubit(RoomService())),
+        BlocProvider(create: (_) => OrderingStatusCubit()),
+        BlocProvider(create: (_) => OrderCartCubit()),
       ],
       child: MaterialApp(
         title: 'Hotel Reservation',

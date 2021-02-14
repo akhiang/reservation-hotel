@@ -26,10 +26,7 @@ class SelectRoom extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Ringkasan Harga',
-                  style: kLargeBoldTextStyle,
-                ),
+                Text('Ringkasan Harga', style: kLargeBoldTextStyle),
                 SizedBox(height: 8.0),
                 Text('3 Malam, 2 Kamar', style: kNormalBoldTextStyle),
                 SizedBox(height: 8.0),
@@ -60,7 +57,7 @@ class SelectRoom extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
-        child: CustomAppBar(title: 'Pilih Kamar', isLeading: true),
+        child: CustomAppBar(title: 'Kamar Yang Tersedia', isLeading: true),
       ),
       body: Stack(
         children: [
@@ -72,7 +69,38 @@ class SelectRoom extends StatelessWidget {
             ],
           ),
           _buildBottomCheckoutButton(context),
+          BlocBuilder<OrderingStatusCubit, OrderingStatusState>(
+            builder: (context, state) {
+              if (state is OrderingStatusInitial) {
+                return SizedBox();
+              } else if (state is OrderingStatusOnRoomSelection) {
+                return _buildChangeDateButton();
+              } else if (state is OrderingStatusOnRoomSelected) {
+                return _buildBottomCheckoutButton(context);
+              }
+              return SizedBox();
+            },
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildChangeDateButton() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 112.0, vertical: 8.0),
+        color: Colors.transparent,
+        height: 68.0,
+        child: PrimaryButton(
+          text: 'Ubah Tanggal',
+          press: () {
+            // _showDateCalenderBottomSheet();
+          },
+        ),
       ),
     );
   }
@@ -112,20 +140,31 @@ class SelectRoom extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Total',
-                          style: TextStyle(
-                            color: ColorConst.kSecondaryColor,
-                            fontSize: 12.0,
-                          ),
-                        ),
-                        Text(
-                          'Rp1400000',
-                          style: TextStyle(
-                            color: ColorConst.kSecondaryColor,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        Text('Total', style: kSmallTextStyle),
+                        BlocBuilder<RoomCartCubit, RoomCartState>(
+                          builder: (context, state) {
+                            if (state is RoomCartLoading) {
+                              return Text('Rp0', style: kNormalBoldTextStyle);
+                            }
+                            if (state is RoomCartLoaded) {
+                              final List<RoomCart> selectedRoomCart =
+                                  state.roomCart.where((room) {
+                                return room.quantity > 0;
+                              }).toList();
+                              final int total = selectedRoomCart.fold(
+                                  0,
+                                  (sum, item) =>
+                                      sum + (item.quantity * item.room.price));
+                              return Text(
+                                  NumberFormat.currency(
+                                          locale: 'id',
+                                          symbol: 'Rp',
+                                          decimalDigits: 0)
+                                      .format(total),
+                                  style: kNormalBoldTextStyle);
+                            }
+                            return Text('Rp0', style: kNormalBoldTextStyle);
+                          },
                         )
                       ],
                     ),

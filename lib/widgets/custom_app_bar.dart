@@ -40,11 +40,7 @@ class CustomAppBar extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Text(
                 title,
-                style: TextStyle(
-                  color: ColorConst.kSecondaryColor,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: kLargeBoldTextStyle,
               ),
             ),
           ],

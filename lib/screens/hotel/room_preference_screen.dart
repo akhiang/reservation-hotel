@@ -19,11 +19,8 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
   SmokingOption smokeOption = SmokingOption.smoking;
   BedOption bedOption = BedOption.singleBed;
 
-  RoomPreference roomPreference = RoomPreference(
-    isSmoke: true,
-    isSingleBed: true,
-    note: '',
-  );
+  RoomPreference roomPreference =
+      RoomPreference(isSmoke: true, isSingleBed: true, note: '');
 
   @override
   void initState() {
@@ -62,10 +59,10 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
               text: 'Simpan',
               press: () {
                 print(roomPreference);
-                // context
-                //     .read<RoomCartCubit>()
-                //     .updateRoomCart(widget.roomCart, roomPreference);
-                // Navigator.of(context).pop();
+                context
+                    .read<RoomCartCubit>()
+                    .updateRoomCart(widget.roomCart, roomPreference);
+                Navigator.of(context).pop();
               },
             ),
           ),

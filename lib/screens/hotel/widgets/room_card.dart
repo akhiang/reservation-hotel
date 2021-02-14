@@ -125,7 +125,11 @@ class RoomCard extends StatelessWidget {
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'Rp${roomCart.room.price}',
+                                    text: NumberFormat.currency(
+                                            locale: 'id',
+                                            symbol: 'Rp',
+                                            decimalDigits: 0)
+                                        .format(roomCart.room.price),
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       color: ColorConst.kErrorColor,
@@ -211,9 +215,7 @@ class RoomCard extends StatelessWidget {
         ),
         SizedBox(height: 12.0),
         GestureDetector(
-          onTap: () {
-            print('asd');
-          },
+          onTap: press,
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(

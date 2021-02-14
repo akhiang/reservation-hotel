@@ -85,7 +85,9 @@ class RoomScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "Rp${room.price}",
+                      text: NumberFormat.currency(
+                              locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                          .format(room.price),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: ColorConst.kErrorColor,
