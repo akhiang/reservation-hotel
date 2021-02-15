@@ -24,12 +24,13 @@ class RoomCartCubit extends Cubit<RoomCartState> {
         return RoomCart(
           id: room.id,
           room: room,
-          isSelected: false,
           quantity: 0,
           roomPreference: roomPreference,
         );
       }).toList();
-      emit(RoomCartLoaded(roomCart: roomCart));
+      List<RoomCart> selectedRoomCart = [];
+      emit(RoomCartLoaded(
+          roomCart: roomCart, selectedRoomCart: selectedRoomCart));
     } catch (e) {
       print(e.toString());
       emit(RoomCartError());
@@ -45,7 +46,10 @@ class RoomCartCubit extends Cubit<RoomCartState> {
           : room;
     }).toList();
 
-    emit(RoomCartLoaded(roomCart: updatedRoomCart));
+    List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+
+    emit(RoomCartLoaded(
+        roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
   }
 
   void decrementRoomCartQuantity(int roomCartId) {
@@ -56,7 +60,10 @@ class RoomCartCubit extends Cubit<RoomCartState> {
           : room;
     }).toList();
 
-    emit(RoomCartLoaded(roomCart: updatedRoomCart));
+    List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+
+    emit(RoomCartLoaded(
+        roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
   }
 
   void incrementRoomCartQuantity(int roomCartId) {
@@ -67,6 +74,15 @@ class RoomCartCubit extends Cubit<RoomCartState> {
           : room;
     }).toList();
 
-    emit(RoomCartLoaded(roomCart: updatedRoomCart));
+    List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+
+    emit(RoomCartLoaded(roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
+  }
+
+  List<RoomCart> filterSelectedRoomInCart(List<RoomCart> roomCart) {
+    final List<RoomCart> selectedRoomCart =
+        roomCart.where((room) => room.quantity > 0).toList();
+
+    return selectedRoomCart;
   }
 }

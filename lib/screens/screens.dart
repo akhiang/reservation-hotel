@@ -70,7 +70,7 @@ part 'package:dangau_hotel/screens/order/order_term.dart';
 part 'package:dangau_hotel/screens/order/order_payment_screen.dart';
 part 'package:dangau_hotel/screens/order/order_success_screen.dart';
 part 'package:dangau_hotel/screens/order/widgets/selected_room_card.dart';
-part 'package:dangau_hotel/screens/order/widgets/order_price_detail.dart';
+part 'package:dangau_hotel/screens/order/widgets/order_room_detail.dart';
 part 'package:dangau_hotel/screens/order/widgets/order_term_tile.dart';
 part 'package:dangau_hotel/screens/order/widgets/virtual_account_card.dart';
 part 'package:dangau_hotel/screens/order/widgets/ordered_room_card.dart';

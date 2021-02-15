@@ -3,14 +3,12 @@ part of 'package:dangau_hotel/models/models.dart';
 class RoomCart extends Equatable {
   final int id;
   final Room room;
-  final bool isSelected;
   final int quantity;
   final RoomPreference roomPreference;
 
   const RoomCart({
     @required this.id,
     @required this.room,
-    this.isSelected,
     this.quantity,
     @required this.roomPreference,
   });
@@ -25,7 +23,6 @@ class RoomCart extends Equatable {
     return RoomCart(
       id: id ?? this.id,
       room: room ?? this.room,
-      isSelected: isSelected ?? this.isSelected,
       quantity: quantity ?? this.quantity,
       roomPreference: roomPreference ?? this.roomPreference,
     );
@@ -34,15 +31,14 @@ class RoomCart extends Equatable {
   Map<String, dynamic> toJson() => {
         'id': this.id,
         'room': this.room,
-        'is_selected': this.isSelected,
         'quantity': this.quantity,
         'room_preference': this.roomPreference,
       };
 
   @override
-  List<Object> get props => [id, room, isSelected, quantity, roomPreference];
+  List<Object> get props => [id, room, quantity, roomPreference];
 
   @override
   String toString() =>
-      'RoomCart { id: $id, room: ${room.name}, isSelected: $isSelected, quantity: $quantity, preference: $roomPreference }';
+      'RoomCart { id: $id, room: ${room.name}, quantity: $quantity, preference: $roomPreference }';
 }

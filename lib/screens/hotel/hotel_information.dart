@@ -14,8 +14,7 @@ class HotelInformation extends StatefulWidget {
 
 class _HotelInformationState extends State<HotelInformation>
     with AutomaticKeepAliveClientMixin {
-  DateTime rangeStartDate = DateTime.now();
-  DateTime rangeEndDate = DateTime.now().add(Duration(days: 1));
+  DateState dateState;
   DateRangePickerController _datePickerController;
 
   @override
@@ -23,12 +22,18 @@ class _HotelInformationState extends State<HotelInformation>
 
   @override
   initState() {
-    _datePickerController = DateRangePickerController();
-    _datePickerController.selectedRange =
-        PickerDateRange(rangeStartDate, rangeEndDate);
     super.initState();
     _loadHotelDetail();
     context.read<OrderingStatusCubit>().changeStatusToInitial();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    dateState = context.watch<DateCubit>().state;
+    _datePickerController = DateRangePickerController();
+    _datePickerController.selectedRange =
+        PickerDateRange(dateState.rangeStartDate, dateState.rangeEndDate);
   }
 
   void _loadHotelDetail() {
@@ -66,28 +71,26 @@ class _HotelInformationState extends State<HotelInformation>
                   child: PrimaryButton(
                     text: 'Cek Kamar',
                     press: () {
-                      if (rangeStartDate == null && rangeEndDate == null) {
-                        Fluttertoast.cancel();
-                        Fluttertoast.showToast(
-                            msg: "Mohon pilih tanggal",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: ColorConst.kSecondaryColor,
-                            textColor: ColorConst.kThirdColor,
-                            fontSize: 16.0);
-                      } else {
-                        // context
-                        //     .read<OrderingStatusCubit>()
-                        //     .changeStatusToOnRoomSelection();
-                        Navigator.pop(context);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SelectRoom(hotel: widget.hotel),
-                          ),
-                        );
-                      }
+                      // if (dateState.rangeStartDate == null &&
+                      //     dateState.rangeEndDate == null) {
+                      //   Fluttertoast.cancel();
+                      //   Fluttertoast.showToast(
+                      //       msg: "Mohon pilih tanggal",
+                      //       toastLength: Toast.LENGTH_SHORT,
+                      //       gravity: ToastGravity.BOTTOM,
+                      //       timeInSecForIosWeb: 1,
+                      //       backgroundColor: ColorConst.kSecondaryColor,
+                      //       textColor: ColorConst.kThirdColor,
+                      //       fontSize: 16.0);
+                      // } else {
+                      Navigator.pop(context);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SelectRoomScreen(hotel: widget.hotel),
+                        ),
+                      );
+                      // }
                     },
                   ),
                 ),
@@ -101,8 +104,9 @@ class _HotelInformationState extends State<HotelInformation>
   }
 
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
-    rangeStartDate = args.value.startDate;
-    rangeEndDate = args.value.endDate;
+    context
+        .read<DateCubit>()
+        .changeRangeDate(args.value.startDate, args.value.endDate);
   }
 
   SfDateRangePicker _buildCalender() {

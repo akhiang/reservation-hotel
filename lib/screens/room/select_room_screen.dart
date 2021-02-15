@@ -1,9 +1,9 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class SelectRoom extends StatelessWidget {
+class SelectRoomScreen extends StatelessWidget {
   final Hotel hotel;
 
-  const SelectRoom({
+  const SelectRoomScreen({
     Key key,
     @required this.hotel,
   }) : super(key: key);
@@ -23,28 +23,54 @@ class SelectRoom extends StatelessWidget {
                 topRight: const Radius.circular(25.0),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Ringkasan Harga', style: kLargeBoldTextStyle),
-                SizedBox(height: 8.0),
-                Text('3 Malam, 2 Kamar', style: kNormalBoldTextStyle),
-                SizedBox(height: 8.0),
-                SummaryRoomListTile(),
-                SummaryRoomListTile(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Divider(
-                      color: ColorConst.kSecondaryColor.withOpacity(0.5)),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: BlocBuilder<RoomCartCubit, RoomCartState>(
+              builder: (context, state) {
+                DateState dateState = context.watch<DateCubit>().state;
+                final selectedRooms =
+                    (state as RoomCartLoaded).selectedRoomCart;
+                final int roomTotal =
+                    selectedRooms.fold(0, (sum, item) => sum + (item.quantity));
+                final int total = selectedRooms.fold(
+                    0, (sum, item) => sum + (item.quantity * item.room.price));
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Total Harga', style: kNormalBoldTextStyle),
-                    Text('Rp4200000', style: kNormalBoldTextStyle),
+                    Text('Ringkasan Harga', style: kLargeBoldTextStyle),
+                    SizedBox(height: 8.0),
+                    Text('${dateState.rangeNight} Malam, $roomTotal Kamar',
+                        style: kNormalBoldTextStyle),
+                    SizedBox(height: 8.0),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: selectedRooms.length,
+                      itemBuilder: (context, index) {
+                        return SummaryRoomListTile(
+                          selectedRoom: selectedRooms[index],
+                        );
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Divider(
+                          color: ColorConst.kSecondaryColor.withOpacity(0.5)),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Total Harga', style: kNormalBoldTextStyle),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(total),
+                            style: kNormalBoldTextStyle),
+                      ],
+                    )
                   ],
-                )
-              ],
+                );
+              },
             ),
           ),
         ],
@@ -54,6 +80,7 @@ class SelectRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateState dateState = context.watch<DateCubit>().state;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
@@ -63,20 +90,38 @@ class SelectRoom extends StatelessWidget {
         children: [
           Column(
             children: [
+              Text('Tanggal', style: kNormalBoldTextStyle),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    DateFormat('dd MMM yyyy').format(dateState.rangeStartDate),
+                    style: kNormalBoldTextStyle,
+                  ),
+                  Text('-', style: kNormalBoldTextStyle),
+                  Text(
+                    DateFormat('dd MMM yyyy').format(dateState.rangeEndDate),
+                    style: kNormalBoldTextStyle,
+                  ),
+                ],
+              ),
               Expanded(
                 child: RoomList(hotel: hotel),
               ),
             ],
           ),
-          _buildBottomCheckoutButton(context),
-          BlocBuilder<OrderingStatusCubit, OrderingStatusState>(
+          BlocBuilder<RoomCartCubit, RoomCartState>(
             builder: (context, state) {
-              if (state is OrderingStatusInitial) {
+              if (state is RoomCartInitial) {
                 return SizedBox();
-              } else if (state is OrderingStatusOnRoomSelection) {
-                return _buildChangeDateButton();
-              } else if (state is OrderingStatusOnRoomSelected) {
-                return _buildBottomCheckoutButton(context);
+              } else if (state is RoomCartLoading) {
+                return SizedBox();
+              } else if (state is RoomCartLoaded) {
+                if (state.selectedRoomCart.isEmpty) {
+                  return SizedBox();
+                } else {
+                  return _buildBottomCheckoutButton(context);
+                }
               }
               return SizedBox();
             },
@@ -116,60 +161,60 @@ class SelectRoom extends StatelessWidget {
         height: 68.0,
         child: Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                _showSummaryBottomSheet(context);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-                width: SizeConfig.screenWidth(context) * 0.4,
-                decoration: BoxDecoration(
-                  color: ColorConst.kThirdColor,
-                  borderRadius: BorderRadius.circular(32.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorConst.kSecondaryColor.withOpacity(0.15),
-                      offset: Offset(0.0, 5.0),
-                      blurRadius: 20.0,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Total', style: kSmallTextStyle),
-                        BlocBuilder<RoomCartCubit, RoomCartState>(
-                          builder: (context, state) {
-                            if (state is RoomCartLoading) {
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  _showSummaryBottomSheet(context);
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                  width: SizeConfig.screenWidth(context) * 0.4,
+                  decoration: BoxDecoration(
+                    color: ColorConst.kThirdColor,
+                    borderRadius: BorderRadius.circular(32.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorConst.kSecondaryColor.withOpacity(0.15),
+                        offset: Offset(0.0, 5.0),
+                        blurRadius: 20.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Total', style: kSmallTextStyle),
+                          BlocBuilder<RoomCartCubit, RoomCartState>(
+                            builder: (context, state) {
+                              if (state is RoomCartLoading) {
+                                return Text('Rp0', style: kNormalBoldTextStyle);
+                              }
+                              if (state is RoomCartLoaded) {
+                                final int total = state.selectedRoomCart.fold(
+                                    0,
+                                    (sum, item) =>
+                                        sum +
+                                        (item.quantity * item.room.price));
+                                return Text(
+                                    NumberFormat.currency(
+                                            locale: 'id',
+                                            symbol: 'Rp',
+                                            decimalDigits: 0)
+                                        .format(total),
+                                    style: kNormalBoldTextStyle);
+                              }
                               return Text('Rp0', style: kNormalBoldTextStyle);
-                            }
-                            if (state is RoomCartLoaded) {
-                              final List<RoomCart> selectedRoomCart =
-                                  state.roomCart.where((room) {
-                                return room.quantity > 0;
-                              }).toList();
-                              final int total = selectedRoomCart.fold(
-                                  0,
-                                  (sum, item) =>
-                                      sum + (item.quantity * item.room.price));
-                              return Text(
-                                  NumberFormat.currency(
-                                          locale: 'id',
-                                          symbol: 'Rp',
-                                          decimalDigits: 0)
-                                      .format(total),
-                                  style: kNormalBoldTextStyle);
-                            }
-                            return Text('Rp0', style: kNormalBoldTextStyle);
-                          },
-                        )
-                      ],
-                    ),
-                    Icon(FontAwesomeIcons.chevronUp, size: 16.0),
-                  ],
+                            },
+                          )
+                        ],
+                      ),
+                      Icon(FontAwesomeIcons.chevronUp, size: 16.0),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -182,7 +227,7 @@ class SelectRoom extends StatelessWidget {
                   press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => OrderPaymentScreen(),
+                        builder: (context) => OrderScreen(),
                       ),
                     );
                   },

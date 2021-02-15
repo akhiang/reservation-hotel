@@ -29,6 +29,7 @@ class SelectedRoomCard extends StatelessWidget {
                     text: title,
                     style: kNormalBoldTextStyle,
                   ),
+                  TextSpan(text: ' '),
                   TextSpan(
                     text: subtitle,
                     style: kNormalTextStyle,

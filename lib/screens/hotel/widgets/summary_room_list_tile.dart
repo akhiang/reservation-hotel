@@ -1,7 +1,10 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class SummaryRoomListTile extends StatelessWidget {
+  final RoomCart selectedRoom;
+
   const SummaryRoomListTile({
+    @required this.selectedRoom,
     Key key,
   }) : super(key: key);
 
@@ -16,16 +19,44 @@ class SummaryRoomListTile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Deluxe King, with Balcony',
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '${selectedRoom.room.name}'.titleCase,
+                      style: kSmallTextStyle,
+                    ),
+                    TextSpan(text: ' '),
+                    TextSpan(
+                      text: '${selectedRoom.room.variant}'.titleCase,
+                      style: kSmallTextStyle,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 4.0),
-              Text(
-                '3 malam, 1 kamar',
-              )
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '${selectedRoom.room.name} malam',
+                      style: kSmallTextStyle,
+                    ),
+                    TextSpan(text: ' '),
+                    TextSpan(
+                      text: '${selectedRoom.quantity} kamar',
+                      style: kSmallTextStyle,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-          Text('Rp2100000', style: kNormalBoldTextStyle),
+          Text(
+              NumberFormat.currency(
+                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                  .format(selectedRoom.quantity * selectedRoom.room.price),
+              style: kSmallBoldTextStyle),
         ],
       ),
     );
