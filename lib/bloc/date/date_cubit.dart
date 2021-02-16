@@ -9,12 +9,12 @@ class DateCubit extends Cubit<DateState> {
       : super(DateState(
           rangeStartDate: DateTime.now(),
           rangeEndDate: DateTime.now().add(Duration(days: 1)),
-          rangeNight: 2,
+          rangeNight: 1,
         ));
 
   void changeRangeDate(DateTime startDate, DateTime endDate) {
-    if (endDate == null) endDate = startDate;
-    int night = endDate.difference(startDate).inDays + 1;
+    if (endDate == null) endDate = startDate.add(Duration(days: 1));
+    int night = endDate.difference(startDate).inDays;
     emit(state.copyWith(
         rangeStartDate: startDate, rangeEndDate: endDate, rangeNight: night));
   }

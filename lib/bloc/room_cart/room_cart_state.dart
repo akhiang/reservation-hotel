@@ -14,21 +14,28 @@ class RoomCartLoading extends RoomCartState {}
 class RoomCartLoaded extends RoomCartState {
   final List<RoomCart> roomCart;
   final List<RoomCart> selectedRoomCart;
+  final double total;
 
-  const RoomCartLoaded({this.roomCart, this.selectedRoomCart});
+  const RoomCartLoaded({
+    this.roomCart,
+    this.selectedRoomCart,
+    this.total,
+  });
 
   RoomCartLoaded copyWith({
     List<RoomCart> roomCart,
     List<RoomCart> selectedRoomCart,
+    double total,
   }) {
     return RoomCartLoaded(
       roomCart: roomCart ?? this.roomCart,
       selectedRoomCart: selectedRoomCart ?? this.selectedRoomCart,
+      total: total ?? this.total,
     );
   }
 
   @override
-  List<Object> get props => [roomCart, selectedRoomCart];
+  List<Object> get props => [roomCart, selectedRoomCart, total];
 
   @override
   String toString() =>

@@ -47,9 +47,12 @@ class RoomCartCubit extends Cubit<RoomCartState> {
     }).toList();
 
     List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+    double total = sumSelectedRoomPriceTotal(selectedRoomCart);
 
     emit(RoomCartLoaded(
-        roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
+        roomCart: updatedRoomCart,
+        selectedRoomCart: selectedRoomCart,
+        total: total));
   }
 
   void decrementRoomCartQuantity(int roomCartId) {
@@ -61,9 +64,12 @@ class RoomCartCubit extends Cubit<RoomCartState> {
     }).toList();
 
     List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+    double total = sumSelectedRoomPriceTotal(selectedRoomCart);
 
     emit(RoomCartLoaded(
-        roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
+        roomCart: updatedRoomCart,
+        selectedRoomCart: selectedRoomCart,
+        total: total));
   }
 
   void incrementRoomCartQuantity(int roomCartId) {
@@ -75,8 +81,12 @@ class RoomCartCubit extends Cubit<RoomCartState> {
     }).toList();
 
     List<RoomCart> selectedRoomCart = filterSelectedRoomInCart(updatedRoomCart);
+    double total = sumSelectedRoomPriceTotal(selectedRoomCart);
 
-    emit(RoomCartLoaded(roomCart: updatedRoomCart, selectedRoomCart: selectedRoomCart));
+    emit(RoomCartLoaded(
+        roomCart: updatedRoomCart,
+        selectedRoomCart: selectedRoomCart,
+        total: total));
   }
 
   List<RoomCart> filterSelectedRoomInCart(List<RoomCart> roomCart) {
@@ -84,5 +94,12 @@ class RoomCartCubit extends Cubit<RoomCartState> {
         roomCart.where((room) => room.quantity > 0).toList();
 
     return selectedRoomCart;
+  }
+
+  double sumSelectedRoomPriceTotal(List<RoomCart> selectedRoomCart) {
+    double total = selectedRoomCart.fold(
+        0, (sum, item) => sum + (item.quantity * item.room.price));
+
+    return total;
   }
 }

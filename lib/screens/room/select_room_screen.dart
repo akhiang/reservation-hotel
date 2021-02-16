@@ -31,7 +31,12 @@ class SelectRoomScreen extends StatelessWidget {
                 final int roomTotal =
                     selectedRooms.fold(0, (sum, item) => sum + (item.quantity));
                 final int total = selectedRooms.fold(
-                    0, (sum, item) => sum + (item.quantity * item.room.price));
+                    0,
+                    (sum, item) =>
+                        sum +
+                        (dateState.rangeNight *
+                            item.quantity *
+                            item.room.price));
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -151,6 +156,7 @@ class SelectRoomScreen extends StatelessWidget {
   }
 
   Widget _buildBottomCheckoutButton(BuildContext context) {
+    DateState dateState = context.watch<DateCubit>().state;
     return Positioned(
       bottom: 0,
       left: 0,
@@ -198,7 +204,9 @@ class SelectRoomScreen extends StatelessWidget {
                                     0,
                                     (sum, item) =>
                                         sum +
-                                        (item.quantity * item.room.price));
+                                        (dateState.rangeNight *
+                                            item.quantity *
+                                            item.room.price));
                                 return Text(
                                     NumberFormat.currency(
                                             locale: 'id',

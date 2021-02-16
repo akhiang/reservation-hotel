@@ -9,6 +9,20 @@ class OrderRoomSummary extends StatelessWidget {
           _buildSelectedRoom(),
           // _buildAddMoreRoom(),
           _buildPriceDetail(context),
+          FlatButton(
+            onPressed: () {},
+            child: Text(
+              'Batalkan Pesanan',
+              style: TextStyle(
+                color: ColorConst.kErrorColor,
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+          ),
           SizedBox(height: 88.0),
         ],
       ),
@@ -39,6 +53,7 @@ class OrderRoomSummary extends StatelessWidget {
             builder: (_, state) {
               final selectedRooms = (state as RoomCartLoaded).selectedRoomCart;
               return ListView.builder(
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: selectedRooms.length,
@@ -59,6 +74,12 @@ class OrderRoomSummary extends StatelessWidget {
 
   Widget _buildPriceDetail(BuildContext context) {
     DateState dateState = context.watch<DateCubit>().state;
+    double total = context.select<RoomCartCubit, double>((roomCartCubit) =>
+        (roomCartCubit.state is RoomCartLoaded)
+            ? (roomCartCubit.state as RoomCartLoaded).total *
+                dateState.rangeNight
+            : 0);
+    double ppn = total * 0.1;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
@@ -88,6 +109,7 @@ class OrderRoomSummary extends StatelessWidget {
                     final selectedRooms =
                         (state as RoomCartLoaded).selectedRoomCart;
                     return ListView.builder(
+                      padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: selectedRooms.length,
@@ -108,7 +130,11 @@ class OrderRoomSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Total', style: kNormalTextStyle),
-                    Text('Rp4200000', style: kNormalBoldTextStyle),
+                    Text(
+                        NumberFormat.currency(
+                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                            .format(total),
+                        style: kNormalBoldTextStyle),
                   ],
                 ),
                 SizedBox(height: 4.0),
@@ -116,7 +142,11 @@ class OrderRoomSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('PPN', style: kNormalTextStyle),
-                    Text('Rp420000', style: kNormalBoldTextStyle),
+                    Text(
+                        NumberFormat.currency(
+                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                            .format(ppn),
+                        style: kNormalBoldTextStyle),
                   ],
                 ),
                 SizedBox(height: 4.0),
@@ -124,7 +154,11 @@ class OrderRoomSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Grand Total', style: kNormalTextStyle),
-                    Text('Rp4620000', style: kNormalBoldTextStyle),
+                    Text(
+                        NumberFormat.currency(
+                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                            .format(total + ppn),
+                        style: kNormalBoldTextStyle),
                   ],
                 ),
                 SizedBox(height: 4.0),
@@ -132,7 +166,11 @@ class OrderRoomSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Bayar Sekarang', style: kNormalBoldTextStyle),
-                    Text('Rp 1617000', style: kNormalBoldTextStyle),
+                    Text(
+                        NumberFormat.currency(
+                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
+                            .format(total + ppn),
+                        style: kNormalBoldTextStyle),
                   ],
                 ),
               ],

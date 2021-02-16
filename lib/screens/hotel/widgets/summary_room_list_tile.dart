@@ -10,6 +10,7 @@ class SummaryRoomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateState dateState = context.watch<DateCubit>().state;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -39,7 +40,7 @@ class SummaryRoomListTile extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '${selectedRoom.room.name} malam',
+                      text: '${dateState.rangeNight} malam',
                       style: kSmallTextStyle,
                     ),
                     TextSpan(text: ' '),
@@ -55,7 +56,9 @@ class SummaryRoomListTile extends StatelessWidget {
           Text(
               NumberFormat.currency(
                       locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(selectedRoom.quantity * selectedRoom.room.price),
+                  .format(dateState.rangeNight *
+                      selectedRoom.quantity *
+                      selectedRoom.room.price),
               style: kSmallBoldTextStyle),
         ],
       ),
