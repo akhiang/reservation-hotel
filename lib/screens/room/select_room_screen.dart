@@ -235,7 +235,7 @@ class SelectRoomScreen extends StatelessWidget {
                   press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => OrderScreen(),
+                        builder: (context) => OrderRoomSummary()
                       ),
                     );
                   },

@@ -3,48 +3,141 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class OrderRoomSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(88.0),
+        child: CustomAppBar(title: 'Detail Pemesanan', isLeading: true),
+      ),
+      extendBody: true,
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 104.0),
+        height: 80.0,
+        child: PrimaryButton(
+          text: 'Lanjut',
+          press: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => OrderCustomerContact()),
+            );
+          },
+        ),
+      ),
+      body: Column(
         children: [
-          _buildSelectedRoom(),
-          // _buildAddMoreRoom(),
-          _buildPriceDetail(context),
-          FlatButton(
-            onPressed: () {},
-            child: Text(
-              'Batalkan Pesanan',
-              style: TextStyle(
-                color: ColorConst.kErrorColor,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24.0),
+          Container(
+            height: 48.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TimelineTile(
+                  isFirst: true,
+                  axis: TimelineAxis.horizontal,
+                  alignment: TimelineAlign.center,
+                  afterLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+                  indicatorStyle: IndicatorStyle(
+                    width: 24.0,
+                    height: 24.0,
+                    indicator: Container(
+                      decoration: const BoxDecoration(
+                        color: ColorConst.kSecondaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '1',
+                          style: TextStyle(
+                            color: ColorConst.kThirdColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                TimelineTile(
+                  alignment: TimelineAlign.center,
+                  axis: TimelineAxis.horizontal,
+                  beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+                  indicatorStyle: IndicatorStyle(
+                    width: 24.0,
+                    height: 24.0,
+                    indicator: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD8D8D8),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '2',
+                          style: TextStyle(
+                            color: ColorConst.kThirdColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                TimelineTile(
+                  isLast: true,
+                  axis: TimelineAxis.horizontal,
+                  alignment: TimelineAlign.center,
+                  beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+                  indicatorStyle: IndicatorStyle(
+                    width: 24.0,
+                    height: 24.0,
+                    indicator: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD8D8D8),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '3',
+                          style: TextStyle(
+                            color: ColorConst.kThirdColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 88.0),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildSelectedRoom(),
+                  _buildPriceDetail(context),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Batalkan Pesanan',
+                      style: TextStyle(
+                        color: ColorConst.kErrorColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                  ),
+                  SizedBox(height: 88.0),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  // Widget _buildAddMoreRoom() {
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(horizontal: 24.0),
-  //     width: double.infinity,
-  //     height: 56.0,
-  //     child: ShadowButton(
-  //       icon: Icons.add,
-  //       text: 'Tambah Kamar',
-  //       press: () {},
-  //     ),
-  //   );
-  // }
-
   Widget _buildSelectedRoom() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

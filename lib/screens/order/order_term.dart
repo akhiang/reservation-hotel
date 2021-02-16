@@ -10,25 +10,59 @@ class _OrderTermState extends State<OrderTerm> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _buildTermList(),
-          SizedBox(height: 24.0),
-          CheckboxListTile(
-            dense: true,
-            controlAffinity: ListTileControlAffinity.leading,
-            title: Text('Saya Setuju dengan Syarat & Ketentuan yang berlaku',
-                style: kNormalBoldTextStyle),
-            value: _checkboxListTile,
-            onChanged: (value) {
-              setState(() {
-                _checkboxListTile = !_checkboxListTile;
-              });
-            },
-          ),
-          SizedBox(height: 88.0),
-        ],
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(88.0),
+        child: CustomAppBar(title: 'Syarat & Ketentuan', isLeading: true),
+      ),
+      extendBody: true,
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 104.0),
+        height: 80.0,
+        child: PrimaryButton(
+          text: 'Selesai',
+          press: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => OrderTerm()),
+            );
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildTermList(),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                children: [
+                  CircularCheckBox(
+                    value: _checkboxListTile,
+                    disabledColor: Colors.grey,
+                    onChanged: (value) => this.setState(() {
+                      _checkboxListTile = !_checkboxListTile;
+                    }),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => setState(() {
+                        _checkboxListTile = !_checkboxListTile;
+                      }),
+                      child: Container(
+                        color: ColorConst.kThirdColor,
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                            'Saya Setuju dengan Syarat & Ketentuan yang berlaku',
+                            style: kNormalBoldTextStyle),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 88.0),
+          ],
+        ),
       ),
     );
   }
