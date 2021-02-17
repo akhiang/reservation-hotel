@@ -131,6 +131,22 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
                     validation: validateName,
                     onChanged: (String value) {},
                   ),
+                  TextFormField(
+                    validator: validateName,
+                    decoration: new InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 20.0),
+                      border: new OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(const Radius.circular(32.0)),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      hintStyle: new TextStyle(color: Colors.grey[800]),
+                      hintText: "Type in your text",
+                      fillColor: ColorConst.kSecondaryColor.withOpacity(0.05),
+                    ),
+                  )
                   // RoundedInputField(
                   //   hint: "No. Telp",
                   //   onChanged: (value) {},
