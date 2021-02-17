@@ -3,11 +3,13 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class RoundedInputField extends StatelessWidget {
   final String hint;
   final ValueChanged<String> onChanged;
+  final Function validation;
 
   const RoundedInputField({
     Key key,
-    this.hint,
-    this.onChanged,
+    @required this.hint,
+    @required this.onChanged,
+    @required this.validation,
   }) : super(key: key);
 
   @override
@@ -15,6 +17,7 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       child: TextFormField(
         onChanged: onChanged,
+        validator: validation,
         style: TextStyle(color: ColorConst.kSecondaryColor),
         cursorColor: ColorConst.kSecondaryColor,
         decoration: InputDecoration(

@@ -6,8 +6,11 @@ class OrderCustomerContact extends StatefulWidget {
 }
 
 class _OrderCustomerContactState extends State<OrderCustomerContact>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, Validation {
+  final formKey = GlobalKey<FormState>();
   bool orderForOtherCheckbox = false;
+
+  String name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,35 +26,53 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
         child: PrimaryButton(
           text: 'Lanjut',
           press: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => OrderTerm()),
-            );
+            if (orderForOtherCheckbox) {
+              if (formKey.currentState.validate()) {
+                formKey.currentState.save();
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => OrderTerm()),
+                );
+              }
+            } else {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => OrderTerm()),
+              );
+            }
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildCustomerInfo(),
-            _buildAddOtherCustomer(),
-            _buildRequestNote(),
-            FlatButton(
-              onPressed: () {},
-              child: Text(
-                'Batalkan Pesanan',
-                style: TextStyle(
-                  color: ColorConst.kErrorColor,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24.0),
+      body: Column(
+        children: [
+          _buildTimeline(context),
+          SizedBox(height: 8.0),
+          _buildOrderCheckoutTimer(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildCustomerInfo(),
+                  _buildAddOtherCustomerForm(),
+                  _buildRequestNote(),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Batalkan Pesanan',
+                      style: TextStyle(
+                        color: ColorConst.kErrorColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                  ),
+                  SizedBox(height: 88.0),
+                ],
               ),
             ),
-            SizedBox(height: 88.0),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -70,7 +91,7 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
     );
   }
 
-  Widget _buildAddOtherCustomer() {
+  Widget _buildAddOtherCustomerForm() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
@@ -101,25 +122,29 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
           SizedBox(height: 8.0),
           ExpandedSection(
             expand: orderForOtherCheckbox,
-            child: Column(
-              children: [
-                RoundedInputField(
-                  hint: "Nama",
-                  onChanged: (value) {},
-                ),
-                RoundedInputField(
-                  hint: "No. Telp",
-                  onChanged: (value) {},
-                ),
-                RoundedInputField(
-                  hint: "Email",
-                  onChanged: (value) {},
-                ),
-                RoundedInputField(
-                  hint: "Alamat",
-                  onChanged: (value) {},
-                ),
-              ],
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  RoundedInputField(
+                    hint: "Nama",
+                    validation: validateName,
+                    onChanged: (String value) {},
+                  ),
+                  // RoundedInputField(
+                  //   hint: "No. Telp",
+                  //   onChanged: (value) {},
+                  // ),
+                  // RoundedInputField(
+                  //   hint: "Email",
+                  //   onChanged: (value) {},
+                  // ),
+                  // RoundedInputField(
+                  //   hint: "Alamat",
+                  //   onChanged: (value) {},
+                  // ),
+                ],
+              ),
             ),
           )
         ],
@@ -140,6 +165,117 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
             hint: "*Anda boleh mengosongkan bagian ini",
             onChanged: (value) {},
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOrderCheckoutTimer() {
+    return Center(
+      child: BlocBuilder<OrderCheckoutTimerBloc, OrderCheckoutTimerState>(
+        builder: (context, state) {
+          final String minutesStr =
+              ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
+          final String secondsStr =
+              (state.duration % 60).floor().toString().padLeft(2, '0');
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$minutesStr:$secondsStr',
+                style: kNormalBoldTextStyle,
+              ),
+              SizedBox(width: 8.0),
+              Icon(Icons.help_outline_rounded)
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildTimeline(BuildContext context) {
+    return Container(
+      height: 48.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TimelineTile(
+            isFirst: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.manual,
+            lineXY: 0.5,
+            afterLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            alignment: TimelineAlign.center,
+            axis: TimelineAxis.horizontal,
+            beforeLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            afterLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '2',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            isLast: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.center,
+            beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFD8D8D8),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '3',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

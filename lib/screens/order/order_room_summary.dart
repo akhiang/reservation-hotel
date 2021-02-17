@@ -1,6 +1,22 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class OrderRoomSummary extends StatelessWidget {
+class OrderRoomSummary extends StatefulWidget {
+  @override
+  _OrderRoomSummaryState createState() => _OrderRoomSummaryState();
+}
+
+class _OrderRoomSummaryState extends State<OrderRoomSummary> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<OrderCheckoutTimerBloc>().add(
+          OrderCheckoutTimerStarted(
+            // duration: context.read<OrderCheckoutTimerBloc>().state.duration,
+            duration: 900,
+          ),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,88 +39,9 @@ class OrderRoomSummary extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            height: 48.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TimelineTile(
-                  isFirst: true,
-                  axis: TimelineAxis.horizontal,
-                  alignment: TimelineAlign.center,
-                  afterLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
-                  indicatorStyle: IndicatorStyle(
-                    width: 24.0,
-                    height: 24.0,
-                    indicator: Container(
-                      decoration: const BoxDecoration(
-                        color: ColorConst.kSecondaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '1',
-                          style: TextStyle(
-                            color: ColorConst.kThirdColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TimelineTile(
-                  alignment: TimelineAlign.center,
-                  axis: TimelineAxis.horizontal,
-                  beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
-                  indicatorStyle: IndicatorStyle(
-                    width: 24.0,
-                    height: 24.0,
-                    indicator: Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFD8D8D8),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '2',
-                          style: TextStyle(
-                            color: ColorConst.kThirdColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TimelineTile(
-                  isLast: true,
-                  axis: TimelineAxis.horizontal,
-                  alignment: TimelineAlign.center,
-                  beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
-                  indicatorStyle: IndicatorStyle(
-                    width: 24.0,
-                    height: 24.0,
-                    indicator: Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFD8D8D8),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '3',
-                          style: TextStyle(
-                            color: ColorConst.kThirdColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _buildTimeline(context),
+          SizedBox(height: 8.0),
+          _buildOrderCheckoutTimer(),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -127,6 +64,121 @@ class OrderRoomSummary extends StatelessWidget {
                   ),
                   SizedBox(height: 88.0),
                 ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOrderCheckoutTimer() {
+    return Center(
+      child: BlocConsumer<OrderCheckoutTimerBloc, OrderCheckoutTimerState>(
+        listener: (context, state) {
+          if (state is OrderCheckoutTimerRunComplete) {
+            showOrderTimeoutDialog(context);
+          }
+        },
+        builder: (context, state) {
+          final String minutesStr =
+              ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
+          final String secondsStr =
+              (state.duration % 60).floor().toString().padLeft(2, '0');
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$minutesStr:$secondsStr',
+                style: kNormalBoldTextStyle,
+              ),
+              SizedBox(width: 8.0),
+              Icon(Icons.help_outline_rounded)
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildTimeline(BuildContext context) {
+    return Container(
+      height: 48.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TimelineTile(
+            isFirst: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.manual,
+            lineXY: 0.5,
+            afterLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            alignment: TimelineAlign.center,
+            axis: TimelineAxis.horizontal,
+            beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFD8D8D8),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '2',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            isLast: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.center,
+            beforeLineStyle: const LineStyle(color: Color(0xFFEBEBEB)),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFD8D8D8),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '3',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

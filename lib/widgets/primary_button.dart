@@ -4,11 +4,13 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final Function press;
   final Color color;
+  final Color textColor;
 
   const PrimaryButton({
     Key key,
     @required this.text,
     this.color = ColorConst.kPrimaryColor,
+    this.textColor = ColorConst.kSecondaryColor,
     this.press,
   }) : super(key: key);
 
@@ -19,8 +21,8 @@ class PrimaryButton extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: ColorConst.kSecondaryColor,
-          fontWeight: FontWeight.w700,
+          color: textColor,
+          fontWeight: FontWeight.w600,
         ),
       ),
       color: color,

@@ -28,46 +28,55 @@ class _OrderTermState extends State<OrderTerm> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildTermList(),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
+      body: Column(
+        children: [
+          _buildTimeline(context),
+          SizedBox(height: 8.0),
+          _buildOrderCheckoutTimer(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  CircularCheckBox(
-                    value: _checkboxListTile,
-                    disabledColor: Colors.grey,
-                    onChanged: (value) => this.setState(() {
-                      _checkboxListTile = !_checkboxListTile;
-                    }),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => setState(() {
-                        _checkboxListTile = !_checkboxListTile;
-                      }),
-                      child: Container(
-                        color: ColorConst.kThirdColor,
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                            'Saya Setuju dengan Syarat & Ketentuan yang berlaku',
-                            style: kNormalBoldTextStyle),
-                      ),
+                  _buildTermList(),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: [
+                        CircularCheckBox(
+                          value: _checkboxListTile,
+                          disabledColor: Colors.grey,
+                          onChanged: (value) => this.setState(() {
+                            _checkboxListTile = !_checkboxListTile;
+                          }),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => setState(() {
+                              _checkboxListTile = !_checkboxListTile;
+                            }),
+                            child: Container(
+                              color: ColorConst.kThirdColor,
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                  'Saya Setuju dengan Syarat & Ketentuan yang berlaku',
+                                  style: kNormalBoldTextStyle),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  SizedBox(height: 88.0),
                 ],
               ),
             ),
-            SizedBox(height: 88.0),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Padding _buildTermList() {
+  Widget _buildTermList() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
@@ -84,6 +93,117 @@ class _OrderTermState extends State<OrderTerm> {
           OrderTermTile(
               title:
                   'Proin gravida senectus felis lacinia eget sed tristique.'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOrderCheckoutTimer() {
+    return Center(
+      child: BlocBuilder<OrderCheckoutTimerBloc, OrderCheckoutTimerState>(
+        builder: (context, state) {
+          final String minutesStr =
+              ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
+          final String secondsStr =
+              (state.duration % 60).floor().toString().padLeft(2, '0');
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$minutesStr:$secondsStr',
+                style: kNormalBoldTextStyle,
+              ),
+              SizedBox(width: 8.0),
+              Icon(Icons.help_outline_rounded)
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildTimeline(BuildContext context) {
+    return Container(
+      height: 48.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TimelineTile(
+            isFirst: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.manual,
+            lineXY: 0.5,
+            afterLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            alignment: TimelineAlign.center,
+            axis: TimelineAxis.horizontal,
+            beforeLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            afterLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '2',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          TimelineTile(
+            isLast: true,
+            axis: TimelineAxis.horizontal,
+            alignment: TimelineAlign.center,
+            beforeLineStyle: const LineStyle(color: ColorConst.kSecondaryColor),
+            indicatorStyle: IndicatorStyle(
+              width: 24.0,
+              height: 24.0,
+              indicator: Container(
+                decoration: const BoxDecoration(
+                  color: ColorConst.kSecondaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text(
+                    '3',
+                    style: TextStyle(
+                      color: ColorConst.kThirdColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -1,14 +1,11 @@
 import 'package:dangau_hotel/bloc/bloc.dart';
-import 'package:dangau_hotel/bloc/room/room_cubit.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => DateCubit()),
+        BlocProvider(create: (_) => OrderCheckoutTimerBloc(ticker: Ticker())),
         BlocProvider(create: (_) => HotelBloc(HotelService())),
         BlocProvider(create: (_) => HotelDetailBloc(HotelService())),
         BlocProvider(create: (_) => RoomCartCubit(RoomService())),
