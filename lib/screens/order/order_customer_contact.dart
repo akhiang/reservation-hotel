@@ -8,9 +8,22 @@ class OrderCustomerContact extends StatefulWidget {
 class _OrderCustomerContactState extends State<OrderCustomerContact>
     with SingleTickerProviderStateMixin, Validation {
   final formKey = GlobalKey<FormState>();
-  bool orderForOtherCheckbox = false;
+  final _nameFocusNode = FocusNode();
+  final _phoneFocusNode = FocusNode();
+  final _emailFocusNode = FocusNode();
+  final _addressFocusNode = FocusNode();
+  bool _orderForOtherCheckbox = false;
 
   String name = '';
+
+  @override
+  void dispose() {
+    _nameFocusNode.dispose();
+    _phoneFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _addressFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,7 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
         child: PrimaryButton(
           text: 'Lanjut',
           press: () {
-            if (orderForOtherCheckbox) {
+            if (_orderForOtherCheckbox) {
               if (formKey.currentState.validate()) {
                 formKey.currentState.save();
                 Navigator.of(context).push(
@@ -100,15 +113,15 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
           Row(
             children: [
               CircularCheckBox(
-                value: orderForOtherCheckbox,
+                value: _orderForOtherCheckbox,
                 disabledColor: Colors.grey,
                 onChanged: (value) => this.setState(() {
-                  orderForOtherCheckbox = !orderForOtherCheckbox;
+                  _orderForOtherCheckbox = !_orderForOtherCheckbox;
                 }),
               ),
               GestureDetector(
                 onTap: () => setState(() {
-                  orderForOtherCheckbox = !orderForOtherCheckbox;
+                  _orderForOtherCheckbox = !_orderForOtherCheckbox;
                 }),
                 child: Container(
                   color: ColorConst.kThirdColor,
@@ -121,44 +134,40 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
           ),
           SizedBox(height: 8.0),
           ExpandedSection(
-            expand: orderForOtherCheckbox,
+            expand: _orderForOtherCheckbox,
             child: Form(
               key: formKey,
               child: Column(
                 children: [
-                  RoundedInputField(
-                    hint: "Nama",
+                  InputField(
+                    focusNode: _nameFocusNode,
+                    hint: 'Nama',
                     validation: validateName,
+                    onSubmitted: (_) => _phoneFocusNode.requestFocus(),
                     onChanged: (String value) {},
                   ),
-                  TextFormField(
-                    validator: validateName,
-                    decoration: new InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 24.0, vertical: 20.0),
-                      border: new OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(32.0)),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      hintStyle: new TextStyle(color: Colors.grey[800]),
-                      hintText: "Type in your text",
-                      fillColor: ColorConst.kSecondaryColor.withOpacity(0.05),
-                    ),
-                  )
-                  // RoundedInputField(
-                  //   hint: "No. Telp",
-                  //   onChanged: (value) {},
-                  // ),
-                  // RoundedInputField(
-                  //   hint: "Email",
-                  //   onChanged: (value) {},
-                  // ),
-                  // RoundedInputField(
-                  //   hint: "Alamat",
-                  //   onChanged: (value) {},
-                  // ),
+                  InputField(
+                    focusNode: _phoneFocusNode,
+                    hint: 'No. Telp',
+                    validation: validatePhoneNumber,
+                    keyboard: TextInputType.number,
+                    onSubmitted: (_) => _emailFocusNode.requestFocus(),
+                    onChanged: (String value) {},
+                  ),
+                  InputField(
+                    focusNode: _emailFocusNode,
+                    hint: 'Email',
+                    validation: validateEmail,
+                    keyboard: TextInputType.emailAddress,
+                    onSubmitted: (_) => _addressFocusNode.requestFocus(),
+                    onChanged: (String value) {},
+                  ),
+                  InputField(
+                    focusNode: _addressFocusNode,
+                    hint: 'Alamat',
+                    validation: validateAddress,
+                    onChanged: (String value) {},
+                  ),
                 ],
               ),
             ),

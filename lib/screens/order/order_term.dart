@@ -6,7 +6,13 @@ class OrderTerm extends StatefulWidget {
 }
 
 class _OrderTermState extends State<OrderTerm> {
-  bool _checkboxListTile = false;
+  bool _acceptCheckboxListTile = false;
+  bool _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +28,15 @@ class _OrderTermState extends State<OrderTerm> {
         child: PrimaryButton(
           text: 'Selesai',
           press: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => OrderTerm()),
-            );
+            if (_acceptCheckboxListTile) {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => OrderPaymentScreen()),
+              );
+            } else {
+              setState(() {
+                _isInit = false;
+              });
+            }
           },
         ),
       ),
@@ -40,29 +52,52 @@ class _OrderTermState extends State<OrderTerm> {
                   _buildTermList(),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircularCheckBox(
-                          value: _checkboxListTile,
-                          disabledColor: Colors.grey,
-                          onChanged: (value) => this.setState(() {
-                            _checkboxListTile = !_checkboxListTile;
-                          }),
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () => setState(() {
-                              _checkboxListTile = !_checkboxListTile;
-                            }),
-                            child: Container(
-                              color: ColorConst.kThirdColor,
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                  'Saya Setuju dengan Syarat & Ketentuan yang berlaku',
-                                  style: kNormalBoldTextStyle),
+                        Row(
+                          children: [
+                            CircularCheckBox(
+                              value: _acceptCheckboxListTile,
+                              disabledColor: Colors.grey,
+                              onChanged: (value) => this.setState(() {
+                                _acceptCheckboxListTile =
+                                    !_acceptCheckboxListTile;
+                              }),
                             ),
-                          ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => setState(() {
+                                  _acceptCheckboxListTile =
+                                      !_acceptCheckboxListTile;
+                                }),
+                                child: Container(
+                                  color: ColorConst.kThirdColor,
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'Saya Setuju dengan Syarat & Ketentuan yang berlaku',
+                                      style: kNormalBoldTextStyle),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
+                        !_isInit
+                            ? !_acceptCheckboxListTile
+                                ? Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    child: Text(
+                                      'Mohon dicentang',
+                                      style: TextStyle(
+                                        color: ColorConst.kErrorColor,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  )
+                                : SizedBox()
+                            : SizedBox(),
                       ],
                     ),
                   ),
