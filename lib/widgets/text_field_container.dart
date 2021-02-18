@@ -1,4 +1,4 @@
-part of 'package:dangau_hotel/screens/screens.dart';
+part of 'package:dangau_hotel/widgets/widgets.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final double borderRadius;

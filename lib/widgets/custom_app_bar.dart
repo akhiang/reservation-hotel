@@ -1,4 +1,4 @@
-part of 'package:dangau_hotel/screens/screens.dart';
+part of 'package:dangau_hotel/widgets/widgets.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
