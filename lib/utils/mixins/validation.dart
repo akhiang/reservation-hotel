@@ -42,4 +42,26 @@ class Validation {
     }
     return null;
   }
+
+  String validateDateCard(String value) {
+    if (value.isEmpty) {
+      return 'Masa berlaku belum diisi';
+    } else if (value.length < 10) {
+      return 'Masa Berlaku minimal 10 karakter';
+    } else if (value.length > 20) {
+      return 'Masa Berlaku maksimal 20 karakter';
+    }
+    return null;
+  }
+
+  String validateCvcCard(String value) {
+    if (value.isEmpty) {
+      return 'CVC belum diisi';
+    } else if (value.length < 10) {
+      return 'CVC minimal 10 karakter';
+    } else if (value.length > 20) {
+      return 'CVC maksimal 20 karakter';
+    }
+    return null;
+  }
 }

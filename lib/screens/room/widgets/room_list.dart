@@ -12,8 +12,8 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   @override
   void initState() {
-    super.initState();
     _loadHotelRoomListToCart();
+    super.initState();
   }
 
   void _loadHotelRoomListToCart() {

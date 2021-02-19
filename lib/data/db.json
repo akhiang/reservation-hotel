@@ -209,5 +209,32 @@
                 }
             ]
         }
+    ],
+    "payment_method": [
+        {
+            "id": 1,
+            "payment_type": 1,
+            "name": "BCA Virtual Account"
+        },
+        {
+            "id": 2,
+            "payment_type": 1,
+            "name": "Mandiri Virtual Account"
+        },
+        {
+            "id": 3,
+            "payment_type": 1,
+            "name": "BNI Virtual Account"
+        },
+        {
+            "id": 4,
+            "payment_type": 2,
+            "name": "Master Card"
+        },
+        {
+            "id": 5,
+            "payment_type": 2,
+            "name": "Visa Credit"
+        }
     ]
 }

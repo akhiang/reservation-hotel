@@ -1,3 +1,4 @@
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,6 +57,7 @@ part 'package:dangau_hotel/screens/order/order_room_summary.dart';
 part 'package:dangau_hotel/screens/order/order_customer_contact.dart';
 part 'package:dangau_hotel/screens/order/order_term.dart';
 part 'package:dangau_hotel/screens/order/order_payment_screen.dart';
+part 'package:dangau_hotel/screens/order/select_payment_method_screen.dart';
 part 'package:dangau_hotel/screens/order/order_success_screen.dart';
 part 'package:dangau_hotel/screens/order/widgets/selected_room_card.dart';
 part 'package:dangau_hotel/screens/order/widgets/order_room_detail.dart';
@@ -63,6 +65,7 @@ part 'package:dangau_hotel/screens/order/widgets/order_term_tile.dart';
 part 'package:dangau_hotel/screens/order/widgets/virtual_account_card.dart';
 part 'package:dangau_hotel/screens/order/widgets/ordered_room_card.dart';
 part 'package:dangau_hotel/screens/order/widgets/order_timeout_dialog.dart';
+part 'package:dangau_hotel/screens/order/widgets/payment_method_list.dart';
 
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 part 'package:dangau_hotel/screens/book/book_incoming_screen.dart';

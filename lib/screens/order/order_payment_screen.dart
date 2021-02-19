@@ -5,10 +5,19 @@ class OrderPaymentScreen extends StatefulWidget {
   _OrderPaymentScreenState createState() => _OrderPaymentScreenState();
 }
 
-class _OrderPaymentScreenState extends State<OrderPaymentScreen> {
-  int _currVal = 1;
-  String _currText = 'BCA Virtual Account';
+class _OrderPaymentScreenState extends State<OrderPaymentScreen>
+    with Validation {
+  final _formKey = GlobalKey<FormState>();
   bool _checkboxListTile = false;
+  String _methodPaymentName = 'Pilih Metode Pembayaran';
+  int _methodPaymentType = 0;
+
+  void setPaymentMethodToCard(PaymentMethod paymentMethod) {
+    setState(() {
+      _methodPaymentName = paymentMethod.name;
+      _methodPaymentType = paymentMethod.paymentType;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +33,22 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen> {
         child: PrimaryButton(
           text: 'Bayar',
           press: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => OrderSuccessScreen(),
-              ),
-            );
+            if (_methodPaymentType == 2) {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => OrderSuccessScreen(),
+                  ),
+                );
+              }
+            } else {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => OrderSuccessScreen(),
+                ),
+              );
+            }
           },
         ),
       ),
@@ -36,9 +56,12 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen> {
         child: Column(
           children: [
             _buildPaymentMethod(),
-            _buildVirtualAccountCard(),
+            _methodPaymentType == 1
+                ? _buildVirtualAccountCard()
+                : _methodPaymentType == 2
+                    ? _buildDebitCardInputField()
+                    : SizedBox(),
             _buildChoosePhoto(),
-            _buildDebitCardInputField(),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -57,92 +80,133 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen> {
   Widget _buildDebitCardInputField() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        children: [
-          RoundedInputField(
-            hint: "Nama di kartu",
-            onChanged: (value) {},
-          ),
-          RoundedInputField(
-            hint: "xxxx-xxxx-xxxx",
-            onChanged: (value) {},
-          ),
-          Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: RoundedInputField(
-                  hint: "MM/YY",
-                  onChanged: (value) {},
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            InputField(
+              hint: 'Nama di kartu',
+              validation: validateName,
+              onChanged: (String value) {},
+            ),
+            InputField(
+              hint: 'xxxx-xxxx-xxxx',
+              validation: validateName,
+              onChanged: (String value) {},
+            ),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: InputField(
+                    hint: "MM/YY",
+                    validation: validateDateCard,
+                    onChanged: (String value) {},
+                  ),
                 ),
-              ),
-              SizedBox(width: 8.0),
-              Flexible(
-                flex: 1,
-                child: RoundedInputField(
-                  hint: "CVC",
-                  onChanged: (value) {},
+                SizedBox(width: 8.0),
+                Flexible(
+                  flex: 1,
+                  child: InputField(
+                    hint: "CVC",
+                    validation: validateCvcCard,
+                    onChanged: (String value) {},
+                  ),
                 ),
-              ),
-            ],
-          ),
-          CheckboxListTile(
-            dense: true,
-            controlAffinity: ListTileControlAffinity.leading,
-            title: Text('Simpan untuk pembayaran berikutnya.',
-                style: kSmallBoldTextStyle),
-            value: _checkboxListTile,
-            onChanged: (value) {
-              setState(() {
-                _checkboxListTile = !_checkboxListTile;
-              });
-            },
-          ),
-          SizedBox(height: 8.0),
-          Container(
-              padding: EdgeInsets.all(16.0),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: ColorConst.kThirdColor,
-                boxShadow: [kShadow],
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Total', style: kNormalTextStyle),
-                      Text('4200000', style: kNormalBoldTextStyle),
-                    ],
+              ],
+            ),
+            Row(
+              children: [
+                CircularCheckBox(
+                  value: _checkboxListTile,
+                  disabledColor: Colors.grey,
+                  onChanged: (value) => this.setState(() {
+                    _checkboxListTile = !_checkboxListTile;
+                  }),
+                ),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _checkboxListTile = !_checkboxListTile;
+                  }),
+                  child: Container(
+                    color: ColorConst.kThirdColor,
+                    padding: EdgeInsets.only(top: 8.0, right: 8.0, bottom: 8.0),
+                    child: Text('Simpan untuk pembayaran berikutnya.',
+                        style: kSmallBoldTextStyle),
                   ),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('PPN', style: kNormalTextStyle),
-                      Text('420000', style: kNormalBoldTextStyle),
-                    ],
-                  ),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Grand Total', style: kNormalTextStyle),
-                      Text('4620000', style: kNormalBoldTextStyle),
-                    ],
-                  ),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Bayar Sekarang', style: kNormalTextStyle),
-                      Text('1617000', style: kNormalBoldTextStyle),
-                    ],
-                  ),
-                ],
-              ))
-        ],
+                ),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Container(
+                padding: EdgeInsets.all(16.0),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: ColorConst.kThirdColor,
+                  boxShadow: [kShadow],
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Total', style: kNormalTextStyle),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(4200000),
+                            style: kNormalBoldTextStyle),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('PPN', style: kNormalTextStyle),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(420000),
+                            style: kNormalBoldTextStyle),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Grand Total', style: kNormalTextStyle),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(4620000),
+                            style: kNormalBoldTextStyle),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Bayar Sekarang', style: kNormalTextStyle),
+                        Text(
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0)
+                                .format(1617000),
+                            style: kNormalBoldTextStyle),
+                      ],
+                    ),
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
@@ -188,35 +252,22 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen> {
         children: [
           Text('Metode Pembayaran', style: kNormalTextStyle),
           SizedBox(height: 8.0),
-          RoundedExpandRadioCard(
-            title: _currText,
-            radioList: Column(
-              children: methods
-                  .map((method) => ClipRRect(
-                        borderRadius: BorderRadius.circular(32.0),
-                        child: RadioButtonTile(
-                          title: method.name,
-                          group: _currVal,
-                          value: method.id,
-                          press: () {
-                            setState(() {
-                              _currVal = method.id;
-                              _currText = method.name;
-                            });
-                            print(_currVal);
-                          },
-                          onChange: (value) {
-                            setState(() {
-                              _currVal = value;
-                              _currText = method.name;
-                            });
-                            print(value);
-                          },
-                        ),
-                      ))
-                  .toList(),
-            ),
-          )
+          RoundedIconCard(
+            title: _methodPaymentName,
+            trailingIcon: Icons.chevron_right,
+            press: () async {
+              final PaymentMethod paymentMethod =
+                  await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SelectPaymentMethodScreen(),
+                ),
+              );
+              if (paymentMethod == null) {
+                return;
+              }
+              setPaymentMethodToCard(paymentMethod);
+            },
+          ),
         ],
       ),
     );

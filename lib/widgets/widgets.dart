@@ -16,5 +16,6 @@ part 'package:dangau_hotel/widgets/shadow_button.dart';
 part 'package:dangau_hotel/widgets/rounded_input_field.dart';
 part 'package:dangau_hotel/widgets/rounded_text_area.dart';
 part 'package:dangau_hotel/widgets/rounded_card.dart';
+part 'package:dangau_hotel/widgets/rounded_icon_card.dart';
 part 'package:dangau_hotel/widgets/rounded_expand_card.dart';
 part 'package:dangau_hotel/widgets/rounded_expand_radio_card.dart';
