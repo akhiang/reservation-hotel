@@ -9,11 +9,64 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
     with Validation {
   final _formKey = GlobalKey<FormState>();
   bool _checkboxListTile = false;
+  PaymentMethod _paymentMethod;
   String _methodPaymentName = 'Pilih Metode Pembayaran';
   int _methodPaymentType = 0;
+  FToast fToast;
+
+  @override
+  void initState() {
+    fToast = FToast();
+    fToast.init(context);
+    super.initState();
+  }
+
+  _showToast() {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.0),
+        color: ColorConst.kErrorColor,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.error_rounded, color: ColorConst.kThirdColor),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text(
+            'Silahkan pilih metode pembayaran',
+            style: TextStyle(
+              color: ColorConst.kThirdColor,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 2),
+    );
+
+    // Custom Toast Position
+    // fToast.showToast(
+    //     child: toast,
+    //     toastDuration: Duration(seconds: 2),
+    //     positionedToastBuilder: (context, child) {
+    //       return Positioned(
+    //         child: child,
+    //         top: 16.0,
+    //         left: 16.0,
+    //       );
+    //     });
+  }
 
   void setPaymentMethodToCard(PaymentMethod paymentMethod) {
     setState(() {
+      _paymentMethod = paymentMethod;
       _methodPaymentName = paymentMethod.name;
       _methodPaymentType = paymentMethod.paymentType;
     });
@@ -33,21 +86,27 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
         child: PrimaryButton(
           text: 'Bayar',
           press: () {
-            if (_methodPaymentType == 2) {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => OrderSuccessScreen(),
-                  ),
-                );
+            if (_paymentMethod != null) {
+              if (_methodPaymentType == 2) {
+                if (_formKey.currentState.validate()) {
+                  _formKey.currentState.save();
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => OrderSuccessScreen(),
+                  //   ),
+                  // );
+                  print('sukses');
+                }
+              } else {
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) => OrderSuccessScreen(),
+                //   ),
+                // );
+                print('sukses');
               }
             } else {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => OrderSuccessScreen(),
-                ),
-              );
+              _showToast();
             }
           },
         ),
