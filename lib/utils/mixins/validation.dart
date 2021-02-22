@@ -28,6 +28,13 @@ class Validation {
     return null;
   }
 
+  String validateBirthDate(String value) {
+    if (value.isEmpty) {
+      return 'Tanggal lahir belum diisi';
+    }
+    return null;
+  }
+
   String validateName(String value) {
     if (value.isEmpty) {
       return 'Nama belum diisi';

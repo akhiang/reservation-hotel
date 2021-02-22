@@ -14,6 +14,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
   final _addressController = TextEditingController();
   final _mobileNumberController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _birthDateController = TextEditingController();
 
   void _registerSubmit() {
     setState(() {
@@ -68,7 +69,6 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
                       } else {
                         Navigator.pop(context);
                       }
-                      ;
                     },
                   ),
                 ),
@@ -84,6 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
       _selectedDate = args.value;
+      _birthDateController.text = Helper.dateFormat(args.value);
     });
 
     print(_selectedDate);
@@ -115,9 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.error_rounded, color: ColorConst.kThirdColor),
-          SizedBox(
-            width: 12.0,
-          ),
+          SizedBox(width: 12.0),
           Text(
             'Silahkan pilih tanggal lahir',
             style: TextStyle(
@@ -187,47 +186,43 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
                 SizedBox(height: 16.0),
                 Text('Tanggal Lahir', style: kNormalBoldTextStyle),
                 SizedBox(height: 16.0),
-                GestureDetector(
-                  onTap: () {
+                InputField(
+                  tap: () {
                     _showDateCalenderBottomSheet();
                   },
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorConst.kSecondaryColor.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(32.0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _selectedDate == null
-                            ? Text('Tanggal Lahir', style: kNormalTextStyle)
-                            : Text(
-                                '${DateFormat('d MMMM yyyy').format(_selectedDate)}',
-                                style: kNormalTextStyle),
-                        Icon(Icons.edit,
-                            size: 20.0,
-                            color: ColorConst.kSecondaryColor.withOpacity(0.5)),
-                      ],
-                    ),
-                  ),
+                  readOnly: true,
+                  hint: "Tanggal Lahir",
+                  validation: validateBirthDate,
+                  controller: _birthDateController,
+                  suffixIcon: Icons.edit,
+                  onChanged: (value) {},
                 ),
-                SizedBox(height: 8.0),
-                _init
-                    ? _selectedDate == null
-                        ? Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 24.0),
-                            child: Text('Tanggal lahir belum diisi',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: ColorConst.kErrorColor,
-                                )),
-                          )
-                        : SizedBox()
-                    : SizedBox(),
+                // GestureDetector(
+                //   onTap: () {
+                //     _showDateCalenderBottomSheet();
+                //   },
+                //   child: Container(
+                //     padding:
+                //         EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                //     width: double.infinity,
+                //     decoration: BoxDecoration(
+                //       color: ColorConst.kSecondaryColor.withOpacity(0.05),
+                //       borderRadius: BorderRadius.circular(32.0),
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         _selectedDate == null
+                //             ? Text('Tanggal Lahir', style: kNormalTextStyle)
+                //             : Text(Helper.dateFormat(_selectedDate),
+                //                 style: kNormalTextStyle),
+                //         Icon(Icons.edit,
+                //             size: 20.0,
+                //             color: ColorConst.kSecondaryColor.withOpacity(0.5)),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

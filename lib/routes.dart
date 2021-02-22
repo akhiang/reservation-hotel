@@ -1,4 +1,3 @@
-// part of 'package:dangau_hotel/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:dangau_hotel/screens/screens.dart';
 
@@ -15,19 +14,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       builder = (context) => LoginScreen();
       break;
     case MainScreen.routeName:
-      print('main screen');
       builder = (context) => MainScreen();
       break;
     case MainScreen2.routeName:
-      print('main screen 2');
       builder = (context) => MainScreen2();
       break;
     case HelpScreen.routeName:
-      print('asd');
       builder = (context) => HelpScreen();
       break;
     case EditProfileScreen.routeName:
-      print('edit profile');
       builder = (context) => EditProfileScreen();
       break;
     default:

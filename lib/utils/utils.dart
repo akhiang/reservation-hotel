@@ -8,3 +8,4 @@ export 'package:dangau_hotel/utils/mixins/string_extension.dart';
 export 'package:dangau_hotel/utils/mixins/validation.dart';
 export 'package:dangau_hotel/utils/ticker.dart';
 export 'package:dangau_hotel/utils/shared_preferences.dart';
+export 'package:dangau_hotel/utils/helper.dart';

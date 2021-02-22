@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/widgets/widgets.dart';
 
 class InputField extends StatelessWidget {
+  final Function tap;
+  final bool readOnly;
   final String hint;
   final int maxLines;
   final ValueChanged<String> onChanged;
@@ -9,9 +11,12 @@ class InputField extends StatelessWidget {
   final Function onSubmitted;
   final FocusNode focusNode;
   final TextEditingController controller;
+  final IconData suffixIcon;
 
   const InputField({
     Key key,
+    this.tap,
+    this.readOnly = false,
     @required this.hint,
     this.maxLines = 1,
     @required this.onChanged,
@@ -20,6 +25,7 @@ class InputField extends StatelessWidget {
     this.onSubmitted,
     this.focusNode,
     this.controller,
+    this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -27,6 +33,8 @@ class InputField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
+        onTap: tap,
+        readOnly: readOnly,
         maxLines: maxLines,
         controller: controller,
         focusNode: focusNode,
@@ -38,6 +46,13 @@ class InputField extends StatelessWidget {
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]+.*$')),
         ],
         decoration: new InputDecoration(
+          suffixIcon: suffixIcon != null
+              ? Icon(
+                  suffixIcon,
+                  size: 20.0,
+                  color: ColorConst.kSecondaryColor.withOpacity(0.5),
+                )
+              : null,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
           border: new OutlineInputBorder(
