@@ -5,6 +5,12 @@ import 'package:dangau_hotel/screens/screens.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   var builder;
   switch (settings.name) {
+    case SplashScreen.routeName:
+      builder = (context) => SplashScreen();
+      break;
+    case OnBoardingScreen.routeName:
+      builder = (context) => OnBoardingScreen();
+      break;
     case LoginScreen.routeName:
       builder = (context) => LoginScreen();
       break;

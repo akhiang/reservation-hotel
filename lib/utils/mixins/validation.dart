@@ -3,6 +3,31 @@ class Validation {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   static final _numericOnlyRegex = RegExp(r"^[0-9 +]+$");
 
+  String validatePhoneNumberLogin(String value) {
+    if (value.isEmpty) {
+      return 'Nomor telepon belum diisi';
+    } else if (!_numericOnlyRegex.hasMatch(value)) {
+      return 'Nomor telepon hanya boleh diisi angka';
+    } else if (value.length < 8) {
+      return 'Nomor telepon tidak valid';
+    }
+    return null;
+  }
+
+  String validatePasswordLogin(String value) {
+    if (value.isEmpty) {
+      return 'Password belum diisi';
+    }
+    return null;
+  }
+
+  String validatePasswordRegister(String value) {
+    if (value.isEmpty) {
+      return 'Password belum diisi';
+    }
+    return null;
+  }
+
   String validateName(String value) {
     if (value.isEmpty) {
       return 'Nama belum diisi';

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/scheduler.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:circular_check_box/circular_check_box.dart';
@@ -18,10 +21,13 @@ import 'package:dangau_hotel/widgets/widgets.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:dangau_hotel/bloc/bloc.dart';
 
-part 'package:dangau_hotel/screens/auth/onboarding_screen.dart';
+part 'package:dangau_hotel/screens/onboarding/onboarding_screen.dart';
+part 'package:dangau_hotel/screens/onboarding/splash_screen.dart';
+
 part 'package:dangau_hotel/screens/auth/login_screen.dart';
 part 'package:dangau_hotel/screens/auth/register_screen.dart';
 part 'package:dangau_hotel/screens/auth/otp_screen.dart';
+part 'package:dangau_hotel/screens/auth/widgets/login_form.dart';
 part 'package:dangau_hotel/screens/auth/widgets/social_media_login_card.dart';
 part 'package:dangau_hotel/screens/auth/widgets/otp_input_field.dart';
 part 'package:dangau_hotel/screens/auth/widgets/onboarding_content.dart';

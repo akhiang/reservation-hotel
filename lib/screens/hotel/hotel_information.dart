@@ -71,18 +71,6 @@ class _HotelInformationState extends State<HotelInformation>
                   child: PrimaryButton(
                     text: 'Cek Kamar',
                     press: () {
-                      // if (dateState.rangeStartDate == null &&
-                      //     dateState.rangeEndDate == null) {
-                      //   Fluttertoast.cancel();
-                      //   Fluttertoast.showToast(
-                      //       msg: "Mohon pilih tanggal",
-                      //       toastLength: Toast.LENGTH_SHORT,
-                      //       gravity: ToastGravity.BOTTOM,
-                      //       timeInSecForIosWeb: 1,
-                      //       backgroundColor: ColorConst.kSecondaryColor,
-                      //       textColor: ColorConst.kThirdColor,
-                      //       fontSize: 16.0);
-                      // } else {
                       Navigator.pop(context);
                       Navigator.of(context).push(
                         MaterialPageRoute(

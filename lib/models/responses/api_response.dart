@@ -1,3 +1,5 @@
+part of 'package:dangau_hotel/models/models.dart';
+
 class ApiResponse<T> {
   Status status;
   T data;

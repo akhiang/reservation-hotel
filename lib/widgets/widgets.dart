@@ -6,6 +6,7 @@ part 'package:dangau_hotel/widgets/custom_app_bar.dart';
 part 'package:dangau_hotel/widgets/custom_dialog.dart';
 part 'package:dangau_hotel/widgets/expanded_section.dart';
 part 'package:dangau_hotel/widgets/hero_image.dart';
+part 'package:dangau_hotel/widgets/loading_indicator.dart';
 part 'package:dangau_hotel/widgets/radio_button.dart';
 part 'package:dangau_hotel/widgets/radio_button_tile.dart';
 part 'package:dangau_hotel/widgets/input_field.dart';

@@ -38,7 +38,13 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
           RawMaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            },
             constraints: BoxConstraints(),
             elevation: 0.0,
             fillColor: ColorConst.kSecondaryColor.withOpacity(0.30),

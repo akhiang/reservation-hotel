@@ -8,6 +8,7 @@ class InputField extends StatelessWidget {
   final TextInputType keyboard;
   final Function onSubmitted;
   final FocusNode focusNode;
+  final TextEditingController controller;
 
   const InputField({
     Key key,
@@ -18,6 +19,7 @@ class InputField extends StatelessWidget {
     this.keyboard = TextInputType.text,
     this.onSubmitted,
     this.focusNode,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class InputField extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         maxLines: maxLines,
+        controller: controller,
         focusNode: focusNode,
         validator: validation,
         onChanged: onChanged,

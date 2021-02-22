@@ -2,6 +2,7 @@ import 'package:dangau_hotel/bloc/bloc.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:dangau_hotel/routes.dart';
 import 'package:dangau_hotel/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => LoginCubit()),
         BlocProvider(create: (_) => DateCubit()),
         BlocProvider(create: (_) => OrderCheckoutTimerBloc(ticker: Ticker())),
         BlocProvider(create: (_) => HotelBloc(HotelService())),
@@ -35,11 +37,11 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: ColorConst.kThirdColor,
         ),
-        home: MainScreen(),
+        // home: SplashScreen(),
         // home: OnBoardingScreen(),
         // home: LoginScreen(),
-        // initialRoute: MainScreen2.routeName,
-        // onGenerateRoute: generateRoute,
+        initialRoute: SplashScreen.routeName,
+        onGenerateRoute: generateRoute,
       ),
     );
   }
