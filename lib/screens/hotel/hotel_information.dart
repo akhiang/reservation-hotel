@@ -160,8 +160,9 @@ class _HotelInformationState extends State<HotelInformation>
       },
       builder: (_, state) {
         if (state is HotelDetailLoading) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: HotelInformationShimmer(),
           );
         } else if (state is HotelDetailLoaded) {
           return Stack(

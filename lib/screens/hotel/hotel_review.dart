@@ -57,7 +57,7 @@ class _HotelReviewState extends State<HotelReview>
           ),
           SizedBox(height: 8.0),
           RatingBar.builder(
-            initialRating: 5,
+            initialRating: 4.8,
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,

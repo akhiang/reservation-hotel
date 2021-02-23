@@ -76,7 +76,7 @@ class _HotelScreen5State extends State<HotelScreen5>
                         ),
                         SizedBox(width: 4.0),
                         Text(
-                          '4.8',
+                          widget.hotel.rating.toString(),
                           style: TextStyle(
                             color: ColorConst.kThirdColor,
                             fontSize: 16.0,

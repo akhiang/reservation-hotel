@@ -1,12 +1,10 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class HotelFood extends StatefulWidget {
-  final ScrollController sc;
   final Hotel hotel;
 
   const HotelFood({
     Key key,
-    this.sc,
     this.hotel,
   }) : super(key: key);
 
@@ -54,7 +52,6 @@ class _HotelFoodState extends State<HotelFood>
           Container(
             height: 180.0,
             child: ListView.builder(
-              controller: widget.sc,
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               itemCount: foods.length,
               scrollDirection: Axis.horizontal,

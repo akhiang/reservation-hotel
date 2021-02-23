@@ -26,9 +26,14 @@ class HotelListCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
-              child: Image.network(
-                hotel.imageUrl,
-                fit: BoxFit.cover,
+              child: SizedBox(
+                child: AspectRatio(
+                  aspectRatio: 1.6,
+                  child: Image.network(
+                    hotel.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
             Positioned(
@@ -38,7 +43,7 @@ class HotelListCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    hotel.name,
+                    '${hotel.name}'.titleCase,
                     maxLines: 2,
                     style: TextStyle(
                       color: Colors.white,

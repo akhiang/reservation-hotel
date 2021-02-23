@@ -49,7 +49,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0),
-            HotelList()
+            HotelList(),
+            SizedBox(height: 88.0),
           ],
         ),
       ),

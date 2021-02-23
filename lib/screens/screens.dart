@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:shimmer/shimmer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:circular_check_box/circular_check_box.dart';
@@ -38,6 +39,7 @@ part 'package:dangau_hotel/screens/home/widgets/home_header.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list_card.dart';
+part 'package:dangau_hotel/screens/home/widgets/hotel_list_shimmer.dart';
 
 part 'package:dangau_hotel/screens/hotel/hotel_screen_5.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
@@ -53,6 +55,7 @@ part 'package:dangau_hotel/screens/hotel/widgets/other_food_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/summary_room_list_tile.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/hotel_information_shimmer.dart';
 
 part 'package:dangau_hotel/screens/room/select_room_screen.dart';
 part 'package:dangau_hotel/screens/room/widgets/room_list.dart';
@@ -75,6 +78,7 @@ part 'package:dangau_hotel/screens/order/widgets/payment_method_list.dart';
 part 'package:dangau_hotel/screens/book/book_screen.dart';
 part 'package:dangau_hotel/screens/book/book_incoming_screen.dart';
 part 'package:dangau_hotel/screens/book/book_history_screen.dart';
+part 'package:dangau_hotel/screens/book/book_room_detail_screen.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_card.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_tile.dart';
 part 'package:dangau_hotel/screens/book/widgets/booked_room_detail.dart';

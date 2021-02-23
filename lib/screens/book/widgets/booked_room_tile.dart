@@ -47,6 +47,23 @@ class BookedRoomTile extends StatelessWidget {
                     '15 - 18 Des, 2020',
                     style: kNormalTextStyle,
                   ),
+                  SizedBox(height: 4.0),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      color: ColorConst.kErrorColor.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Text(
+                      'Dibatalkan',
+                      style: TextStyle(
+                        color: ColorConst.kErrorColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],

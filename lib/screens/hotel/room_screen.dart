@@ -85,9 +85,7 @@ class RoomScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: NumberFormat.currency(
-                              locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                          .format(room.price),
+                      text: Helper.priceFormat(room.price.toDouble()),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: ColorConst.kErrorColor,
@@ -170,7 +168,10 @@ class RoomScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FacilityCard(icon: FontAwesomeIcons.bed, title: '1 King Bed'),
+              FacilityCard(
+                  icon: Icons.king_bed_rounded,
+                  title: '1 King Bed',
+                  size: 32.0),
               FacilityCard(icon: Icons.people, title: '2 Tamu', size: 32.0),
               FacilityCard(icon: Icons.restaurant, title: 'Sarapan'),
               FacilityCard(icon: FontAwesomeIcons.thLarge, title: 'Lainnya'),

@@ -3,6 +3,7 @@ part of 'package:dangau_hotel/models/models.dart';
 class Hotel extends Equatable {
   final int id;
   final String name;
+  final double rating;
   final String description;
   final String imageUrl;
   final List<Facility> facilities;
@@ -11,6 +12,7 @@ class Hotel extends Equatable {
   Hotel({
     this.id,
     this.name,
+    this.rating,
     this.description,
     this.imageUrl,
     this.facilities,
@@ -21,6 +23,7 @@ class Hotel extends Equatable {
     return Hotel(
       id: json['id'],
       name: json['name'],
+      rating: json['rating'].toDouble(),
       description: json['description'],
       imageUrl: json['imageUrl'],
       facilities: List<Facility>.from(
@@ -30,10 +33,11 @@ class Hotel extends Equatable {
   }
 
   @override
-  List<Object> get props => [id, name, description, imageUrl, facilities];
+  List<Object> get props =>
+      [id, name, rating, description, imageUrl, facilities];
 
   @override
-  String toString() => 'Hotel { id: $id, name: $name }';
+  String toString() => 'Hotel { id: $id, name: $name, rating: $rating }';
 }
 
 final List<Hotel> hotels = [

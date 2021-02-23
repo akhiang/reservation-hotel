@@ -14,6 +14,7 @@ part 'package:dangau_hotel/widgets/text_field_container.dart';
 part 'package:dangau_hotel/widgets/primary_button.dart';
 part 'package:dangau_hotel/widgets/rounded_icon_button.dart';
 part 'package:dangau_hotel/widgets/shadow_button.dart';
+part 'package:dangau_hotel/widgets/shimmer_single_column.dart';
 part 'package:dangau_hotel/widgets/rounded_input_field.dart';
 part 'package:dangau_hotel/widgets/rounded_text_area.dart';
 part 'package:dangau_hotel/widgets/rounded_card.dart';

@@ -12,7 +12,7 @@ class FoodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8.0),
-      width: 150.0,
+      width: 160.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

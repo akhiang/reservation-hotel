@@ -3,6 +3,7 @@
         {
             "id": 1,
             "name": "Kahyangan Resort",
+            "rating": 4.8,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
             "imageUrl": "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
             "facilities": [
@@ -23,6 +24,7 @@
         {
             "id": 2,
             "name": "Dangau Resort",
+            "rating": 5.0,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
             "imageUrl": "https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
             "facilities": [
@@ -43,6 +45,7 @@
         {
             "id": 3,
             "name": "Dangau Hotel",
+            "rating": 5.0,
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lectus nec mollis senectus dui vestibulum, lectus vel id. Mattis fermentum sagittis, et, dui a cursus ut leo. Viverra quis in netus at cras tortor. Et habitant ac tincidunt aenean. Velit in ac nisi, turpis.",
             "imageUrl": "https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
             "facilities": [
@@ -58,8 +61,7 @@
                 {
                     "name": "AC"
                 }
-            ],
-            "rooms": []
+            ]
         }
     ],
     "rooms": [

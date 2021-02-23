@@ -26,7 +26,7 @@ class _HotelListState extends State<HotelList> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 150.0,
+          height: 160.0,
           child: BlocConsumer<HotelBloc, HotelState>(
             listener: (context, state) {
               if (state is HotelError) {
@@ -39,9 +39,7 @@ class _HotelListState extends State<HotelList> {
             },
             builder: (context, state) {
               if (state is HotelLoading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
+                return HotelListShimmer();
               } else if (state is HotelLoaded) {
                 return ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
