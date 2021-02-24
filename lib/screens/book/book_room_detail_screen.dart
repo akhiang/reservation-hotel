@@ -70,6 +70,7 @@ class BookRoomDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
+            BookRoomDetailShimmer(),
           ],
         ),
       ),

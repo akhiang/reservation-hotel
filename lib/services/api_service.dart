@@ -9,8 +9,8 @@ class ApiService {
     try {
       final http.Response response = await http.get(BASE_URL + uri);
       responseJson = _returnResponse(response);
-    } catch (error) {
-      print('error' + error.toString());
+    } on SocketException {
+      throw FetchDataException('Error occured');
     }
     return responseJson;
   }

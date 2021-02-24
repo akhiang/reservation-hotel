@@ -5,6 +5,7 @@ class PrimaryButton extends StatelessWidget {
   final Function press;
   final Color color;
   final Color textColor;
+  final double radius;
 
   const PrimaryButton({
     Key key,
@@ -12,6 +13,7 @@ class PrimaryButton extends StatelessWidget {
     this.color = ColorConst.kPrimaryColor,
     this.textColor = ColorConst.kSecondaryColor,
     this.press,
+    this.radius = 32.0,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class PrimaryButton extends StatelessWidget {
       ),
       color: color,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(32.0),
+        borderRadius: BorderRadius.circular(radius),
       ),
     );
   }

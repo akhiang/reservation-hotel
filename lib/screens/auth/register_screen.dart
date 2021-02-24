@@ -9,7 +9,6 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
   DateRangePickerController _datePickerController;
   DateTime _selectedDate;
   FToast fToast;
-  bool _init = false;
   final _formKey = GlobalKey<FormState>();
   final _addressController = TextEditingController();
   final _mobileNumberController = TextEditingController();
@@ -17,9 +16,6 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
   final _birthDateController = TextEditingController();
 
   void _registerSubmit() {
-    setState(() {
-      _init = true;
-    });
     if (_formKey.currentState.validate()) {
       // context.read<LoginCubit>().login(LoginRequest(
       //       number: _mobileNumber,

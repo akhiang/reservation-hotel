@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   RoundedCard(
                     icon: Icons.star,
-                    title: 'Berikan nilai untuk aplikasi ini',
+                    title: 'Rating',
                   ),
                 ],
               ),

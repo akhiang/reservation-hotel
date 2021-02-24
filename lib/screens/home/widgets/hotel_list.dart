@@ -26,17 +26,9 @@ class _HotelListState extends State<HotelList> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
+          margin: EdgeInsets.only(top: 16.0),
           height: 160.0,
-          child: BlocConsumer<HotelBloc, HotelState>(
-            listener: (context, state) {
-              if (state is HotelError) {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('error'),
-                  ),
-                );
-              }
-            },
+          child: BlocBuilder<HotelBloc, HotelState>(
             builder: (context, state) {
               if (state is HotelLoading) {
                 return HotelListShimmer();
@@ -49,8 +41,18 @@ class _HotelListState extends State<HotelList> {
                     return HotelListCard(hotel: state.hotels[index]);
                   },
                 );
+              } else if (state is HotelError) {
+                return ErrorCard(
+                  press: () {
+                    _loadHotelList();
+                  },
+                );
               } else {
-                return Text("off");
+                return ErrorCard(
+                  press: () {
+                    _loadHotelList();
+                  },
+                );
               }
             },
           ),

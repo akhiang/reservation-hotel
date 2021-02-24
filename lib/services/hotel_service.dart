@@ -9,9 +9,8 @@ class HotelService {
     try {
       List<dynamic> response = await apiService.getData('/hotels');
       hotels = response.map((hotel) => Hotel.fromJson(hotel)).toList();
-      print(hotels);
-    } catch (e) {
-      print('e asd ' + e.toString());
+    } catch (error) {
+      throw (error);
     }
     return hotels;
   }
@@ -22,9 +21,8 @@ class HotelService {
     try {
       var response = await apiService.getData('/hotels/$id');
       hotel = Hotel.fromJson(response);
-      print(hotel);
-    } catch (e) {
-      print('e service ' + e.toString());
+    } catch (error) {
+      throw (error);
     }
     return hotel;
   }

@@ -64,12 +64,7 @@ class SelectRoomScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Total Harga', style: kNormalBoldTextStyle),
-                        Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp',
-                                    decimalDigits: 0)
-                                .format(total),
+                        Text(Helper.priceFormat(total.toDouble()),
                             style: kNormalBoldTextStyle),
                       ],
                     )
@@ -208,11 +203,7 @@ class SelectRoomScreen extends StatelessWidget {
                                             item.quantity *
                                             item.room.price));
                                 return Text(
-                                    NumberFormat.currency(
-                                            locale: 'id',
-                                            symbol: 'Rp',
-                                            decimalDigits: 0)
-                                        .format(total),
+                                    Helper.priceFormat(total.toDouble()),
                                     style: kNormalBoldTextStyle);
                               }
                               return Text('Rp0', style: kNormalBoldTextStyle);
@@ -235,8 +226,7 @@ class SelectRoomScreen extends StatelessWidget {
                   press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => OrderRoomSummary()
-                      ),
+                          builder: (context) => OrderRoomSummary()),
                     );
                   },
                 ),

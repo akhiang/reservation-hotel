@@ -12,7 +12,7 @@ class _HotelListShimmerState extends State<HotelListShimmer> {
       height: 160,
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        highlightColor: Colors.grey[200],
         enabled: true,
         child: ListView.builder(
           padding: EdgeInsets.symmetric(horizontal: 8.0),

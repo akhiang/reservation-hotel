@@ -1,7 +1,25 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   static const String routeName = "edit_profile_screen";
+
+  @override
+  _EditProfileScreenState createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> with Validation {
+  final _formKey = GlobalKey<FormState>();
+
+  void _editProfileSubmit() {
+    // String _mobileNumber = _mobileNumberController.text;
+    // String _password = _passwordController.text;
+    if (_formKey.currentState.validate()) {
+      // context.read<LoginCubit>().login(LoginRequest(
+      //       number: _mobileNumber,
+      //       password: _password,
+      //     ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,51 +63,59 @@ class EditProfileScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32.0, vertical: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RoundedInputField(
-                            hint: "Nama Lengkap",
-                            onChanged: (value) {},
-                          ),
-                          RoundedInputField(
-                            hint: "Email",
-                            onChanged: (value) {},
-                          ),
-                          RoundedInputField(
-                            hint: "Nomor HP",
-                            onChanged: (value) {},
-                          ),
-                          SizedBox(height: 16.0),
-                          Text(
-                            'Ubah Password',
-                            style: TextStyle(
-                              color: ColorConst.kSecondaryColor,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InputField(
+                              validation: validateName,
+                              hint: "Nama Lengkap",
+                              onChanged: (value) {},
                             ),
-                          ),
-                          SizedBox(height: 8.0),
-                          RoundedInputField(
-                            hint: "Password Lama",
-                            onChanged: (value) {},
-                          ),
-                          RoundedInputField(
-                            hint: "Password Baru",
-                            onChanged: (value) {},
-                          ),
-                          SizedBox(height: 16.0),
-                          Center(
-                            child: SizedBox(
-                              height: 48.0,
-                              width: 120.0,
-                              child: PrimaryButton(
-                                text: 'Simpan',
-                                press: () {},
+                            InputField(
+                              validation: validateEmail,
+                              hint: "Email",
+                              onChanged: (value) {},
+                            ),
+                            InputField(
+                              validation: validatePhoneNumber,
+                              hint: "Nomor HP",
+                              onChanged: (value) {},
+                            ),
+                            SizedBox(height: 16.0),
+                            Text(
+                              'Ubah Password',
+                              style: TextStyle(
+                                color: ColorConst.kSecondaryColor,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          )
-                        ],
+                            SizedBox(height: 8.0),
+                            InputField(
+                              hint: "Password Lama",
+                              onChanged: (value) {},
+                            ),
+                            InputField(
+                              hint: "Password Baru",
+                              onChanged: (value) {},
+                            ),
+                            SizedBox(height: 16.0),
+                            Center(
+                              child: SizedBox(
+                                height: 48.0,
+                                width: 120.0,
+                                child: PrimaryButton(
+                                  text: 'Simpan',
+                                  press: () {
+                                    _editProfileSubmit();
+                                  },
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

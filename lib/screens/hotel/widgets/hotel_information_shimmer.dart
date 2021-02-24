@@ -7,7 +7,7 @@ class HotelInformationShimmer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24.0),
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        highlightColor: Colors.grey[200],
         enabled: true,
         child: Column(
           children: [

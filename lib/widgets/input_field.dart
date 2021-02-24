@@ -20,7 +20,7 @@ class InputField extends StatelessWidget {
     @required this.hint,
     this.maxLines = 1,
     @required this.onChanged,
-    @required this.validation,
+    this.validation,
     this.keyboard = TextInputType.text,
     this.onSubmitted,
     this.focusNode,

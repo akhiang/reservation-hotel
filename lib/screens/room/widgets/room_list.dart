@@ -24,21 +24,10 @@ class _RoomListState extends State<RoomList> {
   Widget build(BuildContext context) {
     return Container(
       height: 500.0,
-      child: BlocConsumer<RoomCartCubit, RoomCartState>(
-        listener: (context, state) {
-          if (state is RoomError) {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('error'),
-              ),
-            );
-          }
-        },
+      child: BlocBuilder<RoomCartCubit, RoomCartState>(
         builder: (context, state) {
           if (state is RoomCartLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return RoomListShimmer();
           } else if (state is RoomCartLoaded) {
             return ListView.builder(
               padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
@@ -59,8 +48,18 @@ class _RoomListState extends State<RoomList> {
                 );
               },
             );
+          } else if (state is RoomCartError) {
+            return Error(
+              press: () {
+                _loadHotelRoomListToCart();
+              }
+            );
           } else {
-            return Text("off");
+            return Error(
+              press: () {
+                _loadHotelRoomListToCart();
+              }
+            );
           }
         },
       ),
