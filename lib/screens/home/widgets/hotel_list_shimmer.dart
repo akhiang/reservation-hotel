@@ -13,8 +13,8 @@ class _HotelListShimmerState extends State<HotelListShimmer> {
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300],
         highlightColor: Colors.grey[200],
-        enabled: true,
         child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           scrollDirection: Axis.horizontal,
           itemCount: 4,

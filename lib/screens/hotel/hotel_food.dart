@@ -25,6 +25,7 @@ class _HotelFoodState extends State<HotelFood>
         children: [
           _buildPopularFood(context),
           _buildOtherFood(context),
+          HotelFoodShimmer(),
         ],
       ),
     );

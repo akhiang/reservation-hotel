@@ -26,6 +26,7 @@ class _HotelReviewState extends State<HotelReview>
     return SingleChildScrollView(
       child: Column(
         children: [
+          HotelReviewShimmer(),
           _buildRating(),
           _buildReviewBar(),
           Padding(
@@ -41,7 +42,7 @@ class _HotelReviewState extends State<HotelReview>
     );
   }
 
-  Center _buildRating() {
+  Widget _buildRating() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +102,7 @@ class _HotelReviewState extends State<HotelReview>
     );
   }
 
-  Column _buildReviewListTile() {
+  Widget _buildReviewListTile() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

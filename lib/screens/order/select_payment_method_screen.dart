@@ -8,12 +8,12 @@ class SelectPaymentMethodScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(title: 'Metode Pembayaran', isLeading: true),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            PaymentMethodList(),
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PaymentMethodList(),
+          ),
+        ],
       ),
     );
   }

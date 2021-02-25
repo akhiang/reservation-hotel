@@ -275,10 +275,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Total', style: kNormalTextStyle),
-                    Text(
-                        NumberFormat.currency(
-                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                            .format(total),
+                    Text(Helper.priceFormat(total),
                         style: kNormalBoldTextStyle),
                   ],
                 ),
@@ -287,11 +284,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('PPN', style: kNormalTextStyle),
-                    Text(
-                        NumberFormat.currency(
-                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                            .format(ppn),
-                        style: kNormalBoldTextStyle),
+                    Text(Helper.priceFormat(ppn), style: kNormalBoldTextStyle),
                   ],
                 ),
                 SizedBox(height: 4.0),
@@ -299,10 +292,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Grand Total', style: kNormalTextStyle),
-                    Text(
-                        NumberFormat.currency(
-                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                            .format(total + ppn),
+                    Text(Helper.priceFormat(total + ppn),
                         style: kNormalBoldTextStyle),
                   ],
                 ),
@@ -311,10 +301,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Bayar Sekarang', style: kNormalBoldTextStyle),
-                    Text(
-                        NumberFormat.currency(
-                                locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                            .format(total + ppn),
+                    Text(Helper.priceFormat(total + ppn),
                         style: kNormalBoldTextStyle),
                   ],
                 ),

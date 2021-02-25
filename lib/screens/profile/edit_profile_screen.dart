@@ -80,7 +80,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> with Validation {
                             ),
                             InputField(
                               validation: validatePhoneNumber,
-                              hint: "Nomor HP",
+                              hint: "Nomor Telepon",
                               onChanged: (value) {},
                             ),
                             SizedBox(height: 16.0),

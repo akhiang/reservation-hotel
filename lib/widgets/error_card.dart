@@ -16,13 +16,11 @@ class ErrorCard extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-          // color: ColorConst.kThirdColor,
-          color: Colors.red,
+          color: ColorConst.kThirdColor,
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: [kShadow],
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Maaf, terjadi kesalahan', style: kLargeBoldTextStyle),

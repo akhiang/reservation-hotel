@@ -13,6 +13,58 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
   String _methodPaymentName = 'Pilih Metode Pembayaran';
   int _methodPaymentType = 0;
   FToast fToast;
+  File _image;
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Future _imgFromCamera() async {
+    final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
+
+  Future _imgFromGallery() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -104,7 +156,7 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
           children: [
             _buildPaymentMethod(),
             _methodPaymentType == 1
-                ? _buildVirtualAccountCard()
+                ? VirtualAccountCard()
                 : _methodPaymentType == 2
                     ? _buildDebitCardInputField()
                     : SizedBox(),
@@ -199,12 +251,7 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Total', style: kNormalTextStyle),
-                        Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp',
-                                    decimalDigits: 0)
-                                .format(4200000),
+                        Text(Helper.priceFormat(4200000),
                             style: kNormalBoldTextStyle),
                       ],
                     ),
@@ -213,12 +260,7 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('PPN', style: kNormalTextStyle),
-                        Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp',
-                                    decimalDigits: 0)
-                                .format(420000),
+                        Text(Helper.priceFormat(420000),
                             style: kNormalBoldTextStyle),
                       ],
                     ),
@@ -227,12 +269,7 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Grand Total', style: kNormalTextStyle),
-                        Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp',
-                                    decimalDigits: 0)
-                                .format(4620000),
+                        Text(Helper.priceFormat(4620000),
                             style: kNormalBoldTextStyle),
                       ],
                     ),
@@ -241,12 +278,7 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Bayar Sekarang', style: kNormalTextStyle),
-                        Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp',
-                                    decimalDigits: 0)
-                                .format(1617000),
+                        Text(Helper.priceFormat(1617000),
                             style: kNormalBoldTextStyle),
                       ],
                     ),
@@ -261,33 +293,37 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
   Widget _buildChoosePhoto() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: Container(
-        height: 152.0,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: ColorConst.kSecondaryColor.withOpacity(0.05),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.image,
-              size: 40.0,
-              color: ColorConst.kSecondaryColor.withOpacity(0.2),
-            ),
-            SizedBox(height: 16.0),
-            Text('Pilih Foto', style: kNormalTextStyle),
-          ],
-        ),
+      child: InkWell(
+        onTap: () {
+          _showPicker(context);
+        },
+        child: _image == null
+            ? Container(
+                height: SizeConfig.screenHeight(context) * 0.4,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: ColorConst.kSecondaryColor.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.image,
+                      size: 40.0,
+                      color: ColorConst.kSecondaryColor.withOpacity(0.2),
+                    ),
+                    SizedBox(height: 16.0),
+                    Text('Pilih Foto', style: kNormalTextStyle),
+                  ],
+                ),
+              )
+            : Image.file(
+                _image,
+                scale: 2.0,
+                fit: BoxFit.contain,
+              ),
       ),
-    );
-  }
-
-  Widget _buildVirtualAccountCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: VirtualAccountCard(),
     );
   }
 

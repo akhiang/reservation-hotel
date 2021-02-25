@@ -18,16 +18,7 @@ class _PaymentMethodListState extends State<PaymentMethodList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PaymentMethodCubit, PaymentMethodState>(
-      listener: (context, state) {
-        if (state is PaymentMethodError) {
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text('error'),
-            ),
-          );
-        }
-      },
+    return BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
       builder: (context, state) {
         if (state is PaymentMethodLoading) {
           return Center(
@@ -35,15 +26,13 @@ class _PaymentMethodListState extends State<PaymentMethodList> {
           );
         } else if (state is PaymentMethodLoaded) {
           return ListView.builder(
-            shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 24.0),
-            physics: NeverScrollableScrollPhysics(),
             itemCount: state.paymentMethods.length,
             itemBuilder: (_, index) {
               final PaymentMethod paymentMethod = state.paymentMethods[index];
               return RoundedIconCard(
                 title: paymentMethod.name,
-                trailingIcon: Icons.circle,
+                // trailingIcon: Icons.circle,
                 press: () {
                   Navigator.pop(context, paymentMethod);
                 },

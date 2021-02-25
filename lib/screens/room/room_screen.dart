@@ -23,6 +23,7 @@ class RoomScreen extends StatelessWidget {
               ),
             ),
             _buildDescription(),
+            RoomShimmer(),
           ],
         ),
       ),

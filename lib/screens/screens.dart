@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -54,6 +57,8 @@ part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/summary_room_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/hotel_information_shimmer.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/hotel_food_shimmer.dart';
+part 'package:dangau_hotel/screens/hotel/widgets/hotel_review_shimmer.dart';
 
 part 'package:dangau_hotel/screens/room/room_screen.dart';
 part 'package:dangau_hotel/screens/room/select_room_screen.dart';

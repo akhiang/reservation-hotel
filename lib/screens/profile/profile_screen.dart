@@ -39,7 +39,26 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             FlatButton(
-              onPressed: () {},
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => CustomDialog(
+                    title: 'Keluar dari aplikasi?',
+                    description: '',
+                    firstButtonText: 'Tidak',
+                    secondButtonText: 'Keluar',
+                    firstButtonPress: () {
+                      Navigator.of(context).pop();
+                    },
+                    secondButtonPress: () {
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        SystemChannels.platform
+                            .invokeMethod('SystemNavigator.pop');
+                      });
+                    },
+                  ),
+                );
+              },
               child: Text(
                 'Keluar',
                 style: TextStyle(
