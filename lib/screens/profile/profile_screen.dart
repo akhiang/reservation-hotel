@@ -18,7 +18,14 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   RoundedCard(
                     icon: Icons.credit_card,
-                    title: 'Kartu Saya',
+                    title: 'Vertifikasi KTP',
+                    press: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => KtpVerificationScreen(),
+                        ),
+                      );
+                    },
                   ),
                   RoundedCard(
                     icon: Icons.help,
@@ -43,18 +50,13 @@ class ProfileScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => CustomDialog(
-                    title: 'Keluar dari aplikasi?',
-                    description: '',
+                    icon: Icons.help_rounded,
+                    title: 'Keluar dari akun?',
                     firstButtonText: 'Tidak',
                     secondButtonText: 'Keluar',
-                    firstButtonPress: () {
-                      Navigator.of(context).pop();
-                    },
+                    firstButtonPress: () => Navigator.of(context).pop(),
                     secondButtonPress: () {
-                      Future.delayed(const Duration(milliseconds: 1000), () {
-                        SystemChannels.platform
-                            .invokeMethod('SystemNavigator.pop');
-                      });
+                      Navigator.of(context).pop();
                     },
                   ),
                 );

@@ -96,6 +96,7 @@ part 'package:dangau_hotel/screens/profile/profile_screen.dart';
 part 'package:dangau_hotel/screens/profile/edit_profile_screen.dart';
 part 'package:dangau_hotel/screens/profile/help_screen.dart';
 part 'package:dangau_hotel/screens/profile/help_refund_screen.dart';
+part 'package:dangau_hotel/screens/profile/ktp_verification_screen.dart';
 part 'package:dangau_hotel/screens/profile/widgets/profile_list_tile.dart';
 
 part 'package:dangau_hotel/screens/main_screen.dart';

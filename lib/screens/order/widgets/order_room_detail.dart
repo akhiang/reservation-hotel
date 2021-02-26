@@ -1,10 +1,109 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class OrderRoomDetail extends StatelessWidget {
+class OrderRoomDetail extends StatefulWidget {
   final RoomCart selectedRoom;
 
   const OrderRoomDetail({Key key, @required this.selectedRoom})
       : super(key: key);
+
+  @override
+  _OrderRoomDetailState createState() => _OrderRoomDetailState();
+}
+
+class _OrderRoomDetailState extends State<OrderRoomDetail> {
+  void _showRoomPreferenceBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Wrap(
+          children: [
+            Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorConst.kThirdColor,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 10.0,
+                        color: Colors.black.withOpacity(0.2),
+                      )
+                    ],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24.0),
+                      topRight: Radius.circular(24.0),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DragIndicator(),
+                      SizedBox(height: 16.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24.0, vertical: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.meeting_room,
+                                    color: ColorConst.kErrorColor),
+                                Text(' ${widget.selectedRoom.quantity} Kamar',
+                                    style: kNormalBoldTextStyle),
+                              ],
+                            ),
+                            SizedBox(height: 8.0),
+                            Row(
+                              children: [
+                                widget.selectedRoom.roomPreference.isSmoke ==
+                                        true
+                                    ? Text('Smoking', style: kNormalTextStyle)
+                                    : Text('Non-Smoking',
+                                        style: kNormalTextStyle),
+                                SizedBox(width: 8.0),
+                                Icon(Icons.lens,
+                                    size: 8.0,
+                                    color: ColorConst.kSecondaryColor
+                                        .withOpacity(0.5)),
+                                SizedBox(width: 8.0),
+                                widget.selectedRoom.roomPreference
+                                            .isSingleBed ==
+                                        true
+                                    ? Text('Single Bed',
+                                        style: kNormalTextStyle)
+                                    : Text('Twin Bed', style: kNormalTextStyle),
+                              ],
+                            ),
+                            SizedBox(height: 8.0),
+                            widget.selectedRoom.roomPreference.note == ''
+                                ? SizedBox()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Catatan',
+                                          style: kNormalBoldTextStyle),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                          '${widget.selectedRoom.roomPreference.note}',
+                                          style: kNormalTextStyle),
+                                    ],
+                                  ),
+                            SizedBox(height: 40.0),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +115,31 @@ class OrderRoomDetail extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                  '${selectedRoom.room.name}, ${selectedRoom.room.variant}'
-                      .titleCase,
-                  style: kNormalBoldTextStyle),
-              Icon(Icons.info, color: ColorConst.kSecondaryColor)
+              Expanded(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '${widget.selectedRoom.room.name}'.titleCase,
+                        style: kNormalBoldTextStyle,
+                      ),
+                      TextSpan(
+                        text: "\n${widget.selectedRoom.room.variant}".titleCase,
+                        style: kNormalBoldTextStyle,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _showRoomPreferenceBottomSheet();
+                },
+                child: Icon(
+                  Icons.info,
+                  color: ColorConst.kSecondaryColor,
+                ),
+              ),
             ],
           ),
           SizedBox(height: 8.0),
@@ -28,7 +147,8 @@ class OrderRoomDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Jumlah kamar', style: kNormalTextStyle),
-              Text('${selectedRoom.quantity}', style: kNormalBoldTextStyle),
+              Text('${widget.selectedRoom.quantity}',
+                  style: kNormalBoldTextStyle),
             ],
           ),
           SizedBox(height: 4.0),
@@ -46,9 +166,7 @@ class OrderRoomDetail extends StatelessWidget {
             children: [
               Text('Harga/malam', style: kNormalTextStyle),
               Text(
-                  NumberFormat.currency(
-                          locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                      .format(selectedRoom.room.price),
+                  Helper.priceFormat(widget.selectedRoom.room.price.toDouble()),
                   style: kNormalBoldTextStyle),
             ],
           ),
@@ -58,11 +176,10 @@ class OrderRoomDetail extends StatelessWidget {
             children: [
               Text('Sub-Total', style: kNormalTextStyle),
               Text(
-                  NumberFormat.currency(
-                          locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                      .format(dateState.rangeNight *
-                          selectedRoom.quantity *
-                          selectedRoom.room.price),
+                  Helper.priceFormat((dateState.rangeNight *
+                          widget.selectedRoom.quantity *
+                          widget.selectedRoom.room.price)
+                      .toDouble()),
                   style: kNormalBoldTextStyle),
             ],
           ),

@@ -1,6 +1,7 @@
 part of 'package:dangau_hotel/widgets/widgets.dart';
 
 class CustomDialog extends StatelessWidget {
+  final IconData icon;
   final String title;
   final String description;
   final String firstButtonText;
@@ -9,8 +10,9 @@ class CustomDialog extends StatelessWidget {
   final Function secondButtonPress;
 
   CustomDialog({
+    this.icon = Icons.error_rounded,
     @required this.title,
-    @required this.description,
+    this.description,
     @required this.firstButtonText,
     @required this.secondButtonText,
     @required this.firstButtonPress,
@@ -38,13 +40,14 @@ class CustomDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(Icons.error_rounded,
-              color: ColorConst.kPrimaryColor, size: 56.0),
+          Icon(icon, color: ColorConst.kPrimaryColor, size: 56.0),
           SizedBox(height: 24.0),
           Text(title, style: kLargeBoldTextStyle),
           SizedBox(height: 24.0),
-          Text(description,
-              textAlign: TextAlign.center, style: kNormalTextStyle),
+          description != null
+              ? Text(description,
+                  textAlign: TextAlign.center, style: kNormalTextStyle)
+              : SizedBox(),
           SizedBox(height: 24.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

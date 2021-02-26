@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 part 'package:dangau_hotel/widgets/custom_app_bar.dart';
 part 'package:dangau_hotel/widgets/custom_dialog.dart';
+part 'package:dangau_hotel/widgets/drag_indicator.dart';
 part 'package:dangau_hotel/widgets/error.dart';
 part 'package:dangau_hotel/widgets/error_card.dart';
 part 'package:dangau_hotel/widgets/expanded_section.dart';

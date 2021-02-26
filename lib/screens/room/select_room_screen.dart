@@ -15,12 +15,11 @@ class SelectRoomScreen extends StatelessWidget {
       builder: (context) => Wrap(
         children: [
           Container(
-            padding: EdgeInsets.all(32.0),
             decoration: new BoxDecoration(
               color: ColorConst.kThirdColor,
               borderRadius: new BorderRadius.only(
-                topLeft: const Radius.circular(25.0),
-                topRight: const Radius.circular(25.0),
+                topLeft: const Radius.circular(24.0),
+                topRight: const Radius.circular(24.0),
               ),
             ),
             child: BlocBuilder<RoomCartCubit, RoomCartState>(
@@ -38,36 +37,49 @@ class SelectRoomScreen extends StatelessWidget {
                             item.quantity *
                             item.room.price));
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Ringkasan Harga', style: kLargeBoldTextStyle),
-                    SizedBox(height: 8.0),
-                    Text('${dateState.rangeNight} Malam, $roomTotal Kamar',
-                        style: kNormalBoldTextStyle),
-                    SizedBox(height: 8.0),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: selectedRooms.length,
-                      itemBuilder: (context, index) {
-                        return SummaryRoomListTile(
-                          selectedRoom: selectedRooms[index],
-                        );
-                      },
-                    ),
+                    DragIndicator(),
+                    SizedBox(height: 16.0),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Divider(
-                          color: ColorConst.kSecondaryColor.withOpacity(0.5)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Ringkasan Harga', style: kLargeBoldTextStyle),
+                          SizedBox(height: 8.0),
+                          Text(
+                              '${dateState.rangeNight} Malam, $roomTotal Kamar',
+                              style: kNormalBoldTextStyle),
+                          SizedBox(height: 8.0),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: selectedRooms.length,
+                            itemBuilder: (context, index) {
+                              return SummaryRoomListTile(
+                                selectedRoom: selectedRooms[index],
+                              );
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Divider(
+                                color: ColorConst.kSecondaryColor
+                                    .withOpacity(0.5)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Total Harga', style: kNormalBoldTextStyle),
+                              Text(Helper.priceFormat(total.toDouble()),
+                                  style: kNormalBoldTextStyle),
+                            ],
+                          ),
+                          SizedBox(height: 40.0),
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Total Harga', style: kNormalBoldTextStyle),
-                        Text(Helper.priceFormat(total.toDouble()),
-                            style: kNormalBoldTextStyle),
-                      ],
-                    )
                   ],
                 );
               },

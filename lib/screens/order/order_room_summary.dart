@@ -6,6 +6,8 @@ class OrderRoomSummary extends StatefulWidget {
 }
 
 class _OrderRoomSummaryState extends State<OrderRoomSummary> {
+  OverlayEntry _overlayEntry;
+
   @override
   void initState() {
     super.initState();
