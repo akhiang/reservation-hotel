@@ -15,6 +15,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case LoginScreen.routeName:
       builder = (context) => LoginScreen();
       break;
+    case RegisterScreen.routeName:
+      builder = (context) => RegisterScreen();
+      break;
     case MainScreen.routeName:
       builder = (context) => MainScreen();
       break;
@@ -53,6 +56,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       break;
     case HelpScreen.routeName:
       builder = (context) => HelpScreen();
+      break;
+    case KtpVerificationScreen.routeName:
+      builder = (context) => KtpVerificationScreen();
       break;
     case EditProfileScreen.routeName:
       builder = (context) => EditProfileScreen();

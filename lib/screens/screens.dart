@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';

@@ -30,11 +30,8 @@ class LoginScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => RegisterScreen(),
-                              ),
-                            );
+                            Navigator.pushNamed(
+                                context, RegisterScreen.routeName);
                           },
                           child: Text(
                             " Daftar Disini",

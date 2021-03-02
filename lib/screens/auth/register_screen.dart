@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static const String routeName = "register_screen";
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }

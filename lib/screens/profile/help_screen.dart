@@ -29,11 +29,8 @@ class HelpScreen extends StatelessWidget {
                 icon: null,
                 title: 'Saya ingin melakukan refund',
                 press: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => HelpRefundScreen(),
-                    ),
-                  );
+                  Navigator.push(
+                      context, SlideLeftRoute(page: HelpRefundScreen()));
                 },
               ),
               SizedBox(height: 88.0)

@@ -39,11 +39,7 @@ class HomeHeader extends StatelessWidget {
           ),
           RawMaterialButton(
             onPressed: () {
-              Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute(
-                  builder: (context) => LoginScreen(),
-                ),
-              );
+              Navigator.pushNamed(context, LoginScreen.routeName);
             },
             constraints: BoxConstraints(),
             elevation: 0.0,

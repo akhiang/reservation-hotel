@@ -22,22 +22,15 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.credit_card,
                     title: 'Vertifikasi KTP',
                     press: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => KtpVerificationScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(
+                          context, KtpVerificationScreen.routeName);
                     },
                   ),
                   RoundedCard(
                     icon: Icons.help,
                     title: 'Bantuan',
                     press: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => HelpScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, HelpScreen.routeName);
                     },
                   ),
                   RoundedCard(

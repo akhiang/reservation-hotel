@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class KtpVerificationScreen extends StatefulWidget {
+  static const String routeName = "ktp_verification_screen";
+
   @override
   _KtpVerificationScreenState createState() => _KtpVerificationScreenState();
 }
@@ -49,6 +51,14 @@ class _KtpVerificationScreenState extends State<KtpVerificationScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(title: 'Verifikasi KTP', isLeading: true),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 104.0),
+        height: 80.0,
+        child: PrimaryButton(
+          text: 'Verifikasi',
+          press: () {},
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
