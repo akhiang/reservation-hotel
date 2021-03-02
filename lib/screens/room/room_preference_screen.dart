@@ -4,6 +4,8 @@ enum SmokingOption { smoking, nonSmoking }
 enum BedOption { singleBed, twinBed }
 
 class RoomPreferenceScreen extends StatefulWidget {
+  static const String routeName = "room_preference_screen";
+
   final RoomCart roomCart;
 
   const RoomPreferenceScreen({Key key, @required this.roomCart})

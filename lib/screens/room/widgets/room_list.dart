@@ -36,30 +36,20 @@ class _RoomListState extends State<RoomList> {
                 return RoomCard(
                   roomCart: state.roomCart[index],
                   press: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RoomPreferenceScreen(
-                          roomCart: state.roomCart[index],
-                        ),
-                      ),
-                    );
+                    Navigator.pushNamed(context, RoomPreferenceScreen.routeName,
+                        arguments: state.roomCart[index]);
                   },
                 );
               },
             );
           } else if (state is RoomCartError) {
-            return Error(
-              press: () {
-                _loadHotelRoomListToCart();
-              }
-            );
+            return Error(press: () {
+              _loadHotelRoomListToCart();
+            });
           } else {
-            return Error(
-              press: () {
-                _loadHotelRoomListToCart();
-              }
-            );
+            return Error(press: () {
+              _loadHotelRoomListToCart();
+            });
           }
         },
       ),

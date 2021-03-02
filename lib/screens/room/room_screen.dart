@@ -1,9 +1,14 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomScreen extends StatelessWidget {
+  static const String routeName = "room_screen";
+
   final Room room;
 
-  const RoomScreen({Key key, this.room}) : super(key: key);
+  const RoomScreen({
+    Key key,
+    @required this.room,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

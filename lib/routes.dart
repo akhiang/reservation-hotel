@@ -3,6 +3,8 @@ import 'package:dangau_hotel/screens/screens.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   var builder;
+  var args = settings.arguments;
+
   switch (settings.name) {
     case SplashScreen.routeName:
       builder = (context) => SplashScreen();
@@ -18,6 +20,36 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       break;
     case MainScreen2.routeName:
       builder = (context) => MainScreen2();
+      break;
+    case MainScreen3.routeName:
+      builder = (context) => MainScreen3();
+      break;
+    case HotelScreen.routeName:
+      builder = (context) => HotelScreen(hotel: args);
+      break;
+    case SelectRoomScreen.routeName:
+      builder = (context) => SelectRoomScreen(hotel: args);
+      break;
+    case RoomScreen.routeName:
+      builder = (context) => RoomScreen(room: args);
+      break;
+    case RoomPreferenceScreen.routeName:
+      builder = (context) => RoomPreferenceScreen(roomCart: args);
+      break;
+    case OrderRoomSummary.routeName:
+      builder = (context) => OrderRoomSummary();
+      break;
+    case OrderCustomerContact.routeName:
+      builder = (context) => OrderCustomerContact();
+      break;
+    case OrderTerm.routeName:
+      builder = (context) => OrderTerm();
+      break;
+    case OrderPaymentScreen.routeName:
+      builder = (context) => OrderPaymentScreen();
+      break;
+    case OrderSuccessScreen.routeName:
+      builder = (context) => OrderSuccessScreen();
       break;
     case HelpScreen.routeName:
       builder = (context) => HelpScreen();

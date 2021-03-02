@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderCustomerContact extends StatefulWidget {
+  static const String routeName = "order_customer_contact";
+
   @override
   _OrderCustomerContactState createState() => _OrderCustomerContactState();
 }
@@ -42,14 +44,10 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
             if (_orderForOtherCheckbox) {
               if (formKey.currentState.validate()) {
                 formKey.currentState.save();
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => OrderTerm()),
-                );
+                Navigator.pushNamed(context, OrderTerm.routeName);
               }
             } else {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => OrderTerm()),
-              );
+              Navigator.pushNamed(context, OrderTerm.routeName);
             }
           },
         ),

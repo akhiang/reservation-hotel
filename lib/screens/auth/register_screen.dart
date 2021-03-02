@@ -180,7 +180,27 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
                   onChanged: (value) {},
                 ),
                 SizedBox(height: 16.0),
-                Text('Tanggal Lahir', style: kNormalBoldTextStyle),
+                Row(
+                  children: [
+                    Text('Tanggal Lahir', style: kNormalBoldTextStyle),
+                    SizedBox(width: 8.0),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => InfoDialog(
+                            icon: Icons.info,
+                            description:
+                                'Anda harus berumur diatas 18 tahun untuk mendaftar',
+                            buttonText: 'Oke, mengerti',
+                            press: () => Navigator.of(context).pop(),
+                          ),
+                        );
+                      },
+                      child: Icon(Icons.help_outline_outlined),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 16.0),
                 InputField(
                   tap: () {
@@ -193,32 +213,6 @@ class _RegisterScreenState extends State<RegisterScreen> with Validation {
                   suffixIcon: Icons.edit,
                   onChanged: (value) {},
                 ),
-                // GestureDetector(
-                //   onTap: () {
-                //     _showDateCalenderBottomSheet();
-                //   },
-                //   child: Container(
-                //     padding:
-                //         EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-                //     width: double.infinity,
-                //     decoration: BoxDecoration(
-                //       color: ColorConst.kSecondaryColor.withOpacity(0.05),
-                //       borderRadius: BorderRadius.circular(32.0),
-                //     ),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //       children: [
-                //         _selectedDate == null
-                //             ? Text('Tanggal Lahir', style: kNormalTextStyle)
-                //             : Text(Helper.dateFormat(_selectedDate),
-                //                 style: kNormalTextStyle),
-                //         Icon(Icons.edit,
-                //             size: 20.0,
-                //             color: ColorConst.kSecondaryColor.withOpacity(0.5)),
-                //       ],
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

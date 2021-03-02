@@ -44,13 +44,12 @@ part 'package:dangau_hotel/screens/home/widgets/hotel_list.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list_card.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list_shimmer.dart';
 
-part 'package:dangau_hotel/screens/hotel/hotel_screen_5.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_food.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_review.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/hotel_contact_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/facility_card.dart';
-part 'package:dangau_hotel/screens/hotel/widgets/room_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/food_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/other_food_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/review_bar.dart';
@@ -66,6 +65,7 @@ part 'package:dangau_hotel/screens/room/room_preference_screen.dart';
 part 'package:dangau_hotel/screens/room/widgets/room_shimmer.dart';
 part 'package:dangau_hotel/screens/room/widgets/room_list.dart';
 part 'package:dangau_hotel/screens/room/widgets/room_list_shimmer.dart';
+part 'package:dangau_hotel/screens/room/widgets/room_card.dart';
 
 part 'package:dangau_hotel/screens/order/order_screen.dart';
 part 'package:dangau_hotel/screens/order/order_room_summary.dart';
@@ -101,5 +101,6 @@ part 'package:dangau_hotel/screens/profile/widgets/profile_list_tile.dart';
 
 part 'package:dangau_hotel/screens/main_screen.dart';
 part 'package:dangau_hotel/screens/main_screen_2.dart';
+part 'package:dangau_hotel/screens/main_screen_3.dart';
 part 'package:dangau_hotel/screens/tab_item.dart';
 part 'package:dangau_hotel/screens/bottom_navigation.dart';

@@ -1,13 +1,13 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderRoomSummary extends StatefulWidget {
+  static const String routeName = "order_room_summary";
+
   @override
   _OrderRoomSummaryState createState() => _OrderRoomSummaryState();
 }
 
 class _OrderRoomSummaryState extends State<OrderRoomSummary> {
-  OverlayEntry _overlayEntry;
-
   @override
   void initState() {
     super.initState();
@@ -33,9 +33,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
         child: PrimaryButton(
           text: 'Lanjut',
           press: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => OrderCustomerContact()),
-            );
+            Navigator.pushNamed(context, OrderCustomerContact.routeName);
           },
         ),
       ),

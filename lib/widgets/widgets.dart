@@ -9,6 +9,7 @@ part 'package:dangau_hotel/widgets/error.dart';
 part 'package:dangau_hotel/widgets/error_card.dart';
 part 'package:dangau_hotel/widgets/expanded_section.dart';
 part 'package:dangau_hotel/widgets/hero_image.dart';
+part 'package:dangau_hotel/widgets/info_dialog.dart';
 part 'package:dangau_hotel/widgets/loading_indicator.dart';
 part 'package:dangau_hotel/widgets/radio_button.dart';
 part 'package:dangau_hotel/widgets/radio_button_tile.dart';

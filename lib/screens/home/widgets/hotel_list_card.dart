@@ -12,13 +12,14 @@ class HotelListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context, rootNavigator: true).push(
-          MaterialPageRoute(
-            builder: (context) => HotelScreen5(
-              hotel: hotel,
-            ),
-          ),
-        );
+        // Navigator.of(context, rootNavigator: true).push(
+        //   MaterialPageRoute(
+        //     builder: (context) => HotelScreen(
+        //       hotel: hotel,
+        //     ),
+        //   ),
+        // );
+        Navigator.pushNamed(context, HotelScreen.routeName, arguments: hotel);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.0),

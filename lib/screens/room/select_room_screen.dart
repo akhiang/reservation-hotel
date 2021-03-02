@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class SelectRoomScreen extends StatelessWidget {
+  static const String routeName = "select_room_screen";
+
   final Hotel hotel;
 
   const SelectRoomScreen({
@@ -236,10 +238,7 @@ class SelectRoomScreen extends StatelessWidget {
                 child: PrimaryButton(
                   text: 'Pesan Sekarang',
                   press: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => OrderRoomSummary()),
-                    );
+                    Navigator.pushNamed(context, OrderRoomSummary.routeName);
                   },
                 ),
               ),

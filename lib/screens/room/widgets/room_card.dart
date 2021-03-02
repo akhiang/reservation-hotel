@@ -14,11 +14,8 @@ class RoomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => RoomScreen(room: roomCart.room),
-          ),
-        );
+        Navigator.pushNamed(context, RoomScreen.routeName,
+            arguments: roomCart.room);
       },
       child: Container(
         height: 128.0,

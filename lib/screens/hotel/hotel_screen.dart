@@ -1,15 +1,17 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class HotelScreen5 extends StatefulWidget {
+class HotelScreen extends StatefulWidget {
+  static const String routeName = "hotel_screen";
+
   final Hotel hotel;
 
-  const HotelScreen5({Key key, @required this.hotel}) : super(key: key);
+  const HotelScreen({Key key, @required this.hotel}) : super(key: key);
 
   @override
-  _HotelScreen5State createState() => _HotelScreen5State();
+  _HotelScreenState createState() => _HotelScreenState();
 }
 
-class _HotelScreen5State extends State<HotelScreen5>
+class _HotelScreenState extends State<HotelScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   int selectedIndex = 0;

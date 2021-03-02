@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderPaymentScreen extends StatefulWidget {
+  static const String routeName = "order_payment_screen";
+
   @override
   _OrderPaymentScreenState createState() => _OrderPaymentScreenState();
 }
@@ -25,17 +27,23 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
                 children: <Widget>[
                   new ListTile(
                       leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
-                      onTap: () {
-                        _imgFromGallery();
+                      title: new Text('Gallery'),
+                      onTap: () async {
                         Navigator.of(context).pop();
+                        var image = await imgFromGallery();
+                        setState(() {
+                          _image = image;
+                        });
                       }),
                   new ListTile(
                     leading: new Icon(Icons.photo_camera),
                     title: new Text('Camera'),
-                    onTap: () {
-                      _imgFromCamera();
+                    onTap: () async {
                       Navigator.of(context).pop();
+                      var image = await imgFromCamera();
+                      setState(() {
+                        _image = image;
+                      });
                     },
                   ),
                 ],
@@ -43,27 +51,6 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
             ),
           );
         });
-  }
-
-  Future _imgFromCamera() async {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
-  }
-
-  Future _imgFromGallery() async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
   }
 
   @override
@@ -130,20 +117,12 @@ class _OrderPaymentScreenState extends State<OrderPaymentScreen>
               if (_methodPaymentType == 2) {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => OrderSuccessScreen(),
-                  //   ),
-                  // );
-                  print('sukses');
+                  Navigator.pushNamedAndRemoveUntil(context,
+                      OrderSuccessScreen.routeName, (route) => route.isFirst);
                 }
               } else {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => OrderSuccessScreen(),
-                //   ),
-                // );
-                print('sukses');
+                Navigator.pushNamedAndRemoveUntil(context,
+                    OrderSuccessScreen.routeName, (route) => route.isFirst);
               }
             } else {
               _showToast();

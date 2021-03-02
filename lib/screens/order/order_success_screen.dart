@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
+  static const String routeName = "order_success_screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +17,7 @@ class OrderSuccessScreen extends StatelessWidget {
         child: PrimaryButton(
           text: 'Kembali ke Beranda',
           press: () {
-            Navigator.of(context).popUntil(
-              ModalRoute.withName(Navigator.defaultRouteName),
-            );
+            Navigator.pop(context);
           },
         ),
       ),

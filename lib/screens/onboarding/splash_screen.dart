@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context, OnBoardingScreen.routeName, (route) => false);
     } else {
       Navigator.pushNamedAndRemoveUntil(
-          context, MainScreen.routeName, (route) => false);
+          context, MainScreen3.routeName, (route) => false);
     }
   }
 

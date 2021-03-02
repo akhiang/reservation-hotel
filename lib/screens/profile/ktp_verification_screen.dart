@@ -1,6 +1,48 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class KtpVerificationScreen extends StatelessWidget {
+class KtpVerificationScreen extends StatefulWidget {
+  @override
+  _KtpVerificationScreenState createState() => _KtpVerificationScreenState();
+}
+
+class _KtpVerificationScreenState extends State<KtpVerificationScreen> {
+  File _image;
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        useRootNavigator: true,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.photo_library),
+                    title: new Text('Gallery'),
+                    onTap: () async {
+                      var image = await imgFromGallery();
+                      setState(() {
+                        _image = image;
+                      });
+                      Navigator.of(context).pop();
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.photo_camera),
+                  title: new Text('Camera'),
+                  onTap: () async {
+                    var image = await imgFromCamera();
+                    setState(() {
+                      _image = image;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,12 +51,18 @@ class KtpVerificationScreen extends StatelessWidget {
         child: CustomAppBar(title: 'Verifikasi KTP', isLeading: true),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text('Upload Foto KTP Anda', style: kLargeBoldTextStyle),
-            _buildPhoto(context),
-            _buildTerm(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Upload Foto KTP Anda', style: kLargeBoldTextStyle),
+              SizedBox(height: 16.0),
+              _buildPhoto(context),
+              SizedBox(height: 24.0),
+              _buildTerm(),
+            ],
+          ),
         ),
       ),
     );
@@ -22,35 +70,49 @@ class KtpVerificationScreen extends StatelessWidget {
 
   Widget _buildTerm() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Syarat & Ketentuan Upload KTP', style: kNormalBoldTextStyle),
+        Text('Syarat & Ketentuan Upload KTP', style: kLargeBoldTextStyle),
+        SizedBox(height: 16.0),
+        OrderTermTile(title: 'Lorem Ipsum'),
+        OrderTermTile(title: 'Lorem Ipsum'),
+        OrderTermTile(title: 'Lorem Ipsum'),
+        OrderTermTile(title: 'Lorem Ipsum'),
       ],
     );
   }
 
   Widget _buildPhoto(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: Container(
-        height: SizeConfig.screenHeight(context) * 0.3,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: ColorConst.kSecondaryColor.withOpacity(0.05),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.image,
-              size: 40.0,
-              color: ColorConst.kSecondaryColor.withOpacity(0.2),
+    return InkWell(
+      onTap: () {
+        _showPicker(context);
+      },
+      child: _image == null
+          ? Container(
+              height: SizeConfig.screenHeight(context) * 0.3,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: ColorConst.kSecondaryColor.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.image,
+                    size: 40.0,
+                    color: ColorConst.kSecondaryColor.withOpacity(0.2),
+                  ),
+                  SizedBox(height: 16.0),
+                  Text('Pilih Foto', style: kNormalTextStyle),
+                ],
+              ),
+            )
+          : Image.file(
+              _image,
+              scale: 2.0,
+              fit: BoxFit.contain,
             ),
-            SizedBox(height: 16.0),
-            Text('Pilih Foto', style: kNormalTextStyle),
-          ],
-        ),
-      ),
     );
   }
 }

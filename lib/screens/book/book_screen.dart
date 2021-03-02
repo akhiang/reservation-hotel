@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class BookScreen extends StatefulWidget {
+  static const String routeName = "book_screen";
+
   @override
   _BookScreenState createState() => _BookScreenState();
 }

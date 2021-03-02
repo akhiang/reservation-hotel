@@ -8,7 +8,7 @@ class MainScreen2 extends StatefulWidget {
 }
 
 class _MainScreen2State extends State<MainScreen2> {
-  static int currentTab = 0;
+  int currentTab = 0;
 
   final List<TabItem> tabs = [
     TabItem(

@@ -72,13 +72,8 @@ class _HotelInformationState extends State<HotelInformation>
                     text: 'Cek Kamar',
                     press: () {
                       Navigator.pop(context);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              SelectRoomScreen(hotel: widget.hotel),
-                        ),
-                      );
-                      // }
+                      Navigator.pushNamed(context, SelectRoomScreen.routeName,
+                          arguments: widget.hotel);
                     },
                   ),
                 ),

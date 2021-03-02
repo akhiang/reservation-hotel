@@ -1,6 +1,8 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderTerm extends StatefulWidget {
+  static const String routeName = "order_term";
+
   @override
   _OrderTermState createState() => _OrderTermState();
 }
@@ -29,9 +31,7 @@ class _OrderTermState extends State<OrderTerm> {
           text: 'Selesai',
           press: () {
             if (_acceptCheckboxListTile) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => OrderPaymentScreen()),
-              );
+              Navigator.pushNamed(context, OrderPaymentScreen.routeName);
             } else {
               setState(() {
                 _isInit = false;
