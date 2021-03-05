@@ -20,11 +20,11 @@ class _OrderCustomerContactState extends State<OrderCustomerContact>
 
   @override
   void dispose() {
+    super.dispose();
     _nameFocusNode.dispose();
     _phoneFocusNode.dispose();
     _emailFocusNode.dispose();
     _addressFocusNode.dispose();
-    super.dispose();
   }
 
   @override

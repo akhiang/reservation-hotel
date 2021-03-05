@@ -1,18 +1,16 @@
 part of 'package:dangau_hotel/models/models.dart';
 
 class ApiResponse<T> {
-  Status status;
-  T data;
   String message;
+  T data;
 
-  ApiResponse.loading(this.message) : status = Status.LOADING;
-  ApiResponse.completed(this.data) : status = Status.COMPLETED;
-  ApiResponse.error(this.message) : status = Status.ERROR;
+  ApiResponse({
+    this.message,
+    this.data,
+  });
 
   @override
   String toString() {
-    return "Status : $status \n Message : $message \n Data : $data";
+    return "Message : $message \nData : $data";
   }
 }
-
-enum Status { LOADING, COMPLETED, ERROR }

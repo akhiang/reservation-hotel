@@ -13,3 +13,4 @@ part 'package:dangau_hotel/models/requests/login_request.dart';
 part 'package:dangau_hotel/models/requests/register_request.dart';
 
 part 'package:dangau_hotel/models/responses/api_response.dart';
+part 'package:dangau_hotel/models/responses/hotel_response.dart';

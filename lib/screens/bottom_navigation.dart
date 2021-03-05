@@ -52,6 +52,7 @@ class BottomNavigation extends StatelessWidget {
         color: _tabColor(index: index),
         size: 24.0,
       ),
+      // ignore: deprecated_member_use
       title: Text(
         tabName,
         style: TextStyle(

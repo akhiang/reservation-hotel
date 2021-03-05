@@ -35,10 +35,10 @@ part 'package:dangau_hotel/screens/auth/widgets/otp_input_field.dart';
 part 'package:dangau_hotel/screens/auth/widgets/onboarding_content.dart';
 
 part 'package:dangau_hotel/screens/home/home_screen.dart';
-part 'package:dangau_hotel/screens/home/find_hotel_screen.dart';
+// part 'package:dangau_hotel/screens/home/find_hotel_screen.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_carousel.dart';
 part 'package:dangau_hotel/screens/home/widgets/home_header.dart';
-part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
+// part 'package:dangau_hotel/screens/home/widgets/home_date_picker.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list_card.dart';
 part 'package:dangau_hotel/screens/home/widgets/hotel_list_shimmer.dart';

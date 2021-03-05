@@ -2,61 +2,74 @@ part of 'package:dangau_hotel/models/models.dart';
 
 class Hotel extends Equatable {
   final int id;
-  final String name;
   final double rating;
   final String description;
+  final String name;
+  final String address;
+  final String latitude;
+  final String longitude;
+  final String city;
+  final String phone;
+  final String fax;
+  final String website;
+  final String facebook;
+  final String instagram;
+  final String email;
+  final String facilitiesId;
+  final String createdAt;
+  final String updatedAt;
   final String imageUrl;
-  final List<Facility> facilities;
   // final List<Room> rooms;
 
   Hotel({
     this.id,
-    this.name,
     this.rating,
     this.description,
+    this.name,
+    this.address,
+    this.latitude,
+    this.longitude,
+    this.city,
+    this.phone,
+    this.fax,
+    this.website,
+    this.facebook,
+    this.instagram,
+    this.email,
+    this.facilitiesId,
+    this.createdAt,
+    this.updatedAt,
     this.imageUrl,
-    this.facilities,
-    // this.rooms,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
     return Hotel(
       id: json['id'],
+      rating: json['rating'],
+      description: 'asdasd',
       name: json['name'],
-      rating: json['rating'].toDouble(),
-      description: json['description'],
-      imageUrl: json['imageUrl'],
-      facilities: List<Facility>.from(
-          json['facilities'].map((facility) => Facility.fromJson(facility))),
+      address: json['address'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      city: json['city'],
+      phone: json['phone'],
+      fax: json['fax'],
+      website: json['website'],
+      facebook: json['facebook'],
+      instagram: json['instagram'],
+      email: json['email'],
+      facilitiesId: json['facilitiesId'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
+      imageUrl:
+          "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       // rooms: List<Room>.from(json['rooms'].map((room) => Room.fromJson(room))),
     );
   }
 
   @override
-  List<Object> get props =>
-      [id, name, rating, description, imageUrl, facilities];
+  List<Object> get props => [];
 
   @override
-  String toString() => 'Hotel { id: $id, name: $name, rating: $rating }';
+  String toString() => 'Hotel { id: $id, name: $name }';
 }
-
-final List<Hotel> hotels = [
-  Hotel(
-    id: 1,
-    name: 'Kahyangan Resort',
-    imageUrl:
-        'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  ),
-  Hotel(
-    id: 2,
-    name: 'Dangau Resort',
-    imageUrl:
-        'https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  ),
-  Hotel(
-    id: 3,
-    name: 'Dangau Hotel',
-    imageUrl:
-        'https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  ),
-];

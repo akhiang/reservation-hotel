@@ -7,6 +7,8 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> with Validation {
   final _formKey = GlobalKey<FormState>();
+  final _phoneFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
   final _mobileNumberController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -23,9 +25,11 @@ class _LoginFormState extends State<LoginForm> with Validation {
 
   @override
   void dispose() {
+    super.dispose();
+    _phoneFocusNode.dispose();
+    _passwordFocusNode.dispose();
     _mobileNumberController.dispose();
     _passwordController.dispose();
-    super.dispose();
   }
 
   @override
@@ -48,12 +52,16 @@ class _LoginFormState extends State<LoginForm> with Validation {
             Text('Login', style: kLargeBoldTextStyle),
             SizedBox(height: 8.0),
             InputField(
+              focusNode: _phoneFocusNode,
               hint: "Nomor Telepon",
               controller: _mobileNumberController,
               validation: validatePhoneNumberLogin,
+              keyboard: TextInputType.phone,
+              onSubmitted: (_) => _passwordFocusNode.requestFocus(),
               onChanged: (value) {},
             ),
             InputField(
+              focusNode: _passwordFocusNode,
               hint: "Password",
               controller: _passwordController,
               validation: validatePasswordLogin,

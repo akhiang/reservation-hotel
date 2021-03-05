@@ -167,7 +167,7 @@ class _HotelInformationState extends State<HotelInformation>
                   children: <Widget>[
                     _buildDescription(state.hotel.description),
                     _buildContact(),
-                    _buildFacility(state.hotel.facilities),
+                    // _buildFacility(state.hotel.facilities),
                     // _buildHotelRoom(context, state.hotel.rooms),
                     SizedBox(height: 88.0),
                   ],

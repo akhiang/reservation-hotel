@@ -1,8 +1,7 @@
 part of 'package:dangau_hotel/services/services.dart';
 
-const String BASE_URL = 'http://10.0.2.2:3000';
-
 class ApiService {
+  static const String BASE_URL = Environment.apiUrl;
   var responseJson;
 
   Future<dynamic> getData(String uri) async {
