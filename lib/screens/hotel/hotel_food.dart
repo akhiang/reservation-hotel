@@ -25,7 +25,6 @@ class _HotelFoodState extends State<HotelFood>
         children: [
           _buildPopularFood(context),
           _buildOtherFood(context),
-          HotelFoodShimmer(),
         ],
       ),
     );
@@ -86,16 +85,24 @@ class _HotelFoodState extends State<HotelFood>
             ),
           ),
           Container(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: foods.length,
-              itemBuilder: (context, index) {
-                Food food = foods[index];
-                return OtherFoodCard(food: food);
-              },
-            ),
+            child: BlocBuilder<HotelDetailBloc, HotelDetailState>(
+                builder: (_, state) {
+              if (state is HotelDetailLoading) {
+                return HotelFoodShimmer();
+              } else if (state is HotelDetailLoaded) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  itemCount: state.hotel.foods.length,
+                  itemBuilder: (_, index) {
+                    return OtherFoodCard(food: state.hotel.foods[index]);
+                  },
+                );
+              } else {
+                return ErrorCard(press: () {});
+              }
+            }),
           ),
         ],
       ),

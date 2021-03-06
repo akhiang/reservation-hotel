@@ -1,19 +1,45 @@
 part of 'package:dangau_hotel/models/models.dart';
 
-class Food {
-  String name;
-  String description;
-  int price;
-  int rating;
-  String imageUrl;
+class Food extends Equatable {
+  final int id;
+  final String name;
+  final int price;
+  final String imageUrl;
+  final String description;
+  final int rating;
+  final String createdAt;
+  final String updatedAt;
 
   Food({
+    this.id,
     this.name,
-    this.description,
     this.price,
-    this.rating,
     this.imageUrl,
+    this.description,
+    this.rating,
+    this.createdAt,
+    this.updatedAt,
   });
+
+  factory Food.fromJson(Map<String, dynamic> json) {
+    return Food(
+      id: json['id'],
+      name: json['name'],
+      price: json['price'],
+      imageUrl:
+          'https://images.pexels.com/photos/41194/beef-cheese-cuisine-delicious-41194.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      description: json['description'],
+      rating: json['rating'],
+      createdAt: json['create_at'],
+      updatedAt: json['updated_at'],
+    );
+  }
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Food { id: $id, name: $name, rating: $rating }';
 }
 
 final List<Food> foods = [

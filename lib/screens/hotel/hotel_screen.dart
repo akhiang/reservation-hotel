@@ -22,9 +22,14 @@ class _HotelScreenState extends State<HotelScreen>
     Tab(text: 'Ulasan'),
   ];
 
+  void _loadHotelDetail() {
+    context.read<HotelDetailBloc>().add(GetHotelDetail(widget.hotel.id));
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadHotelDetail();
     _tabController = TabController(length: list.length, vsync: this);
 
     _tabController.addListener(() {
@@ -55,7 +60,7 @@ class _HotelScreenState extends State<HotelScreen>
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    widget.hotel.name,
+                    '${widget.hotel.name}',
                     style: TextStyle(
                       color: ColorConst.kThirdColor,
                       fontSize: 20.0,
@@ -78,7 +83,7 @@ class _HotelScreenState extends State<HotelScreen>
                         ),
                         SizedBox(width: 4.0),
                         Text(
-                          widget.hotel.rating.toString(),
+                          '${widget.hotel.rating}',
                           style: TextStyle(
                             color: ColorConst.kThirdColor,
                             fontSize: 16.0,
@@ -147,7 +152,7 @@ class _HotelScreenState extends State<HotelScreen>
               controller: _tabController,
               children: [
                 HotelInformation(hotel: widget.hotel),
-                HotelFood(hotel: widget.hotel),
+                HotelFood(),
                 HotelReview(),
               ],
             ),

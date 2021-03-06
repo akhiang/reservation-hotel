@@ -21,9 +21,9 @@ class HotelBloc extends Bloc<HotelEvent, HotelState> {
     if (event is GetHotels) {
       yield HotelLoading();
       try {
-        final ApiResponse<HotelResponse> hotelResponse =
+        final ApiResponse<List<Hotel>> hotelResponse =
             await _hotelService.getHotels();
-        List<Hotel> hotels = hotelResponse.data.hotels;
+        List<Hotel> hotels = hotelResponse.data;
         yield HotelLoaded(hotels: hotels);
       } catch (error) {
         print('bloc ' + error.toString());

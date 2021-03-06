@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => OrderCartCubit()),
       ],
       child: MaterialApp(
-        title: 'Hotel Reservation',
+        title: 'Kahyangan Group',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Montserrat',

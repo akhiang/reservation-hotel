@@ -23,7 +23,6 @@ class _HotelInformationState extends State<HotelInformation>
   @override
   initState() {
     super.initState();
-    _loadHotelDetail();
     context.read<OrderingStatusCubit>().changeStatusToInitial();
   }
 
@@ -34,10 +33,6 @@ class _HotelInformationState extends State<HotelInformation>
     _datePickerController = DateRangePickerController();
     _datePickerController.selectedRange =
         PickerDateRange(dateState.rangeStartDate, dateState.rangeEndDate);
-  }
-
-  void _loadHotelDetail() {
-    context.read<HotelDetailBloc>().add(GetHotelDetail(widget.hotel.id));
   }
 
   void _showDateCalenderBottomSheet() {
@@ -223,16 +218,15 @@ class _HotelInformationState extends State<HotelInformation>
         children: [
           HotelContactListTile(
             icon: FontAwesomeIcons.mapMarkerAlt,
-            text:
-                "Jl. Raya Tj. Gundul, Karimunting, Sungai Raya Kepulauan, Kabupaten Bengkayang, Kal-Bar 79271",
+            text: '${widget.hotel.address}',
           ),
           HotelContactListTile(
             icon: Icons.phone,
-            text: "+62 7187655856",
+            text: '${widget.hotel.phone}',
           ),
           HotelContactListTile(
             icon: Icons.email,
-            text: "resortkahyangan@gmail.com",
+            text: '${widget.hotel.email}',
           ),
         ],
       ),

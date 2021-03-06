@@ -31,49 +31,38 @@ class OtherFoodCard extends StatelessWidget {
           ),
           SizedBox(width: 16.0),
           Expanded(
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          food.name,
-                          style: TextStyle(
-                            color: ColorConst.kSecondaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        Text(
-                          food.description,
-                          style: TextStyle(
-                            color: ColorConst.kSecondaryColor,
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24.0),
-                    Text(
-                      '⭐⭐⭐⭐⭐',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                  ],
-                ),
                 Text(
-                  food.price.toString(),
+                  '${food.name}',
                   style: TextStyle(
                     color: ColorConst.kSecondaryColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
+                    fontSize: 18.0,
+                  ),
+                ),
+                SizedBox(height: 2.0),
+                Text(
+                  '${Helper.priceFormat(food.price.toDouble())}',
+                  style: kNormalTextStyle,
+                ),
+                // Text(
+                //   '${food.description}',
+                //   overflow: TextOverflow.ellipsis,
+                //   style: TextStyle(
+                //     color: ColorConst.kSecondaryColor,
+                //     fontSize: 12.0,
+                //   ),
+                // ),
+                SizedBox(height: 24.0),
+                Text(
+                  '⭐⭐⭐⭐⭐',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    letterSpacing: 1.2,
                   ),
                 ),
               ],

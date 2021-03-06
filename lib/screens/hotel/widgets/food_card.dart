@@ -33,17 +33,13 @@ class FoodCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            food.name,
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontSize: 16.0,
-            ),
+            '${food.name}',
+            style: kNormalBoldTextStyle,
           ),
           Text(
-            food.price.toString(),
+            '${Helper.priceFormat(food.price.toDouble())}',
             style: TextStyle(
               color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
             ),
           ),
         ],
