@@ -1,11 +1,11 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class HotelReview extends StatefulWidget {
+class HotelReviewTab extends StatefulWidget {
   @override
-  _HotelReviewState createState() => _HotelReviewState();
+  _HotelReviewStateTab createState() => _HotelReviewStateTab();
 }
 
-class _HotelReviewState extends State<HotelReview>
+class _HotelReviewStateTab extends State<HotelReviewTab>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -119,9 +119,24 @@ class _HotelReviewState extends State<HotelReview>
           ),
         ),
         _buildChoiceChips(),
-        SizedBox(height: 8.0),
-        ReviewListTile(),
-        ReviewListTile(),
+        BlocBuilder<HotelDetailBloc, HotelDetailState>(builder: (_, state) {
+          if (state is HotelDetailLoading) {
+            return HotelFoodShimmer();
+          } else if (state is HotelDetailLoaded) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: state.hotel.reviews.length,
+              itemBuilder: (context, index) {
+                return ReviewListTile(
+                  review: state.hotel.reviews[index],
+                );
+              },
+            );
+          } else {
+            return ErrorCard(press: () {});
+          }
+        }),
         SizedBox(height: 16.0),
       ],
     );
@@ -131,7 +146,7 @@ class _HotelReviewState extends State<HotelReview>
     return Container(
       height: 56.0,
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
         itemCount: _choices.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, int index) {

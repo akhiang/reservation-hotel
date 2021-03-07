@@ -1,6 +1,10 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class ReviewListTile extends StatefulWidget {
+  final HotelReview review;
+
+  const ReviewListTile({Key key, @required this.review}) : super(key: key);
+
   @override
   _ReviewListTileState createState() => _ReviewListTileState();
 }
@@ -11,7 +15,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +31,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Anne Abigail",
+                    '${widget.review.userId}',
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor,
                       fontWeight: FontWeight.w600,
@@ -36,7 +40,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    "01-12-2020, 10:00 WIB",
+                    '${Helper.dateParser(widget.review.createdAt)}',
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor.withOpacity(0.5),
                     ),
@@ -55,7 +59,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
               });
             },
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dignissim tristique elementum orci, lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae dignissim tristique elementum orci, lobortis. ',
+              '${widget.review.comment}',
               style: TextStyle(
                 color: ColorConst.kSecondaryColor,
                 height: 1.4,

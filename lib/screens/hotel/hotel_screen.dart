@@ -153,7 +153,7 @@ class _HotelScreenState extends State<HotelScreen>
               children: [
                 HotelInformation(hotel: widget.hotel),
                 HotelFood(),
-                HotelReview(),
+                HotelReviewTab(),
               ],
             ),
           ),

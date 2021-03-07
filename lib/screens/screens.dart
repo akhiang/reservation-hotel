@@ -46,7 +46,7 @@ part 'package:dangau_hotel/screens/home/widgets/hotel_list_shimmer.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_screen.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_information.dart';
 part 'package:dangau_hotel/screens/hotel/hotel_food.dart';
-part 'package:dangau_hotel/screens/hotel/hotel_review.dart';
+part 'package:dangau_hotel/screens/hotel/hotel_review_tab.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/hotel_contact_list_tile.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/facility_card.dart';
 part 'package:dangau_hotel/screens/hotel/widgets/food_card.dart';

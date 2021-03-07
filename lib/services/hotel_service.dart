@@ -15,7 +15,6 @@ class HotelService extends ApiService {
   }
 
   Future<ApiResponse<Hotel>> getHotel(int id) async {
-    print('detail');
     try {
       Map<String, dynamic> response = await getData('/hotel/$id');
       return ApiResponse(
