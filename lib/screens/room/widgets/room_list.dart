@@ -2,8 +2,13 @@ part of 'package:dangau_hotel/screens/screens.dart';
 
 class RoomList extends StatefulWidget {
   final Hotel hotel;
+  final DateState dateState;
 
-  const RoomList({Key key, this.hotel}) : super(key: key);
+  const RoomList({
+    Key key,
+    this.hotel,
+    this.dateState,
+  }) : super(key: key);
 
   @override
   _RoomListState createState() => _RoomListState();
@@ -12,12 +17,16 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   @override
   void initState() {
-    _loadHotelRoomListToCart();
     super.initState();
+    _loadHotelRoomListToCart();
   }
 
   void _loadHotelRoomListToCart() {
-    context.read<RoomCartCubit>().getHotelRoomsToCart(widget.hotel.id);
+    context.read<RoomCartCubit>().getHotelRoomsToCart(SearchRoomRequest(
+          hotelId: widget.hotel.id,
+          startDate: widget.dateState.rangeStartDate,
+          endDate: widget.dateState.rangeEndDate,
+        ));
   }
 
   @override

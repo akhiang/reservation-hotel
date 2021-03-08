@@ -138,7 +138,7 @@ class RoomScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 8.0),
                   Text(
-                    "${room.guest}",
+                    "${room.personCapacity}",
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor,
                       fontWeight: FontWeight.w600,

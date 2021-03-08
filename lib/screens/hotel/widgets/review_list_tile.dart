@@ -31,7 +31,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${widget.review.userId}',
+                    '${widget.review.guest.name}',
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor,
                       fontWeight: FontWeight.w600,
@@ -50,7 +50,14 @@ class _ReviewListTileState extends State<ReviewListTile> {
             ],
           ),
           SizedBox(height: 8.0),
-          Text('⭐⭐⭐⭐⭐'),
+          RatingBarIndicator(
+            rating: widget.review.rating.toDouble(),
+            direction: Axis.horizontal,
+            itemCount: 5,
+            itemSize: 20.0,
+            itemBuilder: (context, _) =>
+                Icon(Icons.star, color: ColorConst.kPrimaryColor),
+          ),
           SizedBox(height: 8.0),
           GestureDetector(
             onTap: () {

@@ -8,9 +8,10 @@ class HotelReview extends Equatable {
   final int bookingId;
   final int rating;
   final String comment;
-  final int isPublish;
+  final bool isPublish;
   final String createdAt;
   final String updatedAt;
+  final Guest guest;
 
   HotelReview({
     this.id,
@@ -23,6 +24,7 @@ class HotelReview extends Equatable {
     this.isPublish,
     this.createdAt,
     this.updatedAt,
+    this.guest,
   });
 
   factory HotelReview.fromJson(Map<String, dynamic> json) {
@@ -32,11 +34,12 @@ class HotelReview extends Equatable {
       userId: json['user_id'],
       guestId: json['guest_id'],
       bookingId: json['booking_id'],
-      rating: json['rating'],
-      comment: json['comment'],
+      rating: json['rating'] ?? 0,
+      comment: json['comment'] ?? '',
       isPublish: json['is_publish'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
+      guest: Guest.fromJson(json['guest']),
     );
   }
 

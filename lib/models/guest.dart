@@ -1,29 +1,39 @@
-import 'dart:convert';
+part of 'package:dangau_hotel/models/models.dart';
 
 class Guest {
+  final int id;
   final String name;
+  final String birth;
+  final String address;
+  final String email;
+  final String phone;
+  final bool isVerified;
+  final String createdAt;
+  final String updatedAt;
 
   Guest({
+    this.id,
     this.name,
+    this.birth,
+    this.address,
+    this.email,
+    this.phone,
+    this.isVerified,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-    };
-  }
-
-  factory Guest.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
+  factory Guest.fromJson(Map<String, dynamic> json) {
     return Guest(
-      name: map['name'],
+      id: json['id'],
+      name: json['name'] ?? '',
+      birth: json['birth'],
+      address: json['address'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      isVerified: json['isVerified'] ?? false,
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Guest.fromJson(String source) => Guest.fromMap(
-        json.decode(source),
-      );
 }

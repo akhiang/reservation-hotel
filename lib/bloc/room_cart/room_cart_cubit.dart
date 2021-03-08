@@ -16,10 +16,12 @@ class RoomCartCubit extends Cubit<RoomCartState> {
     note: '',
   );
 
-  Future<void> getHotelRoomsToCart(int hotelId) async {
+  Future<void> getHotelRoomsToCart(SearchRoomRequest searchRoomRequest) async {
     emit(RoomCartLoading());
     try {
-      final List<Room> rooms = await _roomService.getRooms(hotelId);
+      final ApiResponse<List<Room>> roomResponse =
+          await _roomService.getRooms(searchRoomRequest);
+      List<Room> rooms = roomResponse.data;
       List<RoomCart> roomCart = rooms.map((room) {
         return RoomCart(
           id: room.id,
@@ -32,7 +34,7 @@ class RoomCartCubit extends Cubit<RoomCartState> {
       emit(RoomCartLoaded(
           roomCart: roomCart, selectedRoomCart: selectedRoomCart));
     } catch (e) {
-      print('asd' + e.toString());
+      print('asd ' + e.toString());
       emit(RoomCartError());
     }
   }

@@ -1,9 +1,8 @@
 part of 'package:dangau_hotel/models/models.dart';
 
 class HotelResponse {
-  // List<Hotel> hotels;
   final int id;
-  final double rating;
+  final int rating;
   final String description;
   final String name;
   final String address;
@@ -44,15 +43,10 @@ class HotelResponse {
   });
 
   factory HotelResponse.fromJson(Map<String, dynamic> json) {
-    // return HotelResponse(
-    //   hotels: List<Hotel>.from(
-    //     json['data'].map((hotel) => Hotel.fromJson(hotel)),
-    //   ),
-    // );
     return HotelResponse(
       id: json['id'],
       rating: json['rating'],
-      description: 'asdasd',
+      description: json['description'],
       name: json['name'],
       address: json['address'],
       latitude: json['latitude'],

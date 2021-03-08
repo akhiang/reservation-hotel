@@ -2,7 +2,7 @@ part of 'package:dangau_hotel/models/models.dart';
 
 class Hotel extends Equatable {
   final int id;
-  final double rating;
+  final int rating;
   final String description;
   final String name;
   final String address;
@@ -48,8 +48,8 @@ class Hotel extends Equatable {
   factory Hotel.fromJson(Map<String, dynamic> json) {
     return Hotel(
       id: json['id'],
-      rating: 5.0 ?? json['rating'],
-      description: 'asdasd' ?? json['description'],
+      rating: json['rating'] ?? 5,
+      description: json['description'] ?? '',
       name: json['name'],
       address: json['address'],
       latitude: json['latitude'],

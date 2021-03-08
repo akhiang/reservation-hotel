@@ -28,7 +28,11 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
   }
 
   void _loadHotelRoomListToCart() {
-    context.read<RoomCartCubit>().getHotelRoomsToCart(widget.hotel.id);
+    context.read<RoomCartCubit>().getHotelRoomsToCart(SearchRoomRequest(
+          hotelId: widget.hotel.id,
+          startDate: dateState.rangeStartDate,
+          endDate: dateState.rangeEndDate,
+        ));
   }
 
   void _showDateCalenderBottomSheet(BuildContext context) {
@@ -256,7 +260,10 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                 ),
               ),
               Expanded(
-                child: RoomList(hotel: widget.hotel),
+                child: RoomList(
+                  hotel: widget.hotel,
+                  dateState: dateState,
+                ),
               ),
             ],
           ),

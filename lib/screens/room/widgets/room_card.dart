@@ -106,7 +106,7 @@ class RoomCard extends StatelessWidget {
                           ),
                           SizedBox(width: 4.0),
                           Text(
-                            "${roomCart.room.guest}",
+                            "${roomCart.room.personCapacity}",
                             style: kNormalBoldTextStyle,
                           ),
                         ],

@@ -14,6 +14,10 @@ class ApiService {
     return responseJson;
   }
 
+  // Future<dynamic> postData(String uri) async {
+  //   final http.Response response = await http.post(BASE_URL + uri);
+  // }
+
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

@@ -128,9 +128,12 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
               physics: NeverScrollableScrollPhysics(),
               itemCount: state.hotel.reviews.length,
               itemBuilder: (context, index) {
-                return ReviewListTile(
-                  review: state.hotel.reviews[index],
-                );
+                if (state.hotel.reviews[index].isPublish) {
+                  return ReviewListTile(
+                    review: state.hotel.reviews[index],
+                  );
+                }
+                return SizedBox();
               },
             );
           } else {
@@ -146,7 +149,7 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
     return Container(
       height: 56.0,
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         itemCount: _choices.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, int index) {
