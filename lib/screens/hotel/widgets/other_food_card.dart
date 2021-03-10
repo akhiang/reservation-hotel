@@ -48,21 +48,14 @@ class OtherFoodCard extends StatelessWidget {
                   '${Helper.priceFormat(food.price.toDouble())}',
                   style: kNormalTextStyle,
                 ),
-                // Text(
-                //   '${food.description}',
-                //   overflow: TextOverflow.ellipsis,
-                //   style: TextStyle(
-                //     color: ColorConst.kSecondaryColor,
-                //     fontSize: 12.0,
-                //   ),
-                // ),
                 SizedBox(height: 24.0),
-                Text(
-                  '⭐⭐⭐⭐⭐',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    letterSpacing: 1.2,
+                RatingBarIndicator(
+                  rating: food.rating.toDouble(),
+                  itemCount: 5,
+                  itemSize: 16.0,
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
                   ),
                 ),
               ],

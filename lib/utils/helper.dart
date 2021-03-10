@@ -6,7 +6,7 @@ class Helper {
   }
 
   static String priceFormat(double price) {
-    return NumberFormat.currency(locale: 'id', symbol: 'Rp', decimalDigits: 0)
+    return NumberFormat.currency(locale: 'id', symbol: 'Rp ', decimalDigits: 0)
         .format(price);
   }
 

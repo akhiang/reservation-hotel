@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => LoginCubit()),
+        BlocProvider(create: (_) => LoginCubit(AuthService())),
         BlocProvider(create: (_) => RegisterCubit()),
         BlocProvider(create: (_) => DateCubit()),
         BlocProvider(create: (_) => OrderCheckoutTimerBloc(ticker: Ticker())),

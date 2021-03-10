@@ -9,9 +9,9 @@ class LoginRequest {
     @required this.password,
   });
 
-  Map<String, String> toJson() {
+  Map<String, dynamic> toJson() {
     return {
-      "number": number,
+      "phone": number,
       "password": password,
     };
   }

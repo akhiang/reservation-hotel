@@ -2,6 +2,7 @@ part of 'package:dangau_hotel/services/services.dart';
 
 class ApiService {
   static const String BASE_URL = Environment.apiUrl;
+  static const Map<String, String> HEADERS = {"Accept": "application/json"};
   var responseJson;
 
   Future<dynamic> getData(String uri) async {
@@ -14,9 +15,13 @@ class ApiService {
     return responseJson;
   }
 
-  Future<dynamic> postData(String uri) async {
+  Future<dynamic> postData(String uri, body) async {
     try {
-      final http.Response response = await http.post(BASE_URL + uri);
+      final http.Response response = await http.post(
+        BASE_URL + uri,
+        headers: HEADERS,
+        body: body,
+      );
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('Error occured');

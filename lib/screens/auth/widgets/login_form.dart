@@ -9,8 +9,8 @@ class _LoginFormState extends State<LoginForm> with Validation {
   final _formKey = GlobalKey<FormState>();
   final _phoneFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
-  final _mobileNumberController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _mobileNumberController = TextEditingController(text: '082250483022');
+  final _passwordController = TextEditingController(text: '12345678');
 
   void _loginSubmit() {
     String _mobileNumber = _mobileNumberController.text;
@@ -40,6 +40,12 @@ class _LoginFormState extends State<LoginForm> with Validation {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               content: Text('Login failed'),
+            ),
+          );
+        } else if (state is LoginSuccess) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Login success'),
             ),
           );
         }
