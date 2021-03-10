@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => HotelBloc(HotelService())),
         BlocProvider(create: (_) => HotelDetailBloc(HotelService())),
         BlocProvider(create: (_) => RoomCartCubit(RoomService())),
+        BlocProvider(create: (_) => RoomDetailCubit(RoomService())),
         BlocProvider(create: (_) => PaymentMethodCubit(PaymentMethodService())),
         BlocProvider(create: (_) => OrderingStatusCubit()),
         BlocProvider(create: (_) => OrderCartCubit()),

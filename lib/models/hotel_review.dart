@@ -34,7 +34,7 @@ class HotelReview extends Equatable {
       userId: json['user_id'],
       guestId: json['guest_id'],
       bookingId: json['booking_id'],
-      rating: json['rating'] ?? 0,
+      rating: json['rating'],
       comment: json['comment'] ?? '',
       isPublish: json['is_publish'],
       createdAt: json['created_at'],

@@ -4,7 +4,6 @@ class RoomShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       width: double.infinity,
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300],
@@ -12,25 +11,43 @@ class RoomShimmer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ShimmerSingleColumn(),
-            ShimmerSingleColumn(),
-            SizedBox(height: 8.0),
-            ShimmerSized(width: 120.0),
-            SizedBox(height: 8.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildFacilityShimmer(),
-                _buildFacilityShimmer(),
-                _buildFacilityShimmer(),
-                _buildFacilityShimmer(),
-              ],
+            Container(
+              height: SizeConfig.screenHeight(context) * 0.4,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
             ),
-            SizedBox(height: 16.0),
-            ShimmerSingleColumn(),
-            ShimmerSingleColumn(),
-            ShimmerSingleColumn(),
-            ShimmerSingleColumn(),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+              child: Column(
+                children: [
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  SizedBox(height: 8.0),
+                  ShimmerSized(width: 120.0),
+                  SizedBox(height: 8.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildFacilityShimmer(),
+                      _buildFacilityShimmer(),
+                      _buildFacilityShimmer(),
+                      _buildFacilityShimmer(),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                  ShimmerSingleColumn(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

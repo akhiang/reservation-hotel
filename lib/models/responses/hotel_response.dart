@@ -2,7 +2,7 @@ part of 'package:dangau_hotel/models/models.dart';
 
 class HotelResponse {
   final int id;
-  final int rating;
+  final double rating;
   final String description;
   final String name;
   final String address;

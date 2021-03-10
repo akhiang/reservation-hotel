@@ -6,7 +6,6 @@ class RoomService extends ApiService {
     String startDate =
         DateFormat('yyyy-MM-dd').format(searchRoomRequest.startDate);
     String endDate = DateFormat('yyyy-MM-dd').format(searchRoomRequest.endDate);
-    print(startDate);
     await Future.delayed(Duration(seconds: 1));
     try {
       Map<String, dynamic> response = await getData(
@@ -21,15 +20,16 @@ class RoomService extends ApiService {
     }
   }
 
-  Future<Room> getRoom(int id) async {
+  Future<ApiResponse<Room>> getRoom(int id) async {
     await Future.delayed(Duration(seconds: 1));
-    Room room;
     try {
-      var response = await getData('/rooms/$id');
-      room = Room.fromJson(response);
+      Map<String, dynamic> response = await getData('/room-type/$id');
+      return ApiResponse(
+        message: response['message'],
+        data: Room.fromJson(response['data']),
+      );
     } catch (error) {
       throw (error);
     }
-    return room;
   }
 }

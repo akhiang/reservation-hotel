@@ -7,7 +7,7 @@ class Guest {
   final String address;
   final String email;
   final String phone;
-  final bool isVerified;
+  final int isVerified;
   final String createdAt;
   final String updatedAt;
 
@@ -31,7 +31,7 @@ class Guest {
       address: json['address'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
-      isVerified: json['isVerified'] ?? false,
+      isVerified: json['isVerified'],
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );

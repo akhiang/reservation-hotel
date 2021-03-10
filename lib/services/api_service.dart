@@ -14,9 +14,15 @@ class ApiService {
     return responseJson;
   }
 
-  // Future<dynamic> postData(String uri) async {
-  //   final http.Response response = await http.post(BASE_URL + uri);
-  // }
+  Future<dynamic> postData(String uri) async {
+    try {
+      final http.Response response = await http.post(BASE_URL + uri);
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('Error occured');
+    }
+    return responseJson;
+  }
 
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
