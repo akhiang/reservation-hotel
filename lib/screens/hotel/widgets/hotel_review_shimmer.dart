@@ -11,7 +11,9 @@ class HotelReviewShimmer extends StatelessWidget {
         child: Column(
           children: [
             ShimmerSized(width: 64.0),
+            SizedBox(height: 8.0),
             ShimmerSized(width: 160.0),
+            SizedBox(height: 8.0),
             ShimmerSized(width: 96.0),
             SizedBox(height: 8.0),
             ShimmerSingleColumn(),

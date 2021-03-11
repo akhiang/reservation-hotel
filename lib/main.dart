@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => PaymentMethodCubit(PaymentMethodService())),
         BlocProvider(create: (_) => OrderingStatusCubit()),
         BlocProvider(create: (_) => OrderCartCubit()),
+        BlocProvider(create: (_) => BookedCubit(BookingService())),
       ],
       child: MaterialApp(
         title: 'Kahyangan Group',

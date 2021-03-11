@@ -24,32 +24,42 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          HotelReviewShimmer(),
-          _buildRating(),
-          _buildReviewBar(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Divider(
-              color: ColorConst.kSecondaryColor,
-              thickness: 1.0,
-            ),
-          ),
-          _buildReviewListTile(),
-        ],
+      child: BlocBuilder<HotelDetailBloc, HotelDetailState>(
+        builder: (_, state) {
+          if (state is HotelDetailLoading) {
+            return HotelReviewShimmer();
+          } else if (state is HotelDetailLoaded) {
+            return Column(
+              children: [
+                _buildRating(state.hotel),
+                _buildReviewBar(state.hotel.hotelRating),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Divider(
+                    color: ColorConst.kSecondaryColor,
+                    thickness: 1.0,
+                  ),
+                ),
+                _buildReviewListTile(),
+                HotelReviewShimmer(),
+              ],
+            );
+          } else {
+            return ErrorCard(press: () {});
+          }
+        },
       ),
     );
   }
 
-  Widget _buildRating() {
+  Widget _buildRating(Hotel hotel) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 16.0),
           Text(
-            '4.8',
+            '${hotel.hotelRating.rating}',
             style: TextStyle(
               color: ColorConst.kSecondaryColor,
               fontWeight: FontWeight.w700,
@@ -57,25 +67,16 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
             ),
           ),
           SizedBox(height: 8.0),
-          RatingBar.builder(
-            initialRating: 4.8,
-            minRating: 1,
-            direction: Axis.horizontal,
-            allowHalfRating: true,
+          RatingBarIndicator(
+            rating: hotel.hotelRating.rating.toDouble(),
             itemCount: 5,
             itemSize: 32.0,
-            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-            itemBuilder: (context, _) => Icon(
-              Icons.star,
-              color: Colors.amber,
-            ),
-            onRatingUpdate: (rating) {
-              print(rating);
-            },
+            itemBuilder: (context, _) =>
+                Icon(Icons.star, color: ColorConst.kPrimaryColor),
           ),
-          SizedBox(height: 8.0),
+          SizedBox(height: 16.0),
           Text(
-            '100 Ulasan',
+            '${hotel.hotelRating.ratingAmount} Ulasan',
             style: TextStyle(
               color: ColorConst.kSecondaryColor,
               fontWeight: FontWeight.w600,
@@ -87,16 +88,16 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
     );
   }
 
-  Padding _buildReviewBar() {
+  Padding _buildReviewBar(HotelRating hotelRating) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: [
-          ReviewBar(title: '5', score: 80),
-          ReviewBar(title: '4', score: 15),
-          ReviewBar(title: '3', score: 3),
-          ReviewBar(title: '2', score: 2),
-          ReviewBar(title: '1', score: 0),
+          ReviewBar(title: '5', score: hotelRating.rate5),
+          ReviewBar(title: '4', score: hotelRating.rate4),
+          ReviewBar(title: '3', score: hotelRating.rate3),
+          ReviewBar(title: '2', score: hotelRating.rate2),
+          ReviewBar(title: '1', score: hotelRating.rate1),
         ],
       ),
     );

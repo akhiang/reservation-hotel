@@ -18,12 +18,15 @@ class ReviewBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            '$title Stars',
-            style: TextStyle(
-              color: ColorConst.kSecondaryColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16.0,
+          Container(
+            width: 64.0,
+            child: Text(
+              '$title Stars',
+              style: TextStyle(
+                color: ColorConst.kSecondaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 16.0,
+              ),
             ),
           ),
           SizedBox(width: 24.0),

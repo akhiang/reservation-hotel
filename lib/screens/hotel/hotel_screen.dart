@@ -83,7 +83,7 @@ class _HotelScreenState extends State<HotelScreen>
                         ),
                         SizedBox(width: 4.0),
                         Text(
-                          '${widget.hotel.rating}',
+                          '${widget.hotel.hotelRating.ratingAmount}',
                           style: TextStyle(
                             color: ColorConst.kThirdColor,
                             fontSize: 16.0,

@@ -1,7 +1,10 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class BookedRoomTile extends StatelessWidget {
+  final Booking booking;
+
   const BookedRoomTile({
+    this.booking,
     Key key,
   }) : super(key: key);
 
@@ -34,12 +37,12 @@ class BookedRoomTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Kahyangan Resort',
+                    '${booking.hotelId}',
                     style: kNormalBoldTextStyle,
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    '3 Malam, 2 Kamar',
+                    '3 Malam, ${booking.bookingDetails.length} Kamar',
                     style: kNormalTextStyle,
                   ),
                   SizedBox(height: 4.0),
@@ -56,7 +59,7 @@ class BookedRoomTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Text(
-                      'Dibatalkan',
+                      '${booking.bookingStatus}'.titleCase,
                       style: TextStyle(
                         color: ColorConst.kErrorColor,
                         fontSize: 16.0,

@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
+part 'package:dangau_hotel/models/booking.dart';
+part 'package:dangau_hotel/models/booking_detail.dart';
 part 'package:dangau_hotel/models/hotel.dart';
+part 'package:dangau_hotel/models/hotel_rating.dart';
 part 'package:dangau_hotel/models/hotel_review.dart';
 part 'package:dangau_hotel/models/guest.dart';
 part 'package:dangau_hotel/models/food.dart';

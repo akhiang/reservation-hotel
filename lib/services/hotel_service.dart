@@ -10,7 +10,7 @@ class HotelService extends ApiService {
         data: data.map((hotel) => Hotel.fromJson(hotel)).toList(),
       );
     } catch (error) {
-      throw (error);
+      throw error;
     }
   }
 
@@ -22,7 +22,7 @@ class HotelService extends ApiService {
         data: Hotel.fromJson(response['data']),
       );
     } catch (error) {
-      throw (error);
+      throw error;
     }
   }
 }

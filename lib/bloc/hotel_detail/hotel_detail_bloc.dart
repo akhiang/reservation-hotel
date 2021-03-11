@@ -22,9 +22,11 @@ class HotelDetailBloc extends Bloc<HotelDetailEvent, HotelDetailState> {
       try {
         final ApiResponse<Hotel> hotelResponse =
             await _hotelService.getHotel(event.hotelId);
+        print(hotelResponse.data);
         yield HotelDetailLoaded(hotel: hotelResponse.data);
       } catch (e) {
         print('bloc' + e.toString());
+        yield HotelDetailError();
       }
     }
   }

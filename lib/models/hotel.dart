@@ -19,6 +19,7 @@ class Hotel extends Equatable {
   final String createdAt;
   final String updatedAt;
   final String imageUrl;
+  final HotelRating hotelRating;
   final List<Food> foods;
   final List<HotelReview> reviews;
 
@@ -41,6 +42,7 @@ class Hotel extends Equatable {
     this.createdAt,
     this.updatedAt,
     this.imageUrl,
+    this.hotelRating,
     this.foods,
     this.reviews,
   });
@@ -66,6 +68,9 @@ class Hotel extends Equatable {
       updatedAt: json['updated_at'],
       imageUrl:
           "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      hotelRating: json.containsKey('rating')
+          ? HotelRating.fromJson(json['rating'])
+          : HotelRating(),
       foods: json.containsKey('food')
           ? List<Food>.from(json['food'].map((food) => Food.fromJson(food)))
           : [],
@@ -80,5 +85,5 @@ class Hotel extends Equatable {
   List<Object> get props => [];
 
   @override
-  String toString() => 'Hotel { id: $id, name: $name, foods: $foods }';
+  String toString() => 'Hotel { id: $id, name: $name, rating: $hotelRating }';
 }

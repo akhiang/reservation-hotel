@@ -322,15 +322,18 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Total', style: kSmallTextStyle),
                           BlocBuilder<RoomCartCubit, RoomCartState>(
                             builder: (context, state) {
                               if (state is RoomCartLoading) {
-                                return Text('Rp0', style: kNormalBoldTextStyle);
+                                return Text('Rp 0',
+                                    style: kNormalBoldTextStyle);
                               }
                               if (state is RoomCartLoaded) {
                                 final int total = state.selectedRoomCart.fold(
@@ -344,7 +347,7 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                                     Helper.priceFormat(total.toDouble()),
                                     style: kNormalBoldTextStyle);
                               }
-                              return Text('Rp0', style: kNormalBoldTextStyle);
+                              return Text('Rp 0', style: kNormalBoldTextStyle);
                             },
                           )
                         ],

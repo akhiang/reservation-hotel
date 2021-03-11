@@ -1,7 +1,12 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class BookedRoomCard extends StatefulWidget {
+  final Booking booking;
+  final Function press;
+
   const BookedRoomCard({
+    this.booking,
+    this.press,
     Key key,
   }) : super(key: key);
 
@@ -39,7 +44,7 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
               ),
               child: Column(
                 children: [
-                  BookedRoomTile(),
+                  BookedRoomTile(booking: widget.booking),
                   InkWell(
                     onTap: () {
                       Navigator.of(context, rootNavigator: true).push(

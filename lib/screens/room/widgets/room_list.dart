@@ -34,7 +34,7 @@ class _RoomListState extends State<RoomList> {
     return Container(
       height: 500.0,
       child: BlocBuilder<RoomCartCubit, RoomCartState>(
-        builder: (context, state) {
+        builder: (_, state) {
           if (state is RoomCartLoading) {
             return RoomListShimmer();
           } else if (state is RoomCartLoaded) {
