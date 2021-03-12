@@ -40,7 +40,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    '${Helper.dateParser(widget.review.createdAt)}',
+                    '${Helper.dateTimeZoneParser(widget.review.createdAt)}',
                     style: TextStyle(
                       color: ColorConst.kSecondaryColor.withOpacity(0.5),
                     ),

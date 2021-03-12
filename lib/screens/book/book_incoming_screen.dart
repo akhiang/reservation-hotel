@@ -6,7 +6,6 @@ class BookIncomingScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          BookedRoomCard(),
           Container(
             child: BookRoomListShimmer(),
           ),

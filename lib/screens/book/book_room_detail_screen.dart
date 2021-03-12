@@ -1,6 +1,29 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
-class BookRoomDetailScreen extends StatelessWidget {
+class BookRoomDetailScreen extends StatefulWidget {
+  static const String routeName = 'book_room_detail_screen';
+
+  final Booking booking;
+
+  const BookRoomDetailScreen({
+    Key key,
+    @required this.booking,
+  }) : super(key: key);
+
+  @override
+  _BookRoomDetailScreenState createState() => _BookRoomDetailScreenState();
+}
+
+class _BookRoomDetailScreenState extends State<BookRoomDetailScreen> {
+  void _loadBookRoomDetail() =>
+      context.read<BookedDetailCubit>().getBookedDetail(widget.booking.id);
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBookRoomDetail();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,73 +34,110 @@ class BookRoomDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Detail Pesanan',
-                    style: TextStyle(
-                      color: ColorConst.kSecondaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20.0,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  Column(
+            BlocBuilder<BookedDetailCubit, BookedDetailState>(
+              builder: (_, state) {
+                if (state is BookedDetailLoading) {
+                  return BookRoomDetailShimmer();
+                } else if (state is BookedDetailLoaded) {
+                  return Column(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color:
-                                  ColorConst.kSecondaryColor.withOpacity(0.3)),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 24.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Pembayaran', style: kNormalTextStyle),
-                            SizedBox(height: 8.0),
                             Text(
-                              Helper.priceFormat(999999),
+                              'Detail Pesanan',
                               style: TextStyle(
                                 color: ColorConst.kSecondaryColor,
-                                fontSize: 18.0,
                                 fontWeight: FontWeight.w600,
+                                fontSize: 20.0,
+                                letterSpacing: 1.2,
                               ),
                             ),
+                            SizedBox(height: 16.0),
+                            Column(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: ColorConst.kSecondaryColor
+                                            .withOpacity(0.3)),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Total Pembayaran',
+                                          style: kNormalTextStyle),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        Helper.priceFormat(widget
+                                            .booking.grandTotal
+                                            .toDouble()),
+                                        style: TextStyle(
+                                          color: ColorConst.kSecondaryColor,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 16.0),
+                            _buildHotelTile(state.booking),
+                            Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Divider(
+                                    color: ColorConst.kSecondaryColor
+                                        .withOpacity(0.5))),
+                            _buildBookDescription(state.booking),
+                            Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Divider(
+                                    color: ColorConst.kSecondaryColor
+                                        .withOpacity(0.5))),
+                            _buildSelectedRoom(state.booking),
                           ],
                         ),
-                      )
+                      ),
                     ],
-                  ),
-                  SizedBox(height: 16.0),
-                  _buildHotelTile(),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Divider(
-                          color: ColorConst.kSecondaryColor.withOpacity(0.5))),
-                  _buildBookDescription(),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Divider(
-                          color: ColorConst.kSecondaryColor.withOpacity(0.5))),
-                  _buildSelectedRoom(),
-                ],
-              ),
+                  );
+                } else if (state is BookedDetailError) {
+                  return Container(
+                    // color: Colors.red,
+                    child: Column(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Error(
+                          press: () {},
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Error(
+                    press: () {},
+                  );
+                }
+              },
             ),
-            BookRoomDetailShimmer(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBookDescription() {
+  Widget _buildBookDescription(Booking booking) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,11 +147,10 @@ class BookRoomDetailScreen extends StatelessWidget {
         ),
         SizedBox(height: 4.0),
         Text(
-          'Lorem ipsum',
+          '${booking.guest.name}',
           style: kNormalTextStyle,
         ),
         SizedBox(height: 16.0),
-        SizedBox(height: 8.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -130,7 +189,7 @@ class BookRoomDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHotelTile() {
+  Widget _buildHotelTile(Booking booking) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -153,17 +212,17 @@ class BookRoomDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Kahyangan Resort',
+              '${booking.hotel.name}'.titleCase,
               style: kNormalBoldTextStyle,
             ),
             SizedBox(height: 4.0),
             Text(
-              '3 Malam, 2 Kamar',
+              '3 Malam, ${booking.bookingDetails.length} Kamar',
               style: kNormalTextStyle,
             ),
             SizedBox(height: 4.0),
             Text(
-              '15 - 18 Des, 2020',
+              '${Helper.dateParserFormat(booking.checkIn)} - ${Helper.dateParserFormat(booking.checkOut)}',
               style: kNormalTextStyle,
             ),
             SizedBox(height: 4.0),
@@ -174,7 +233,7 @@ class BookRoomDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Text(
-                'Dibatalkan',
+                '${booking.bookingStatus}'.titleCase,
                 style: TextStyle(
                   color: ColorConst.kErrorColor,
                   fontSize: 16.0,
@@ -188,23 +247,31 @@ class BookRoomDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSelectedRoom() {
+  Widget _buildSelectedRoom(Booking booking) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '2 Kamar',
+          '${widget.booking.bookingDetails.length} Kamar',
           style: kNormalBoldTextStyle,
         ),
-        SelectedRoomListTile(),
-        SelectedRoomListTile(),
+        ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: booking.bookingDetails.length,
+            itemBuilder: (_, index) => SelectedRoomListTile(
+                  bookingDetail: widget.booking.bookingDetails[index],
+                )),
       ],
     );
   }
 }
 
 class SelectedRoomListTile extends StatelessWidget {
+  final BookingDetail bookingDetail;
+
   const SelectedRoomListTile({
+    @required this.bookingDetail,
     Key key,
   }) : super(key: key);
 
@@ -216,7 +283,7 @@ class SelectedRoomListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Deluxe Twin With Balcony',
+            '${bookingDetail.roomId}',
             style: kNormalTextStyle,
           ),
           SizedBox(height: 8.0),
@@ -241,30 +308,36 @@ class SelectedRoomListTile extends StatelessWidget {
           Row(
             children: [
               Text(
-                '1 Kamar',
+                '${bookingDetail.roomQty} Kamar',
                 style: kNormalTextStyle,
               ),
-              SizedBox(width: 16.0),
-              Icon(Icons.lens,
-                  size: 8.0,
-                  color: ColorConst.kSecondaryColor.withOpacity(0.5)),
-              SizedBox(width: 16.0),
-              Text(
-                '1 Tamu',
-                style: kNormalTextStyle,
-              ),
+              // SizedBox(width: 16.0),
+              // Icon(Icons.lens,
+              //     size: 8.0,
+              //     color: ColorConst.kSecondaryColor.withOpacity(0.5)),
+              // SizedBox(width: 16.0),
+              // Text(
+              //   '1 Tamu',
+              //   style: kNormalTextStyle,
+              // ),
             ],
           ),
           SizedBox(height: 8.0),
-          Text(
-            'Catatan',
-            style: kNormalBoldTextStyle,
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            'Tidak perlu selimut',
-            style: kNormalTextStyle,
-          ),
+          bookingDetail.note != null
+              ? Column(
+                  children: [
+                    Text(
+                      'Catatan',
+                      style: kNormalBoldTextStyle,
+                    ),
+                    SizedBox(height: 8.0),
+                    Text(
+                      '${bookingDetail.note}',
+                      style: kNormalTextStyle,
+                    ),
+                  ],
+                )
+              : SizedBox(),
         ],
       ),
     );

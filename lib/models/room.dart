@@ -1,5 +1,6 @@
 part of 'package:dangau_hotel/models/models.dart';
 
+// Room Type
 class Room extends Equatable {
   final int id;
   final String name;

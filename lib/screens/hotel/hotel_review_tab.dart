@@ -41,7 +41,6 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
                   ),
                 ),
                 _buildReviewListTile(),
-                HotelReviewShimmer(),
               ],
             );
           } else {
@@ -59,7 +58,9 @@ class _HotelReviewStateTab extends State<HotelReviewTab>
         children: [
           SizedBox(height: 16.0),
           Text(
-            '${hotel.hotelRating.rating}',
+            hotel.hotelRating.rating == 0.0
+                ? '0'
+                : '${hotel.hotelRating.rating}',
             style: TextStyle(
               color: ColorConst.kSecondaryColor,
               fontWeight: FontWeight.w700,

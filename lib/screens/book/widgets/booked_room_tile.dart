@@ -37,17 +37,17 @@ class BookedRoomTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${booking.hotelId}',
+                    '${booking.hotel.name}',
                     style: kNormalBoldTextStyle,
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    '3 Malam, ${booking.bookingDetails.length} Kamar',
+                    '${booking.night} Malam, ${booking.bookingDetails.length} Kamar',
                     style: kNormalTextStyle,
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    '15 - 18 Des, 2020',
+                    '${Helper.dateParserFormat(booking.checkIn)} - ${Helper.dateParserFormat(booking.checkOut)}',
                     style: kNormalTextStyle,
                   ),
                   SizedBox(height: 4.0),

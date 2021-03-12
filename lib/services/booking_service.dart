@@ -13,4 +13,17 @@ class BookingService extends ApiService {
       throw error;
     }
   }
+
+  Future<ApiResponse<Booking>> getBooking(int id) async {
+    await Future.delayed(Duration(seconds: 2));
+    try {
+      Map<String, dynamic> response = await getData('/booking/$id');
+      return ApiResponse(
+        message: response['message'],
+        data: Booking.fromJson(response['data']),
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
 }

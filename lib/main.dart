@@ -1,4 +1,5 @@
 import 'package:dangau_hotel/bloc/bloc.dart';
+import 'package:dangau_hotel/repository/user_repository.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => AuthenticationCubit(userRepository: UserRepository())),
         BlocProvider(create: (_) => LoginCubit(AuthService())),
         BlocProvider(create: (_) => RegisterCubit()),
         BlocProvider(create: (_) => DateCubit()),
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => OrderingStatusCubit()),
         BlocProvider(create: (_) => OrderCartCubit()),
         BlocProvider(create: (_) => BookedCubit(BookingService())),
+        BlocProvider(create: (_) => BookedDetailCubit(BookingService())),
       ],
       child: MaterialApp(
         title: 'Kahyangan Group',

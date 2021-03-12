@@ -15,11 +15,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     await Future.delayed(Duration(seconds: 1));
     try {
-      await _authService.login(loginRequest);
-      // if (loginRequest.number == '08123456' &&
-      //     loginRequest.password == 'admin') {
-
-      emit(LoginSuccess());
+      LoginResponse loginResponse = await _authService.login(loginRequest);
+      emit(LoginSuccess(loginResponse: loginResponse));
     } on BadRequestException catch (error) {
       print(error);
       emit(LoginError());

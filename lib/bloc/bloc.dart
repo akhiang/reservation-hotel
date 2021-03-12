@@ -1,4 +1,6 @@
+export 'package:dangau_hotel/bloc/authentication/authentication_cubit.dart';
 export 'package:dangau_hotel/bloc/booked/booked_cubit.dart';
+export 'package:dangau_hotel/bloc/booked_detail/booked_detail_cubit.dart';
 export 'package:dangau_hotel/bloc/booking/booking_cubit.dart';
 export 'package:dangau_hotel/bloc/login/login_cubit.dart';
 export 'package:dangau_hotel/bloc/register/register_cubit.dart';

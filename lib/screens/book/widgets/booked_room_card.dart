@@ -2,11 +2,9 @@ part of 'package:dangau_hotel/screens/screens.dart';
 
 class BookedRoomCard extends StatefulWidget {
   final Booking booking;
-  final Function press;
 
   const BookedRoomCard({
-    this.booking,
-    this.press,
+    @required this.booking,
     Key key,
   }) : super(key: key);
 
@@ -19,11 +17,8 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context, rootNavigator: true).push(
-          MaterialPageRoute(
-            builder: (context) => BookRoomDetailScreen(),
-          ),
-        );
+        Navigator.pushNamed(context, BookRoomDetailScreen.routeName,
+            arguments: widget.booking);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
@@ -47,11 +42,9 @@ class _BookedRoomCardState extends State<BookedRoomCard> {
                   BookedRoomTile(booking: widget.booking),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context, rootNavigator: true).push(
-                        MaterialPageRoute(
-                          builder: (context) => BookRoomDetailScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(
+                          context, BookRoomDetailScreen.routeName,
+                          arguments: widget.booking);
                     },
                     child: Container(
                       padding: EdgeInsets.all(8.0),

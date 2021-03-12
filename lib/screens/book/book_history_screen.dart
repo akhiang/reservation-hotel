@@ -12,9 +12,7 @@ class _BookHistoryScreenState extends State<BookHistoryScreen> {
     _loadBookedList();
   }
 
-  void _loadBookedList() {
-    context.read<BookedCubit>().getBookedList();
-  }
+  void _loadBookedList() => context.read<BookedCubit>().getBookedList();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,6 @@ class _BookHistoryScreenState extends State<BookHistoryScreen> {
         children: [
           BlocBuilder<BookedCubit, BookedState>(
             builder: (_, state) {
-              print(state.runtimeType);
               if (state is BookedLoading) {
                 return BookRoomListShimmer();
               } else if (state is BookedLoaded) {
@@ -34,25 +31,15 @@ class _BookHistoryScreenState extends State<BookHistoryScreen> {
                   itemBuilder: (_, index) {
                     return BookedRoomCard(
                       booking: state.bookings[index],
-                      press: () {
-                        // Navigator.pushNamed(context, RoomPreferenceScreen.routeName,
-                        //     arguments: state.bookings[index]);
-                      },
                     );
                   },
                 );
               } else if (state is BookedError) {
-                return Error(press: () {});
+                return ErrorCard(press: () {});
               } else {
-                return Error(press: () {});
+                return ErrorCard(press: () {});
               }
             },
-            // child: Column(
-            //   children: [
-            //     BookedRoomCard(),
-            //     BookedRoomCard(),
-            //   ],
-            // ),
           ),
           SizedBox(height: 96.0),
         ],

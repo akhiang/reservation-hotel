@@ -11,8 +11,12 @@ class Booking extends Equatable {
   final String checkOut;
   final String note;
   final String bookingStatus;
+  final int grandTotal;
   final String createdAt;
   final String updatedAt;
+  final int night;
+  final Hotel hotel;
+  final Guest guest;
   final List<BookingDetail> bookingDetails;
 
   Booking({
@@ -26,8 +30,12 @@ class Booking extends Equatable {
     this.checkOut,
     this.note,
     this.bookingStatus,
+    this.grandTotal,
     this.createdAt,
     this.updatedAt,
+    this.night,
+    this.hotel,
+    this.guest,
     this.bookingDetails,
   });
 
@@ -43,8 +51,14 @@ class Booking extends Equatable {
       checkOut: json['check_out'],
       note: json['note'],
       bookingStatus: json['booking_status'],
+      grandTotal: json['grandtotal'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
+      night: json['night_amount'],
+      hotel:
+          json.containsKey('hotel') ? Hotel.fromJson(json['hotel']) : Hotel(),
+      guest:
+          json.containsKey('guest') ? Guest.fromJson(json['guest']) : Guest(),
       bookingDetails: List<BookingDetail>.from(json['booking_detail']
           .map((details) => BookingDetail.fromJson(details))),
     );

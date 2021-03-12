@@ -1,6 +1,6 @@
 part of 'package:dangau_hotel/models/models.dart';
 
-class Guest {
+class Guest extends Equatable {
   final int id;
   final String name;
   final String birth;
@@ -31,9 +31,12 @@ class Guest {
       address: json['address'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
-      isVerified: json['isVerified'] ?? false,
+      isVerified: json['is_verified'] ?? false,
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );
   }
+
+  @override
+  List<Object> get props => [];
 }

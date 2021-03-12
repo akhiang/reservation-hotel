@@ -5,7 +5,7 @@ class AuthService extends ApiService {
     try {
       Map<String, dynamic> response =
           await postData('/auth/login', loginRequest.toJson());
-      // print(response);
+      print(response);
       return LoginResponse.fromJson(response);
     } catch (error) {
       throw (error);

@@ -54,6 +54,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case OrderSuccessScreen.routeName:
       builder = (context) => OrderSuccessScreen();
       break;
+    case BookRoomDetailScreen.routeName:
+      builder = (context) => BookRoomDetailScreen(booking: args);
+      break;
     case HelpScreen.routeName:
       builder = (context) => HelpScreen();
       break;

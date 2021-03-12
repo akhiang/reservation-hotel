@@ -244,13 +244,13 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          DateFormat('dd MMM yyyy')
+                          DateFormat('d MMM yyyy')
                               .format(dateState.rangeStartDate),
                           style: kNormalBoldTextStyle,
                         ),
                         Text('-', style: kNormalBoldTextStyle),
                         Text(
-                          DateFormat('dd MMM yyyy')
+                          DateFormat('d MMM yyyy')
                               .format(dateState.rangeEndDate),
                           style: kNormalBoldTextStyle,
                         ),
