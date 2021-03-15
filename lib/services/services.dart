@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 
 part 'package:dangau_hotel/services/api_service.dart';
 part 'package:dangau_hotel/services/auth_service.dart';
-part 'package:dangau_hotel/services/booked_service.dart';
 part 'package:dangau_hotel/services/booking_service.dart';
 part 'package:dangau_hotel/services/hotel_service.dart';
 part 'package:dangau_hotel/services/room_service.dart';

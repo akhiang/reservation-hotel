@@ -54,11 +54,13 @@ class HotelListCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8.0),
-                  Text(
-                    '⭐⭐⭐⭐⭐',
-                    style: TextStyle(
-                      fontSize: 10.0,
-                      letterSpacing: 1.2,
+                  RatingBarIndicator(
+                    rating: hotel.hotelRating.rating,
+                    itemCount: 5,
+                    itemSize: 16.0,
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
                     ),
                   ),
                 ],

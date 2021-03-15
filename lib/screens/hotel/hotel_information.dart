@@ -21,12 +21,6 @@ class _HotelInformationState extends State<HotelInformation>
   bool get wantKeepAlive => true;
 
   @override
-  initState() {
-    super.initState();
-    context.read<OrderingStatusCubit>().changeStatusToInitial();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     dateState = context.watch<DateCubit>().state;

@@ -39,7 +39,8 @@ class HotelReview extends Equatable {
       isPublish: json['is_publish'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
-      guest: Guest.fromJson(json['guest']),
+      guest:
+          json.containsKey('guest') ? Guest.fromJson(json['guest']) : Guest(),
     );
   }
 
