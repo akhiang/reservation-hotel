@@ -1,5 +1,4 @@
 import 'package:dangau_hotel/bloc/bloc.dart';
-import 'package:dangau_hotel/repository/user_repository.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:dangau_hotel/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (_) =>
-                AuthenticationCubit(userRepository: UserRepository())),
+        BlocProvider(create: (_) => AuthenticationCubit()),
         BlocProvider(create: (_) => LoginCubit(AuthService())),
         BlocProvider(create: (_) => RegisterCubit()),
         BlocProvider(create: (_) => DateCubit()),
+        BlocProvider(create: (_) => OrderCubit(BookingService())),
         BlocProvider(create: (_) => OrderCheckoutTimerBloc(ticker: Ticker())),
         BlocProvider(create: (_) => HotelBloc(HotelService())),
         BlocProvider(create: (_) => HotelDetailBloc(HotelService())),

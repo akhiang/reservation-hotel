@@ -54,11 +54,10 @@ class SummaryRoomListTile extends StatelessWidget {
             ],
           ),
           Text(
-              NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp', decimalDigits: 0)
-                  .format(dateState.rangeNight *
+              Helper.priceFormat((dateState.rangeNight *
                       selectedRoom.quantity *
-                      selectedRoom.room.price),
+                      selectedRoom.room.price)
+                  .toDouble()),
               style: kSmallBoldTextStyle),
         ],
       ),

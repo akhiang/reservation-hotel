@@ -122,11 +122,8 @@ class RoomCard extends StatelessWidget {
                               text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: NumberFormat.currency(
-                                            locale: 'id',
-                                            symbol: 'Rp',
-                                            decimalDigits: 0)
-                                        .format(roomCart.room.price),
+                                    text: Helper.priceFormat(
+                                        roomCart.room.price.toDouble()),
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       color: ColorConst.kErrorColor,

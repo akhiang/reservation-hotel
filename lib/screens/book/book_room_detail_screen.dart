@@ -29,7 +29,8 @@ class _BookRoomDetailScreenState extends State<BookRoomDetailScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
-        child: CustomAppBar(title: 'Kahyangan Resort', isLeading: true),
+        child: CustomAppBar(
+            title: '${widget.booking.hotel.name}', isLeading: true),
       ),
       body: SingleChildScrollView(
         child: Column(

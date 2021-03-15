@@ -9,6 +9,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> nextRoute() async {
     bool isFirstLaunch = await AppDataPreferences.getFirstLaunch();
+    context.read<AuthenticationCubit>().checkUserData();
     if (isFirstLaunch == null) {
       Navigator.pushNamedAndRemoveUntil(
           context, OnBoardingScreen.routeName, (route) => false);
@@ -26,8 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    runTimer();
     super.initState();
+    runTimer();
   }
 
   @override

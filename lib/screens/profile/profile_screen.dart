@@ -52,6 +52,7 @@ class ProfileScreen extends StatelessWidget {
                     firstButtonPress: () => Navigator.of(context).pop(),
                     secondButtonPress: () {
                       Navigator.of(context).pop();
+                      context.read<AuthenticationCubit>().loggedOut();
                     },
                   ),
                 );

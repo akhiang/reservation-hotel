@@ -15,7 +15,7 @@ class BookingService extends ApiService {
   }
 
   Future<ApiResponse<Booking>> getBooking(int id) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
     try {
       Map<String, dynamic> response = await getData('/booking/$id');
       return ApiResponse(
@@ -24,6 +24,17 @@ class BookingService extends ApiService {
       );
     } catch (error) {
       throw error;
+    }
+  }
+
+  Future<void> postBooking(OrderRequest orderRequest) async {
+    Map<String, dynamic> body = orderRequest.toJson();
+    print(body);
+    try {
+      Map<String, dynamic> response = await postData('/booking/create', body);
+      print(response);
+    } catch (error) {
+      print(error);
     }
   }
 }

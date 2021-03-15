@@ -16,8 +16,11 @@ part 'package:dangau_hotel/models/room_preference.dart';
 
 part 'package:dangau_hotel/models/requests/login_request.dart';
 part 'package:dangau_hotel/models/requests/register_request.dart';
+part 'package:dangau_hotel/models/requests/order_request.dart';
+part 'package:dangau_hotel/models/requests/order_room_request.dart';
 part 'package:dangau_hotel/models/requests/search_room_request.dart';
 
 part 'package:dangau_hotel/models/responses/api_response.dart';
 part 'package:dangau_hotel/models/responses/login_response.dart';
 part 'package:dangau_hotel/models/responses/hotel_response.dart';
+part 'package:dangau_hotel/models/responses/order_response.dart';

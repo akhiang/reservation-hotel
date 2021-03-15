@@ -2,12 +2,15 @@ part of 'package:dangau_hotel/services/services.dart';
 
 class ApiService {
   static const String BASE_URL = Environment.apiUrl;
-  static const Map<String, String> HEADERS = {"Accept": "application/json"};
+  static const HEADERS = {"Accept": "application/json"};
   var responseJson;
 
   Future<dynamic> getData(String uri) async {
     try {
-      final http.Response response = await http.get(BASE_URL + uri);
+      final http.Response response = await http.get(
+        BASE_URL + uri,
+        headers: HEADERS,
+      );
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('Error occured');
@@ -16,17 +19,25 @@ class ApiService {
   }
 
   Future<dynamic> postData(String uri, body) async {
+    String token = await AuthPreferences.getToken();
     try {
       final http.Response response = await http.post(
         BASE_URL + uri,
-        headers: HEADERS,
-        body: body,
+        headers: _getAuthorizationHeader(token),
+        body: jsonEncode(body),
       );
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('Error occured');
     }
     return responseJson;
+  }
+
+  Map<String, String> _getAuthorizationHeader(String token) {
+    return {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token",
+    };
   }
 
   dynamic _returnResponse(http.Response response) {

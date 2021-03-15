@@ -16,6 +16,8 @@ class SelectRoomScreen extends StatefulWidget {
 
 class _SelectRoomScreenState extends State<SelectRoomScreen> {
   DateState dateState;
+  Guest guest;
+  List<RoomCart> selectedRoom;
   DateRangePickerController _datePickerController;
 
   @override
@@ -219,6 +221,16 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
   @override
   Widget build(BuildContext context) {
     DateState dateState = context.watch<DateCubit>().state;
+    List<RoomCart> selectedRoom = context.select<RoomCartCubit, List<RoomCart>>(
+        (RoomCartCubit cubit) => (cubit.state is RoomCartLoaded)
+            ? (cubit.state as RoomCartLoaded).selectedRoomCart
+            : []);
+    guest = context.select<AuthenticationCubit, Guest>(
+        (AuthenticationCubit cubit) =>
+            (cubit.state is AuthenticationAuthenticated)
+                ? (cubit.state as AuthenticationAuthenticated).guest
+                : []);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
@@ -267,28 +279,13 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
               ),
             ],
           ),
-          BlocBuilder<RoomCartCubit, RoomCartState>(
-            builder: (context, state) {
-              if (state is RoomCartInitial) {
-                return SizedBox();
-              } else if (state is RoomCartLoading) {
-                return SizedBox();
-              } else if (state is RoomCartLoaded) {
-                if (state.selectedRoomCart.isEmpty) {
-                  return SizedBox();
-                } else {
-                  return _buildBottomCheckoutButton(context);
-                }
-              }
-              return SizedBox();
-            },
-          ),
+          selectedRoom.isEmpty ? SizedBox() : _buildBottomCheckoutButton(),
         ],
       ),
     );
   }
 
-  Widget _buildBottomCheckoutButton(BuildContext context) {
+  Widget _buildBottomCheckoutButton() {
     DateState dateState = context.watch<DateCubit>().state;
     return Positioned(
       bottom: 0,
@@ -365,7 +362,17 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                 child: PrimaryButton(
                   text: 'Pesan Sekarang',
                   press: () {
-                    Navigator.pushNamed(context, OrderRoomSummary.routeName);
+                    OrderRequest orderRequest = OrderRequest(
+                      hotelId: widget.hotel.id,
+                      guestId: guest.id,
+                      checkIn: DateFormat('yyyy-MM-d')
+                          .format(dateState.rangeStartDate),
+                      checkOut: DateFormat('yyyy-MM-d')
+                          .format(dateState.rangeEndDate),
+                      // selectedRoom: selectedRoom,
+                    );
+                    context.read<OrderCubit>().saveOrder(orderRequest);
+                    // Navigator.pushNamed(context, OrderRoomSummary.routeName);
                   },
                 ),
               ),

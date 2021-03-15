@@ -34,7 +34,7 @@ class RoomCartCubit extends Cubit<RoomCartState> {
       emit(RoomCartLoaded(
           roomCart: roomCart, selectedRoomCart: selectedRoomCart));
     } catch (e) {
-      print('asd ' + e.toString());
+      print('room cart ' + e.toString());
       emit(RoomCartError());
     }
   }

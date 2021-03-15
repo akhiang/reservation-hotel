@@ -37,6 +37,21 @@ class Guest extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': this.id,
+      'name': this.name,
+      'birth': this.birth,
+      'address': this.address,
+      'email': this.email,
+      'phone': this.phone,
+      'isVerified': this.isVerified,
+    };
+  }
+
   @override
   List<Object> get props => [];
+
+  @override
+  String toString() => 'Guest { id: $id, name: $name, email: $email }';
 }

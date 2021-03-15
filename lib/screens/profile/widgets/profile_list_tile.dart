@@ -7,12 +7,16 @@ class ProfileListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationState authenticationState =
+        context.watch<AuthenticationCubit>().state;
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(
-          'John doe',
+          (authenticationState is AuthenticationAuthenticated)
+              ? authenticationState.guest.name
+              : 'Guest',
           style: TextStyle(
             color: ColorConst.kSecondaryColor,
             fontWeight: FontWeight.w600,
@@ -24,13 +28,17 @@ class ProfileListTile extends StatelessWidget {
           children: [
             SizedBox(height: 8.0),
             Text(
-              'johndoe@gmail.com',
+              (authenticationState is AuthenticationAuthenticated)
+                  ? authenticationState.guest.email
+                  : 'guest@email.com',
               style: TextStyle(
                 color: ColorConst.kSecondaryColor,
               ),
             ),
             Text(
-              '+62 081232131232',
+              (authenticationState is AuthenticationAuthenticated)
+                  ? authenticationState.guest.phone
+                  : '',
               style: TextStyle(
                 color: ColorConst.kSecondaryColor,
               ),
@@ -42,8 +50,8 @@ class ProfileListTile extends StatelessWidget {
           clipBehavior: Clip.hardEdge,
           color: ColorConst.kSecondaryColor.withOpacity(0.30),
           child: Container(
-            width: 64.0,
-            height: 64.0,
+            width: 80.0,
+            height: 80.0,
             child: Icon(
               Icons.person,
               size: 32.0,
@@ -51,16 +59,18 @@ class ProfileListTile extends StatelessWidget {
             ),
           ),
         ),
-        trailing: IconButton(
-          icon: Icon(Icons.edit, color: ColorConst.kSecondaryColor),
-          onPressed: () {
-            Navigator.of(context, rootNavigator: true).push(
-              MaterialPageRoute(
-                builder: (context) => EditProfileScreen(),
-              ),
-            );
-          },
-        ),
+        trailing: (authenticationState is AuthenticationAuthenticated)
+            ? IconButton(
+                icon: Icon(Icons.edit, color: ColorConst.kSecondaryColor),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditProfileScreen(),
+                    ),
+                  );
+                },
+              )
+            : SizedBox(),
       ),
     );
   }
