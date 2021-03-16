@@ -1,6 +1,6 @@
 part of 'package:dangau_hotel/models/models.dart';
 
-class OrderRequest {
+class OrderRequest extends Equatable {
   final int hotelId;
   final int guestId;
   final String checkIn;
@@ -15,6 +15,22 @@ class OrderRequest {
     this.selectedRoom,
   });
 
+  OrderRequest copyWith({
+    int hotelId,
+    int guestId,
+    String checkIn,
+    String checkOut,
+    List<OrderRoomRequest> selectedRoom,
+  }) {
+    return OrderRequest(
+      hotelId: hotelId ?? this.hotelId,
+      guestId: guestId ?? this.guestId,
+      checkIn: checkIn ?? this.checkIn,
+      checkOut: checkOut ?? this.checkOut,
+      selectedRoom: selectedRoom ?? this.selectedRoom,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'hotel_id': this.hotelId,
@@ -26,6 +42,9 @@ class OrderRequest {
   }
 
   @override
+  List<Object> get props => [];
+
+  @override
   String toString() =>
-      'OrderReq { hotelId: $hotelId, guestId: $guestId, checkIn: $checkIn }';
+      'OrderReq { hotelId: $hotelId, guestId: $guestId, checkIn: $checkIn, room: $selectedRoom }';
 }

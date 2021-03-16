@@ -22,5 +22,4 @@ part 'package:dangau_hotel/models/requests/search_room_request.dart';
 
 part 'package:dangau_hotel/models/responses/api_response.dart';
 part 'package:dangau_hotel/models/responses/login_response.dart';
-part 'package:dangau_hotel/models/responses/hotel_response.dart';
 part 'package:dangau_hotel/models/responses/order_response.dart';

@@ -1,7 +1,7 @@
 part of 'package:dangau_hotel/models/models.dart';
 
 // Room Type
-class Room extends Equatable {
+class RoomType extends Equatable {
   final int id;
   final String name;
   final String variant;
@@ -15,7 +15,7 @@ class Room extends Equatable {
   final int available;
   final String imageUrl;
 
-  Room({
+  RoomType({
     this.id,
     this.name,
     this.variant,
@@ -30,8 +30,8 @@ class Room extends Equatable {
     this.imageUrl,
   });
 
-  factory Room.fromJson(Map<String, dynamic> json) {
-    return Room(
+  factory RoomType.fromJson(Map<String, dynamic> json) {
+    return RoomType(
       id: json['id'],
       name: json['name'] ?? '',
       variant: json['variant'] ?? '',
@@ -53,7 +53,7 @@ class Room extends Equatable {
   List<Object> get props => [];
 
   @override
-  String toString() => 'Room { name: $name }';
+  String toString() => 'RoomType { name: $name }';
 }
 
 // final List<Room> rooms = [

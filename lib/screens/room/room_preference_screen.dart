@@ -60,7 +60,7 @@ class _RoomPreferenceScreenState extends State<RoomPreferenceScreen> {
             child: PrimaryButton(
               text: 'Simpan',
               press: () {
-                print(roomPreference);
+                // print(roomPreference);
                 context
                     .read<RoomCartCubit>()
                     .updateRoomCart(widget.roomCart, roomPreference);

@@ -12,12 +12,12 @@ class RoomDetailInitial extends RoomDetailState {}
 class RoomDetailLoading extends RoomDetailState {}
 
 class RoomDetailLoaded extends RoomDetailState {
-  final Room room;
+  final RoomType room;
 
   const RoomDetailLoaded({this.room});
 
   RoomDetailLoaded copyWith({
-    Room room,
+    RoomType room,
   }) {
     return RoomDetailLoaded(
       room: room ?? this.room,

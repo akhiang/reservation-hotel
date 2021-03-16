@@ -17,7 +17,7 @@ class SelectRoomScreen extends StatefulWidget {
 class _SelectRoomScreenState extends State<SelectRoomScreen> {
   DateState dateState;
   Guest guest;
-  List<RoomCart> selectedRoom;
+  List<RoomCart> selectedRooms;
   DateRangePickerController _datePickerController;
 
   @override
@@ -220,8 +220,8 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DateState dateState = context.watch<DateCubit>().state;
-    List<RoomCart> selectedRoom = context.select<RoomCartCubit, List<RoomCart>>(
+    dateState = context.watch<DateCubit>().state;
+    selectedRooms = context.select<RoomCartCubit, List<RoomCart>>(
         (RoomCartCubit cubit) => (cubit.state is RoomCartLoaded)
             ? (cubit.state as RoomCartLoaded).selectedRoomCart
             : []);
@@ -231,62 +231,96 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                 ? (cubit.state as AuthenticationAuthenticated).guest
                 : []);
 
+    double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
         child: CustomAppBar(title: 'Kamar Yang Tersedia', isLeading: true),
       ),
       body: Stack(
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: GestureDetector(
-                  onTap: () {
-                    _showDateCalenderBottomSheet(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    decoration: BoxDecoration(
-                      color: ColorConst.kSecondaryColor.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          DateFormat('d MMM yyyy')
-                              .format(dateState.rangeStartDate),
-                          style: kNormalBoldTextStyle,
-                        ),
-                        Text('-', style: kNormalBoldTextStyle),
-                        Text(
-                          DateFormat('d MMM yyyy')
-                              .format(dateState.rangeEndDate),
-                          style: kNormalBoldTextStyle,
-                        ),
-                      ],
+          Container(
+            margin: EdgeInsets.only(top: 88.0 + statusBarHeight),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      _showDateCalenderBottomSheet(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      decoration: BoxDecoration(
+                        color: ColorConst.kSecondaryColor.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            DateFormat('d MMM yyyy')
+                                .format(dateState.rangeStartDate),
+                            style: kNormalBoldTextStyle,
+                          ),
+                          Text('-', style: kNormalBoldTextStyle),
+                          Text(
+                            DateFormat('d MMM yyyy')
+                                .format(dateState.rangeEndDate),
+                            style: kNormalBoldTextStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: RoomList(
-                  hotel: widget.hotel,
-                  dateState: dateState,
+                Expanded(
+                  child: RoomList(
+                    hotel: widget.hotel,
+                    dateState: dateState,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          selectedRoom.isEmpty ? SizedBox() : _buildBottomCheckoutButton(),
+          selectedRooms.isEmpty ? SizedBox() : _buildBottomCheckoutButton(),
+          BlocConsumer<OrderCubit, OrderState>(
+            listener: (context, state) {
+              print(state.runtimeType);
+              if (state is OrderError) {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('order failed'),
+                  ),
+                );
+                // Navigator.pushNamed(context, OrderRoomSummary.routeName);
+              } else if (state is OrderSuccess) {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('order success'),
+                  ),
+                );
+                // Navigator.pushNamed(context, OrderRoomSummary.routeName);
+              }
+            },
+            builder: (context, state) {
+              if (state is OrderLoading) {
+                return LoadingIndicator();
+              } else if (state is OrderError) {
+                return Container();
+              } else {
+                return Container();
+              }
+            },
+          ),
         ],
       ),
     );
   }
 
   Widget _buildBottomCheckoutButton() {
-    DateState dateState = context.watch<DateCubit>().state;
     return Positioned(
       bottom: 0,
       left: 0,
@@ -362,6 +396,15 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                 child: PrimaryButton(
                   text: 'Pesan Sekarang',
                   press: () {
+                    List<OrderRoomRequest> orderRoomList = selectedRooms
+                        .map((roomCart) => OrderRoomRequest(
+                              roomId: roomCart.room.id,
+                              price: roomCart.room.price,
+                              roomQty: roomCart.quantity,
+                              note: roomCart.roomPreference.note,
+                            ))
+                        .toList();
+
                     OrderRequest orderRequest = OrderRequest(
                       hotelId: widget.hotel.id,
                       guestId: guest.id,
@@ -369,14 +412,13 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                           .format(dateState.rangeStartDate),
                       checkOut: DateFormat('yyyy-MM-d')
                           .format(dateState.rangeEndDate),
-                      // selectedRoom: selectedRoom,
+                      selectedRoom: orderRoomList,
                     );
                     context.read<OrderCubit>().saveOrder(orderRequest);
-                    // Navigator.pushNamed(context, OrderRoomSummary.routeName);
                   },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

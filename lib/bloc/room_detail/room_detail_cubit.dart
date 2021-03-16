@@ -13,7 +13,7 @@ class RoomDetailCubit extends Cubit<RoomDetailState> {
   Future<void> getRoomDetail(int id) async {
     emit(RoomDetailLoading());
     try {
-      final ApiResponse<Room> roomDetailResponse =
+      final ApiResponse<RoomType> roomDetailResponse =
           await _roomService.getRoom(id);
       print(roomDetailResponse);
       emit(RoomDetailLoaded(room: roomDetailResponse.data));

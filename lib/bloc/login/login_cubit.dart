@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dangau_hotel/exceptions/app_exception.dart';
 import 'package:dangau_hotel/models/models.dart';
 import 'package:dangau_hotel/services/services.dart';
 import 'package:equatable/equatable.dart';
@@ -17,10 +16,8 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       LoginResponse loginResponse = await _authService.login(loginRequest);
       emit(LoginSuccess(loginResponse: loginResponse));
-    } on BadRequestException catch (error) {
-      print(error);
-      emit(LoginError());
     } catch (error) {
+      print('ccatc');
       emit(LoginError());
     }
   }

@@ -19,9 +19,9 @@ class RoomCartCubit extends Cubit<RoomCartState> {
   Future<void> getHotelRoomsToCart(SearchRoomRequest searchRoomRequest) async {
     emit(RoomCartLoading());
     try {
-      final ApiResponse<List<Room>> roomResponse =
+      final ApiResponse<List<RoomType>> roomResponse =
           await _roomService.getRooms(searchRoomRequest);
-      List<Room> rooms = roomResponse.data;
+      List<RoomType> rooms = roomResponse.data;
       List<RoomCart> roomCart = rooms.map((room) {
         return RoomCart(
           id: room.id,

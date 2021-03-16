@@ -28,7 +28,7 @@ class ApiService {
       );
       responseJson = _returnResponse(response);
     } on SocketException {
-      throw FetchDataException('Error occured');
+      throw FetchDataException('Err ured');
     }
     return responseJson;
   }
@@ -36,6 +36,7 @@ class ApiService {
   Map<String, String> _getAuthorizationHeader(String token) {
     return {
       "Accept": "application/json",
+      "Content-type": "application/json",
       "Authorization": "Bearer $token",
     };
   }
@@ -43,6 +44,7 @@ class ApiService {
   dynamic _returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
+      case 201:
         var responseJson = jsonDecode(response.body);
         return responseJson;
       case 400:

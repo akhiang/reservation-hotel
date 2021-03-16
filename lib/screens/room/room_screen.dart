@@ -3,7 +3,7 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class RoomScreen extends StatefulWidget {
   static const String routeName = "room_screen";
 
-  final Room room;
+  final RoomType room;
 
   const RoomScreen({
     Key key,

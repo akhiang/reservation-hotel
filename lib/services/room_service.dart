@@ -1,7 +1,7 @@
 part of 'package:dangau_hotel/services/services.dart';
 
 class RoomService extends ApiService {
-  Future<ApiResponse<List<Room>>> getRooms(
+  Future<ApiResponse<List<RoomType>>> getRooms(
       SearchRoomRequest searchRoomRequest) async {
     String startDate =
         DateFormat('yyyy-MM-dd').format(searchRoomRequest.startDate);
@@ -13,20 +13,20 @@ class RoomService extends ApiService {
       List<dynamic> data = response['data'];
       return ApiResponse(
         message: response['message'],
-        data: data.map((room) => Room.fromJson(room)).toList(),
+        data: data.map((room) => RoomType.fromJson(room)).toList(),
       );
     } catch (error) {
       throw (error);
     }
   }
 
-  Future<ApiResponse<Room>> getRoom(int id) async {
+  Future<ApiResponse<RoomType>> getRoom(int id) async {
     await Future.delayed(Duration(seconds: 1));
     try {
       Map<String, dynamic> response = await getData('/room-type/$id');
       return ApiResponse(
         message: response['message'],
-        data: Room.fromJson(response['data']),
+        data: RoomType.fromJson(response['data']),
       );
     } catch (error) {
       throw (error);

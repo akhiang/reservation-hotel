@@ -11,6 +11,21 @@ class OrderInitial extends OrderState {}
 
 class OrderLoading extends OrderState {}
 
-class OrderLoaded extends OrderState {}
+class OrderSuccess extends OrderState {
+  final OrderResponse orderResponse;
+
+  const OrderSuccess({this.orderResponse});
+
+  OrderSuccess copyWith({
+    LoginResponse orderResponse,
+  }) {
+    return OrderSuccess(
+      orderResponse: orderResponse ?? this.orderResponse,
+    );
+  }
+
+  @override
+  List<Object> get props => [orderResponse];
+}
 
 class OrderError extends OrderState {}

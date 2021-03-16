@@ -2,7 +2,7 @@ part of 'package:dangau_hotel/models/models.dart';
 
 class RoomCart extends Equatable {
   final int id;
-  final Room room;
+  final RoomType room;
   final int quantity;
   final RoomPreference roomPreference;
 
@@ -15,7 +15,7 @@ class RoomCart extends Equatable {
 
   RoomCart copyWith({
     int id,
-    Room room,
+    RoomType room,
     bool isSelected,
     int quantity,
     RoomPreference roomPreference,

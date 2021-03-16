@@ -15,7 +15,6 @@ class BookedDetailCubit extends Cubit<BookedDetailState> {
     try {
       final ApiResponse<Booking> bookedDetailResponse =
           await _bookingService.getBooking(id);
-      print(bookedDetailResponse);
       emit(BookedDetailLoaded(booking: bookedDetailResponse.data));
     } catch (error) {
       print('booked detail ' + error.toString());

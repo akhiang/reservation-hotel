@@ -14,6 +14,8 @@ class OrderResponse {
   final double grandTotal;
   final String createdAt;
   final String updateddAt;
+  final Hotel hotel;
+  final Guest guest;
 
   OrderResponse({
     this.id,
@@ -29,9 +31,11 @@ class OrderResponse {
     this.grandTotal,
     this.createdAt,
     this.updateddAt,
+    this.hotel,
+    this.guest,
   });
 
-  factory OrderResponse.fromMap(Map<String, dynamic> json) {
+  factory OrderResponse.fromJson(Map<String, dynamic> json) {
     return OrderResponse(
       id: json['id'],
       hotelId: json['hotel_id'],
@@ -41,11 +45,13 @@ class OrderResponse {
       checkOut: json['check_out'],
       note: json['note'],
       bookingStatus: json['booking_status'],
-      total: json['total'],
-      tax: json['tax'],
-      grandTotal: json['grand_total'],
+      total: json['total'].toDouble(),
+      tax: json['tax'].toDouble(),
+      grandTotal: json['grandtotal'].toDouble(),
       createdAt: json['created_at'],
       updateddAt: json['updated_at'],
+      hotel: Hotel.fromJson(json['hotel']),
+      guest: Guest.fromJson(json['guest']),
     );
   }
 }

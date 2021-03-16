@@ -2,7 +2,7 @@ part of 'package:dangau_hotel/models/models.dart';
 
 class OrderRoomRequest {
   final int roomId;
-  final double price;
+  final int price;
   final int roomQty;
   final String note;
 
@@ -12,6 +12,20 @@ class OrderRoomRequest {
     this.roomQty,
     this.note,
   });
+
+  OrderRoomRequest copyWith({
+    int roomId,
+    int price,
+    int roomQty,
+    String note,
+  }) {
+    return OrderRoomRequest(
+      roomId: roomId ?? this.roomId,
+      price: price ?? this.price,
+      roomQty: roomQty ?? this.roomQty,
+      note: note ?? this.note,
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {

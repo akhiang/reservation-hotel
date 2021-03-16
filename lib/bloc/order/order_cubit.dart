@@ -11,7 +11,16 @@ class OrderCubit extends Cubit<OrderState> {
   OrderCubit(this._bookingService) : super(OrderInitial());
 
   Future<void> saveOrder(OrderRequest orderRequest) async {
-    // print(orderRequest);
-    _bookingService.postBooking(orderRequest);
+    emit(OrderLoading());
+    await Future.delayed(Duration(seconds: 1));
+    try {
+      ApiResponse<OrderResponse> orderResponse =
+          await _bookingService.postBooking(orderRequest);
+      print(orderResponse);
+      emit(OrderSuccess(orderResponse: orderResponse.data));
+    } catch (error) {
+      print('save order' + error.toString());
+      emit(OrderError());
+    }
   }
 }

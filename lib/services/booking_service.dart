@@ -27,14 +27,17 @@ class BookingService extends ApiService {
     }
   }
 
-  Future<void> postBooking(OrderRequest orderRequest) async {
+  Future<ApiResponse<OrderResponse>> postBooking(
+      OrderRequest orderRequest) async {
     Map<String, dynamic> body = orderRequest.toJson();
-    print(body);
     try {
       Map<String, dynamic> response = await postData('/booking/create', body);
-      print(response);
+      return ApiResponse(
+        message: response['message'],
+        data: OrderResponse.fromJson(response['data']),
+      );
     } catch (error) {
-      print(error);
+      throw error;
     }
   }
 }

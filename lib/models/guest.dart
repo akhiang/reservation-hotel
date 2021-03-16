@@ -27,13 +27,13 @@ class Guest extends Equatable {
     return Guest(
       id: json['id'],
       name: json['name'] ?? '',
-      birth: json['birth'],
+      birth: json['date_of_birth'],
       address: json['address'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
       isVerified: json['is_verified'] ?? false,
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
     );
   }
 
@@ -41,7 +41,7 @@ class Guest extends Equatable {
     return {
       'id': this.id,
       'name': this.name,
-      'birth': this.birth,
+      'date_of_birth': this.birth,
       'address': this.address,
       'email': this.email,
       'phone': this.phone,

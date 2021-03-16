@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -18,6 +17,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter/services.dart';
 import 'package:dangau_hotel/models/models.dart';
 import 'package:dangau_hotel/widgets/widgets.dart';
 import 'package:dangau_hotel/utils/utils.dart';

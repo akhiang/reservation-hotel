@@ -17,7 +17,7 @@ class PaymentMethodLoaded extends PaymentMethodState {
   const PaymentMethodLoaded({this.paymentMethods});
 
   PaymentMethodLoaded copyWith({
-    List<Room> paymentMethods,
+    List<RoomType> paymentMethods,
   }) {
     return PaymentMethodLoaded(
       paymentMethods: paymentMethods ?? this.paymentMethods,
