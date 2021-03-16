@@ -3,11 +3,13 @@ part of 'package:dangau_hotel/widgets/widgets.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final bool isLeading;
+  final Function press;
 
   const CustomAppBar({
     Key key,
     @required this.title,
     this.isLeading = true,
+    this.press,
   }) : super(key: key);
 
   @override
@@ -23,9 +25,14 @@ class CustomAppBar extends StatelessWidget {
                 ? Align(
                     alignment: Alignment.bottomLeft,
                     child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                      // onPressed: () {
+                      //   Navigator.pop(context);
+                      // },
+                      onPressed: press == null
+                          ? () {
+                              Navigator.pop(context);
+                            }
+                          : press,
                       icon: Icon(
                         Icons.chevron_left,
                         color: ColorConst.kSecondaryColor,

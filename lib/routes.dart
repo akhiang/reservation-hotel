@@ -40,7 +40,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       builder = (context) => RoomPreferenceScreen(roomCart: args);
       break;
     case OrderRoomSummary.routeName:
-      builder = (context) => OrderRoomSummary();
+      builder = (context) => OrderRoomSummary(orderResponse: args);
       break;
     case OrderCustomerContact.routeName:
       builder = (context) => OrderCustomerContact();

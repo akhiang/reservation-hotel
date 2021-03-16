@@ -16,6 +16,7 @@ class OrderResponse {
   final String updateddAt;
   final Hotel hotel;
   final Guest guest;
+  final List<BookingDetail> bookingDetail;
 
   OrderResponse({
     this.id,
@@ -33,6 +34,7 @@ class OrderResponse {
     this.updateddAt,
     this.hotel,
     this.guest,
+    this.bookingDetail,
   });
 
   factory OrderResponse.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,10 @@ class OrderResponse {
       updateddAt: json['updated_at'],
       hotel: Hotel.fromJson(json['hotel']),
       guest: Guest.fromJson(json['guest']),
+      bookingDetail: json.containsKey('booking_detail')
+          ? List<BookingDetail>.from(json['booking_detail']
+              .map((booking) => BookingDetail.fromJson(booking)))
+          : [],
     );
   }
 }

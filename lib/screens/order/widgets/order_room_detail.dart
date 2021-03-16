@@ -1,7 +1,7 @@
 part of 'package:dangau_hotel/screens/screens.dart';
 
 class OrderRoomDetail extends StatefulWidget {
-  final RoomCart selectedRoom;
+  final BookingDetail selectedRoom;
 
   const OrderRoomDetail({Key key, @required this.selectedRoom})
       : super(key: key);
@@ -49,15 +49,14 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
                               children: [
                                 Icon(Icons.meeting_room,
                                     color: ColorConst.kErrorColor),
-                                Text(' ${widget.selectedRoom.quantity} Kamar',
+                                Text(' ${widget.selectedRoom.roomQty} Kamar',
                                     style: kNormalBoldTextStyle),
                               ],
                             ),
                             SizedBox(height: 8.0),
                             Row(
                               children: [
-                                widget.selectedRoom.roomPreference.isSmoke ==
-                                        true
+                                widget.selectedRoom.room.isSmoking == 1
                                     ? Text('Smoking', style: kNormalTextStyle)
                                     : Text('Non-Smoking',
                                         style: kNormalTextStyle),
@@ -67,16 +66,20 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
                                     color: ColorConst.kSecondaryColor
                                         .withOpacity(0.5)),
                                 SizedBox(width: 8.0),
-                                widget.selectedRoom.roomPreference
-                                            .isSingleBed ==
-                                        true
-                                    ? Text('Single Bed',
-                                        style: kNormalTextStyle)
-                                    : Text('Twin Bed', style: kNormalTextStyle),
+                                // widget.selectedRoom.roomPreference
+                                //             .isSingleBed ==
+                                //         true
+                                //     ? Text('Single Bed',
+                                //         style: kNormalTextStyle)
+                                //     : Text('Twin Bed', style: kNormalTextStyle),
+                                Text(
+                                    '${widget.selectedRoom.room.bedType} bed'
+                                        .titleCase,
+                                    style: kNormalTextStyle),
                               ],
                             ),
                             SizedBox(height: 8.0),
-                            widget.selectedRoom.roomPreference.note == ''
+                            widget.selectedRoom.note == null
                                 ? SizedBox()
                                 : Column(
                                     crossAxisAlignment:
@@ -85,8 +88,7 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
                                       Text('Catatan',
                                           style: kNormalBoldTextStyle),
                                       SizedBox(height: 8.0),
-                                      Text(
-                                          '${widget.selectedRoom.roomPreference.note}',
+                                      Text('${widget.selectedRoom.note}',
                                           style: kNormalTextStyle),
                                     ],
                                   ),
@@ -120,13 +122,14 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: '${widget.selectedRoom.room.name}'.titleCase,
+                        text: '${widget.selectedRoom.room.roomType.name}'
+                            .titleCase,
                         style: kNormalBoldTextStyle,
                       ),
-                      TextSpan(
-                        text: "\n${widget.selectedRoom.room.variant}".titleCase,
-                        style: kNormalBoldTextStyle,
-                      ),
+                      // TextSpan(
+                      //   text: "\n${widget.selectedRoom.room.variant}".titleCase,
+                      //   style: kNormalBoldTextStyle,
+                      // ),
                     ],
                   ),
                 ),
@@ -147,7 +150,7 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Jumlah kamar', style: kNormalTextStyle),
-              Text('${widget.selectedRoom.quantity}',
+              Text('${widget.selectedRoom.roomQty}',
                   style: kNormalBoldTextStyle),
             ],
           ),
@@ -165,8 +168,7 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Harga/malam', style: kNormalTextStyle),
-              Text(
-                  Helper.priceFormat(widget.selectedRoom.room.price.toDouble()),
+              Text(Helper.priceFormat(widget.selectedRoom.price),
                   style: kNormalBoldTextStyle),
             ],
           ),
@@ -175,11 +177,7 @@ class _OrderRoomDetailState extends State<OrderRoomDetail> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Sub-Total', style: kNormalTextStyle),
-              Text(
-                  Helper.priceFormat((dateState.rangeNight *
-                          widget.selectedRoom.quantity *
-                          widget.selectedRoom.room.price)
-                      .toDouble()),
+              Text(Helper.priceFormat(widget.selectedRoom.subTotal),
                   style: kNormalBoldTextStyle),
             ],
           ),

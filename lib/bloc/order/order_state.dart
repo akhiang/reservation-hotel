@@ -17,7 +17,7 @@ class OrderSuccess extends OrderState {
   const OrderSuccess({this.orderResponse});
 
   OrderSuccess copyWith({
-    LoginResponse orderResponse,
+    OrderResponse orderResponse,
   }) {
     return OrderSuccess(
       orderResponse: orderResponse ?? this.orderResponse,

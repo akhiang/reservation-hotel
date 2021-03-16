@@ -3,6 +3,10 @@ part of 'package:dangau_hotel/screens/screens.dart';
 class OrderRoomSummary extends StatefulWidget {
   static const String routeName = "order_room_summary";
 
+  final OrderResponse orderResponse;
+
+  const OrderRoomSummary({Key key, this.orderResponse}) : super(key: key);
+
   @override
   _OrderRoomSummaryState createState() => _OrderRoomSummaryState();
 }
@@ -24,7 +28,27 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(88.0),
-        child: CustomAppBar(title: 'Detail Pemesanan', isLeading: true),
+        child: CustomAppBar(
+          title: 'Detail Pemesanan',
+          isLeading: true,
+          press: () async {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => CustomDialog(
+                icon: Icons.error_rounded,
+                title: 'Batalkan Pesanan?',
+                description: 'Pesanan akan terhapus',
+                firstButtonText: 'Batalkan',
+                secondButtonText: 'Tidak',
+                firstButtonPress: () => Navigator.of(context).pop(),
+                secondButtonPress: () {
+                  Navigator.of(context).pop();
+                  // context.read<AuthenticationCubit>().loggedOut();
+                },
+              ),
+            );
+          },
+        ),
       ),
       extendBody: true,
       bottomNavigationBar: Container(
@@ -194,21 +218,34 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Pilihan Kamar', style: kNormalTextStyle),
-          BlocBuilder<RoomCartCubit, RoomCartState>(
-            builder: (_, state) {
-              final selectedRooms = (state as RoomCartLoaded).selectedRoomCart;
-              return ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: selectedRooms.length,
-                itemBuilder: (_, index) {
-                  final selectedRoom = selectedRooms[index];
-                  return SelectedRoomCard(
-                    title: '${selectedRoom.room.name}'.titleCase,
-                    subtitle: '${selectedRoom.room.variant}'.titleCase,
-                  );
-                },
+          // BlocBuilder<RoomCartCubit, RoomCartState>(
+          //   builder: (_, state) {
+          //     final selectedRooms = (state as RoomCartLoaded).selectedRoomCart;
+          //     return ListView.builder(
+          //       padding: EdgeInsets.zero,
+          //       shrinkWrap: true,
+          //       physics: NeverScrollableScrollPhysics(),
+          //       itemCount: selectedRooms.length,
+          //       itemBuilder: (_, index) {
+          //         final selectedRoom = selectedRooms[index];
+          //         return SelectedRoomCard(
+          //           title: '${selectedRoom.room.name}'.titleCase,
+          //           subtitle: '${selectedRoom.room.variant}'.titleCase,
+          //         );
+          //       },
+          //     );
+          //   },
+          // ),
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: widget.orderResponse.bookingDetail.length,
+            itemBuilder: (_, index) {
+              final selectedRoom = widget.orderResponse.bookingDetail[index];
+              return SelectedRoomCard(
+                title: '${selectedRoom.room.roomType.name}'.titleCase,
+                // subtitle: '${selectedRoom.room.variant}'.titleCase,
               );
             },
           ),
@@ -219,12 +256,12 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
 
   Widget _buildPriceDetail(BuildContext context) {
     DateState dateState = context.watch<DateCubit>().state;
-    double total = context.select<RoomCartCubit, double>((roomCartCubit) =>
-        (roomCartCubit.state is RoomCartLoaded)
-            ? (roomCartCubit.state as RoomCartLoaded).total *
-                dateState.rangeNight
-            : 0);
-    double ppn = total * 0.1;
+    // double total = context.select<RoomCartCubit, double>((roomCartCubit) =>
+    //     (roomCartCubit.state is RoomCartLoaded)
+    //         ? (roomCartCubit.state as RoomCartLoaded).total *
+    //             dateState.rangeNight
+    //         : 0);
+    // double ppn = total * 0.1;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
@@ -249,20 +286,31 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                             .format(dateState.rangeEndDate),
                     style: kNormalBoldTextStyle),
                 SizedBox(height: 8.0),
-                BlocBuilder<RoomCartCubit, RoomCartState>(
-                  builder: (_, state) {
-                    final selectedRooms =
-                        (state as RoomCartLoaded).selectedRoomCart;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: selectedRooms.length,
-                      itemBuilder: (_, index) {
-                        return OrderRoomDetail(
-                            selectedRoom: selectedRooms[index]);
-                      },
-                    );
+                // BlocBuilder<RoomCartCubit, RoomCartState>(
+                //   builder: (_, state) {
+                //     final selectedRooms =
+                //         (state as RoomCartLoaded).selectedRoomCart;
+                //     return ListView.builder(
+                //       padding: EdgeInsets.zero,
+                //       shrinkWrap: true,
+                //       physics: NeverScrollableScrollPhysics(),
+                //       itemCount: selectedRooms.length,
+                //       itemBuilder: (_, index) {
+                //         return OrderRoomDetail(
+                //             selectedRoom: selectedRooms[index]);
+                //       },
+                //     );
+                //   },
+                // ),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: widget.orderResponse.bookingDetail.length,
+                  itemBuilder: (_, index) {
+                    return OrderRoomDetail(
+                        selectedRoom:
+                            widget.orderResponse.bookingDetail[index]);
                   },
                 ),
                 SizedBox(height: 16.0),
@@ -275,7 +323,7 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Total', style: kNormalTextStyle),
-                    Text(Helper.priceFormat(total),
+                    Text(Helper.priceFormat(widget.orderResponse.total),
                         style: kNormalBoldTextStyle),
                   ],
                 ),
@@ -284,7 +332,8 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('PPN', style: kNormalTextStyle),
-                    Text(Helper.priceFormat(ppn), style: kNormalBoldTextStyle),
+                    Text(Helper.priceFormat(widget.orderResponse.tax),
+                        style: kNormalBoldTextStyle),
                   ],
                 ),
                 SizedBox(height: 4.0),
@@ -292,7 +341,9 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Grand Total', style: kNormalTextStyle),
-                    Text(Helper.priceFormat(total + ppn),
+                    Text(
+                        Helper.priceFormat(widget.orderResponse.total +
+                            widget.orderResponse.tax),
                         style: kNormalBoldTextStyle),
                   ],
                 ),
@@ -301,7 +352,9 @@ class _OrderRoomSummaryState extends State<OrderRoomSummary> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Bayar Sekarang', style: kNormalBoldTextStyle),
-                    Text(Helper.priceFormat(total + ppn),
+                    Text(
+                        Helper.priceFormat(widget.orderResponse.total +
+                            widget.orderResponse.tax),
                         style: kNormalBoldTextStyle),
                   ],
                 ),

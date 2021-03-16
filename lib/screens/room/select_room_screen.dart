@@ -297,12 +297,8 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
                 );
                 // Navigator.pushNamed(context, OrderRoomSummary.routeName);
               } else if (state is OrderSuccess) {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('order success'),
-                  ),
-                );
-                // Navigator.pushNamed(context, OrderRoomSummary.routeName);
+                Navigator.pushNamed(context, OrderRoomSummary.routeName,
+                    arguments: state.orderResponse);
               }
             },
             builder: (context, state) {
